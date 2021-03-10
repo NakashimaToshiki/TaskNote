@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TaskNote.Batch\TaskNote.Batch.csproj" />
+    <ProjectReference Include="..\TaskNote.Database.EntityFramework.DbSqlite\TaskNote.Database.EntityFramework.DbSqlite.csproj" />
+    <ProjectReference Include="..\TaskNote.Database.EntityFramework.InMemory\TaskNote.Database.EntityFramework.InMemory.csproj" />
+    <ProjectReference Include="..\TaskNote.DependencyInjection\TaskNote.DependencyInjection.csproj" />
+    <ProjectReference Include="..\TaskNote.HttpClient.MicrosoftExtentions\TaskNote.HttpClient.MicrosoftExtentions.csproj" />
+    <ProjectReference Include="..\TaskNote.Models\TaskNote.Models.csproj" />
+  </ItemGroup>
+
+</Project>
