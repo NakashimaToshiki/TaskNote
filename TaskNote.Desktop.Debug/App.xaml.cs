@@ -4,9 +4,9 @@ using System.Windows;
 using System.Windows.Threading;
 using TaskNote.Batch;
 using TaskNote.Database;
-using TaskNote.Database.EntityFramework.DbSqlite;
+using TaskNote.Database.EntityFramework.InMemory;
 
-namespace TaskNote.Desktop
+namespace TaskNote.Desktop.Debug
 {
     /// <summary>
     /// Interaction logic for App.xaml
@@ -21,7 +21,7 @@ namespace TaskNote.Desktop
         {
             _services.AddSingleton<Dispatcher>(this.Dispatcher);
 
-            _services.AddDatabase<SqliteDatabaseServices>();
+            _services.AddDatabase<InMemoryDatabaseServices>();
 
             _provider = _services.BuildServiceProvider();
         }

@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using TaskNote.Database.EntityFramework.DbSqlite;
-using TaskNote.Strage;
 
 namespace TaskNote.Desktop
 {
@@ -11,7 +10,7 @@ namespace TaskNote.Desktop
         {
             var optionsBuilder = new DbContextOptionsBuilder<TaskNoteSqliteContext>();
 
-            return new TaskNoteSqliteContext(new StoragePath(), optionsBuilder.Options);
+            return new TaskNoteSqliteContext(new SqliteDatabaseOptions(), optionsBuilder.Options);
         }
     }
 }

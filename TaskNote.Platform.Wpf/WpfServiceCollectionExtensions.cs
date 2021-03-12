@@ -1,8 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using TaskNote.Platform;
-using TaskNote.Platform.Wpf;
 
-namespace TaskNote.DependencyInjection.Wpf
+namespace TaskNote.Platform.Wpf
 {
     public static class WpfServiceCollectionExtensions
     {
