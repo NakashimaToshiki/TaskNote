@@ -18,9 +18,9 @@ namespace TaskNote.Platform.Wpf
     /// <summary>
     /// Interaction logic for UserControl1.xaml
     /// </summary>
-    public partial class UserControl1 : UserControl, IMainWindow
+    public partial class TaskListBox : UserControl, ITaskListBox
     {
-        public UserControl1()
+        public TaskListBox()
         {
             InitializeComponent();
         }

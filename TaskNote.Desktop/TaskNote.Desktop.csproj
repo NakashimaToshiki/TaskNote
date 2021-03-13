@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TaskNote.DependencyInjection.MicrosoftExtentions\TaskNote.DependencyInjection.csproj" />
+    <ProjectReference Include="..\TaskNote.Platform.Wpf\TaskNote.Platform.Wpf.csproj" />
   </ItemGroup>
 
 </Project>

@@ -9,7 +9,6 @@ namespace TaskNote.Database.EntityFramework
         public virtual void ConfigureDatabaseServices(IServiceCollection services)
         {
             services
-                .AddSingleton<IDatabaseOptions>()
                 .AddSingleton<DbContextOptionsBuilder>()
                 .AddSingleton<DbContextOptions>(_ => _.GetRequiredService<DbContextOptionsBuilder>().Options)
                 .AddSingleton<IMigrate, DatabaseMigrate<TDbContext>>()

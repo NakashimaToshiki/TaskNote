@@ -2,5 +2,8 @@
 {
     public interface IMainWindow
     {
+        bool? ShowDialog();
+
+        void Show();
     }
 }

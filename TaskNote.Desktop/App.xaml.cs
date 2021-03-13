@@ -1,10 +1,13 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 using TaskNote.Batch;
 using TaskNote.Database;
 using TaskNote.Database.EntityFramework.DbSqlite;
+using TaskNote.Platform;
+using TaskNote.Platform.Wpf;
 
 namespace TaskNote.Desktop
 {
@@ -19,16 +22,17 @@ namespace TaskNote.Desktop
 
         public App()
         {
-            _services.AddSingleton<Dispatcher>(this.Dispatcher);
-
-            _services.AddDatabase<SqliteDatabaseServices>();
-
-            _provider = _services.BuildServiceProvider();
+            _provider = _services
+                .AddSingleton<SynchronizationContext>(new DispatcherSynchronizationContext(Dispatcher.CurrentDispatcher))
+                .AddDatabase<SqliteDatabaseServices>()
+                .AddPlatform<WpfPlatformServices>()
+                .AddBatch()
+                .BuildServiceProvider();
         }
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            //base.OnStartup(e);
+            base.OnStartup(e);
 
             // DIのSystem.InvalidOperationExceptionの修正がしやすいようにTask.Run()の外に記述している
             var batch = _provider.GetService<IStartBatch>();
@@ -49,9 +53,9 @@ namespace TaskNote.Desktop
             var _ = Task.Run(async () =>
             {
                 await _provider.GetService<IExitBatch>().Run();
+                _provider.Dispose(); // IDisposeを実装しているクラスをすべて解放
+                base.OnExit(e);
             });
-            _provider.Dispose(); // IDisposeを実装しているクラスをすべて解放
-            base.OnExit(e);
         }
     }
 }

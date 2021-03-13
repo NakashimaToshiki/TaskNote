@@ -18,10 +18,11 @@ namespace TaskNote.Database
             databaseServices.ConfigureDatabaseServices(services);
         }*/
 
-        public static void AddDatabase<TDatabaseServices> (this IServiceCollection services) where TDatabaseServices : IDatabaseServices
+        public static IServiceCollection AddDatabase<TDatabaseServices> (this IServiceCollection services) where TDatabaseServices : IDatabaseServices
         {
             var databaseServices = (TDatabaseServices)Activator.CreateInstance(typeof(TDatabaseServices));
             databaseServices.ConfigureDatabaseServices(services);
+            return services;
         }
     }
 }

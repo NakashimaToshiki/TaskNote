@@ -7,20 +7,23 @@ namespace TaskNote.Batch
     public class MainStartBatch : IStartBatch
     {
         private readonly ILogger _logger;
+        private readonly MainWindowStartBatch _window;
 
-        public MainStartBatch(ILogger logger)
+        public MainStartBatch(MainWindowStartBatch window)
         {
-            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            //_logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            _window = window ?? throw new ArgumentNullException(nameof(window));
         }
 
         public async ValueTask<bool> Run()
         {
             try
             {
-                await Task.Delay(1);
                 // ログ開始？
                 // スプラッシュ画面の表示？
                 // 
+
+                await _window.Run();
 
                 // ログイン
 
