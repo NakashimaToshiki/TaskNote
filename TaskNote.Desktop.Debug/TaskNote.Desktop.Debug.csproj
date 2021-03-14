@@ -7,7 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TaskNote.DependencyInjection.MicrosoftExtentions\TaskNote.DependencyInjection.csproj" />
+    <ProjectReference Include="..\TaskNote.Desktop\TaskNote.Desktop.csproj" />
+    <ProjectReference Include="..\TaskNote.TestDoubles\TaskNote.TestDoubles.csproj" />
   </ItemGroup>
 
 </Project>

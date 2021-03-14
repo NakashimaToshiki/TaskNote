@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>TaskNote</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TaskNote.Batch\TaskNote.Batch.csproj" />
+    <ProjectReference Include="..\TaskNote.Database.EntityFramework.InMemory\TaskNote.Database.EntityFramework.InMemory.csproj" />
+    <ProjectReference Include="..\TaskNote.Database\TaskNote.Database.csproj" />
+    <ProjectReference Include="..\TaskNote.Platform\TaskNote.Platform.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Moq" Version="4.16.1" />
+  </ItemGroup>
+
+</Project>
