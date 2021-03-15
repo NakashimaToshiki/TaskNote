@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace TaskNote.Database
+namespace TaskNote.Storage
 {
-    public interface IDatabaseServices
+    public interface IStorageServices
     {
         void Configure(IServiceCollection services);
     }

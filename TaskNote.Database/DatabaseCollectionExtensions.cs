@@ -8,7 +8,7 @@ namespace TaskNote.Database
         public static IServiceCollection AddDatabase<TDatabaseServices> (this IServiceCollection services) where TDatabaseServices : IDatabaseServices
         {
             var databaseServices = (TDatabaseServices)Activator.CreateInstance(typeof(TDatabaseServices));
-            databaseServices.ConfigureDatabaseServices(services);
+            databaseServices.Configure(services);
             return services;
         }
     }

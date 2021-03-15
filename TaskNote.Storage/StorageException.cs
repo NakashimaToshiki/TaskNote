@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 using TaskNote.Abstracts;
 
-namespace TaskNote.Strage
+namespace TaskNote.Storage
 {
     [Serializable()]
     public class StorageException : TaskNoteException

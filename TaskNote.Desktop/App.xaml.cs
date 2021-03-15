@@ -6,8 +6,11 @@ using System.Windows.Threading;
 using TaskNote.Batch;
 using TaskNote.Database;
 using TaskNote.Database.EntityFramework.DbSqlite;
+using TaskNote.Logging;
 using TaskNote.Platform;
 using TaskNote.Platform.Wpf;
+using TaskNote.Storage;
+using TaskNote.Storage.BuiltIn;
 
 namespace TaskNote.Desktop
 {
@@ -27,6 +30,8 @@ namespace TaskNote.Desktop
                 .AddDatabase<SqliteDatabaseServices>()
                 .AddPlatform<WpfPlatformServices>()
                 .AddBatch()
+                .AddStorage<BuiltInStorageServices>()
+                .AddNLog()
                 .BuildServiceProvider();
         }
 

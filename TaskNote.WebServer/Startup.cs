@@ -56,6 +56,14 @@ namespace TaskNote.WebServer
             {
                 endpoints.MapControllers();
             });
+
+            /*
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new Microsoft.Extensions.FileProviders.PhysicalFileProvider(
+                    System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), "StaticFiles")),
+                RequestPath = "/StaticFiles"
+            });*/
         }
     }
 }

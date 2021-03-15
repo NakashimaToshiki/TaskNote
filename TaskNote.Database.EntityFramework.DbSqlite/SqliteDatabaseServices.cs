@@ -4,9 +4,9 @@ namespace TaskNote.Database.EntityFramework.DbSqlite
 {
     public class SqliteDatabaseServices : BaseDatabaseServices<TaskNoteDbContext>
     {
-        public override void ConfigureDatabaseServices(IServiceCollection services)
+        public override void Configure(IServiceCollection services)
         {
-            base.ConfigureDatabaseServices(services);
+            base.Configure(services);
             services
                 .AddSingleton<IDatabaseOptions, SqliteDatabaseOptions>();
         }

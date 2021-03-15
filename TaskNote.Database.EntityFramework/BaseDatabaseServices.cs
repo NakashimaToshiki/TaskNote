@@ -6,7 +6,7 @@ namespace TaskNote.Database.EntityFramework
 {
     public abstract class BaseDatabaseServices<TDbContext> : IDatabaseServices where TDbContext : TaskNoteDbContext
     {
-        public virtual void ConfigureDatabaseServices(IServiceCollection services)
+        public virtual void Configure(IServiceCollection services)
         {
             services
                 .AddSingleton<DbContextOptionsBuilder>()

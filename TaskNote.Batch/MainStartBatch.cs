@@ -9,9 +9,9 @@ namespace TaskNote.Batch
         private readonly ILogger _logger;
         private readonly MainWindowStartBatch _window;
 
-        public MainStartBatch(MainWindowStartBatch window)
+        public MainStartBatch(ILogger logger, MainWindowStartBatch window)
         {
-            //_logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _window = window ?? throw new ArgumentNullException(nameof(window));
         }
 
@@ -19,6 +19,7 @@ namespace TaskNote.Batch
         {
             try
             {
+                _logger.LogInformation("開始します。");
                 // ロギングの開始
                 // ロギングを開始するには、トレースログのフォルダを生成する必要がある
                 // ローカルストレージでフォルダの生成
