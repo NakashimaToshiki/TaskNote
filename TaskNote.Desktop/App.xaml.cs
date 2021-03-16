@@ -19,13 +19,11 @@ namespace TaskNote.Desktop
     /// </summary>
     public partial class App : Application
     {
-        private readonly ServiceCollection _services = new ServiceCollection();
-
         private readonly ServiceProvider _provider;
 
         public App()
         {
-            _provider = _services
+            _provider = new ServiceCollection()
                 .AddSingleton<SynchronizationContext>(new DispatcherSynchronizationContext(Dispatcher))
                 .AddDatabase<SqliteDatabaseServices>()
                 .AddPlatform<WpfPlatformServices>()
