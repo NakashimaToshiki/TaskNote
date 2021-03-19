@@ -20,9 +20,9 @@ namespace TaskNote.Logging
 
             // ディレクトリの生成
             provider.GetService<IStorageDirectory>().Initialization();
-            var fileInfo = provider.GetService<IStorageFileInfo>();
 
             // NLogのファイルコピー
+            var fileInfo = provider.GetService<IStorageFileInfo>();
             if (!fileInfo.NLog.Exists)
             {
                 if (!fileInfo.DefualtNLog.Exists) throw new FileNotFoundException(fileInfo.DefualtNLog.PhysicalPath);

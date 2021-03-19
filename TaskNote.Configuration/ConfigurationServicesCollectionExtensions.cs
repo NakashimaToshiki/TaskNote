@@ -9,7 +9,6 @@ namespace TaskNote.Configuration
     {
         public static IServiceCollection AddConfiguration(this IServiceCollection services, IFileInfo sourceFile, IFileInfo defualtFile)
         {
-            IConfiguration root;
             if (!sourceFile.Exists)
             {
                 if (!defualtFile.Exists) throw new FileNotFoundException(defualtFile.PhysicalPath);
@@ -17,7 +16,7 @@ namespace TaskNote.Configuration
             }
 
             var directory = Path.GetDirectoryName(sourceFile.PhysicalPath);
-            root = new ConfigurationBuilder().SetBasePath(directory).AddJsonFile(sourceFile.Name).Build();
+            var root = new ConfigurationBuilder().SetBasePath(directory).AddJsonFile(sourceFile.Name).Build();
 
             services.AddSingleton<IConfiguration>(root);
             return services;

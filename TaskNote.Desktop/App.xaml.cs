@@ -24,6 +24,7 @@ namespace TaskNote.Desktop
         public App()
         {
             _provider = new ServiceCollection()
+                .AddSingleton<Dispatcher>(Dispatcher)
                 .AddSingleton<SynchronizationContext>(new DispatcherSynchronizationContext(Dispatcher))
                 .AddDatabase<SqliteDatabaseServices>()
                 .AddPlatform<WpfPlatformServices>()
