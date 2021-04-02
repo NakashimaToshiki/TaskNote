@@ -2,7 +2,7 @@
 
 namespace TaskNote.Storage
 {
-    public interface IStorageFileInfo
+    public interface IFileInfoFacade
     {
         IFileInfo NLog { get; }
 

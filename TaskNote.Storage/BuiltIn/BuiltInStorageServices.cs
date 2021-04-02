@@ -6,7 +6,7 @@ namespace TaskNote.Storage.BuiltIn
     {
         public void Configure(IServiceCollection services) =>
             services
-                .AddSingleton<IStorageFileInfo, StorageFileInfo>()
+                .AddSingleton<IFileInfoFacade, StorageFileInfo>()
                 .AddSingleton<IStorageDirectory, StorageDirectory>()
                 .AddSingleton<IStorageDirectoryOptions, StorageDirectoryOptions>();
     }

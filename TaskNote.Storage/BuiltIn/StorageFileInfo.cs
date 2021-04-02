@@ -5,7 +5,7 @@ using System.IO;
 
 namespace TaskNote.Storage.BuiltIn
 {
-    public class StorageFileInfo : IStorageFileInfo
+    public class StorageFileInfo : IFileInfoFacade
     {
         private readonly IStorageDirectoryOptions options;
 

@@ -22,7 +22,7 @@ namespace TaskNote.Logging
             provider.GetService<IStorageDirectory>().Initialization();
 
             // NLogのファイルコピー
-            var fileInfo = provider.GetService<IStorageFileInfo>();
+            var fileInfo = provider.GetService<IFileInfoFacade>();
             if (!fileInfo.NLog.Exists)
             {
                 if (!fileInfo.DefualtNLog.Exists) throw new FileNotFoundException(fileInfo.DefualtNLog.PhysicalPath);
