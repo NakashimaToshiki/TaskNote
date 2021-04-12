@@ -1,11 +1,11 @@
 ﻿using System.Threading.Tasks;
 
-namespace TaskNote.HttpClient
+namespace TaskNote.Http.Client
 {
     /// <summary>
     /// ユーザー認証するメソッドを定義します、
     /// </summary>
-    public interface IVerficationService
+    public interface IAuthService
     {
         /// <summary>
         /// ユーザー認証

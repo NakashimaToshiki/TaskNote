@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 using TaskNote.Abstracts;
 
-namespace TaskNote.HttpClient
+namespace TaskNote.Http.Client
 {
     [Serializable()]
     public class HttpClientException : TaskNoteException
@@ -30,9 +30,9 @@ namespace TaskNote.HttpClient
         }
     }
 
-    public class HttpStatusCodeException : HttpClientException
+    public class HttpRequestException : HttpClientException
     {
-        public HttpStatusCodeException(string message, HttpStatusCode statusCode) : base(message)
+        public HttpRequestException(string message, HttpStatusCode statusCode) : base(message)
         {
 
         }

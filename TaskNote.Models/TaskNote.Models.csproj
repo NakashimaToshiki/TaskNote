@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TaskNote.Database.EntityFramework\TaskNote.Database.EntityFramework.csproj" />
-    <ProjectReference Include="..\TaskNote.HttpClient\TaskNote.HttpClient.csproj" />
   </ItemGroup>
 
 </Project>
