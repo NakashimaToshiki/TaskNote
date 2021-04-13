@@ -1,8 +1,8 @@
 using System;
 
-namespace TaskNote.Http.Responses
+namespace TaskNote.Http
 {
-    public class TaskNoteResponse
+    public class TaskNoteResponse : IResponse
     {
         public DateTime Date { get; set; }
 
