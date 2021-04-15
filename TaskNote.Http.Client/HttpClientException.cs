@@ -37,6 +37,14 @@ namespace TaskNote.Http.Client
 
         }
 
+        public HttpRequestException(
+            HttpStatusCode statusCode,
+            [CallerFilePath] string filePath = "",
+            [CallerMemberName] string memberName = "") : base(
+                $"{System.IO.Path.GetFileNameWithoutExtension(filePath)}.{memberName}")
+        {
+        }
+
         public override string Message => $"{base.Message} {StatusCode} {(int)StatusCode}";
 
         public HttpStatusCode StatusCode { get; }

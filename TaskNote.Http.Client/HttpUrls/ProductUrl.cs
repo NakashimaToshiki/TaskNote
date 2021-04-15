@@ -9,6 +9,12 @@
         // 文字リテラルで置き換えてもいいけど、asp.net coreサイドでも
         // [HttpGet("[action]/{productId}}]属性でルートパラメータを指定するので、
         // サーバサイドと共通化するならTask.Note.Httpに移動したほうがいいかも
-        public virtual string TaskEndPoint => "task/{user_id}";
+        public string SessionEndPoint => "credential/verfication";
+
+        public virtual string TaskEndPoint => "{user_id}/task";
+
+        public string LogEndPoint => "{user_id}/log";
+
+        public string ConfigEndPoint => "{user_id}/config";
     }
 }

@@ -5,7 +5,7 @@ namespace TaskNote.Http
     /// <summary>
     /// レスポンスデータクラスを示すマーカーインターフィエス
     /// </summary>
-    public interface IResponse : IDataClass
+    public interface IJsonBody : IDataClass
     {
     }
 }

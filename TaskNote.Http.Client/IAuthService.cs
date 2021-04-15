@@ -11,6 +11,6 @@ namespace TaskNote.Http.Client
         /// ユーザー認証
         /// </summary>
         /// <returns></returns>
-        ValueTask<int> GetAuthentication();
+        ValueTask<bool> GetAuthentication();
     }
 }

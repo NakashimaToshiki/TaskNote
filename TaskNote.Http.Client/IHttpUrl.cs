@@ -9,6 +9,12 @@
 
         string SaverDomain { get; }
 
+        string SessionEndPoint { get; }
+
         string TaskEndPoint { get; }
+
+        string LogEndPoint { get; }
+
+        string ConfigEndPoint { get; }
     }
 }

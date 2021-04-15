@@ -8,4 +8,8 @@
     <ProjectReference Include="..\TaskNote.Database.EntityFramework\TaskNote.Database.EntityFramework.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="TaskModels\" />
+  </ItemGroup>
+
 </Project>
