@@ -2,10 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
+    <Configurations>Debug;Release;Staging;Mock</Configurations>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\TaskNote.Database.EntityFramework\TaskNote.Database.EntityFramework.csproj" />
+    <ProjectReference Include="..\TaskNote.Http.Client\TaskNote.Http.Client.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -4,6 +4,7 @@
     <TargetFramework>netstandard2.1</TargetFramework>
     <AssemblyName>TaskNote.Http.Client.MicrosoftExtentions</AssemblyName>
     <RootNamespace>TaskNote.Http.Client.MicrosoftExtentions</RootNamespace>
+    <Configurations>Debug;Release;Staging;Mock</Configurations>
   </PropertyGroup>
 
   <ItemGroup>

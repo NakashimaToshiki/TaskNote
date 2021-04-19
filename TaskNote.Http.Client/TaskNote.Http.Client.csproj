@@ -4,6 +4,7 @@
     <TargetFramework>netstandard2.1</TargetFramework>
     <AssemblyName>TaskNote.Http.Client</AssemblyName>
     <RootNamespace>TaskNote.Http.Client</RootNamespace>
+    <Configurations>Debug;Release;Staging;Mock</Configurations>
   </PropertyGroup>
 
   <ItemGroup>

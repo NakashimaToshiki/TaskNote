@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
-using TaskNote.HttpClient;
+using TaskNote.Http.Client;
 using TaskNote.Models.VerificationModels;
 
 namespace TaskNote.Models.Repositoris
@@ -9,9 +9,9 @@ namespace TaskNote.Models.Repositoris
     public class VerficationRepository
     {
         private readonly ILogger _logger;
-        private readonly IVerficationService _service;
+        private readonly IAuthService _service;
 
-        public VerficationRepository(ILogger _logger, IVerficationService _service)
+        public VerficationRepository(ILogger _logger, IAuthService _service)
         {
             _logger = _logger ?? throw new ArgumentNullException(nameof(_logger));
             _service = _service ?? throw new ArgumentNullException(nameof(_service));
@@ -25,7 +25,7 @@ namespace TaskNote.Models.Repositoris
                 _logger.LogInformation("認証成功");
                 return new VerificationSuccessModel();
             }
-            catch (HttpStatusCodeException e)
+            catch (HttpRequestException e)
             {
                 _logger.LogWarning(e, "");
                 if(e.StatusCode == System.Net.HttpStatusCode.Unauthorized)
