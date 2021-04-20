@@ -1,9 +1,6 @@
-﻿using System.Threading.Tasks;
-
-namespace TaskNote.Batch
+﻿namespace TaskNote.Batch
 {
-    public interface IStartBatch
+    public interface IStartBatch : IBatch
     {
-        ValueTask<bool> Run();
     }
 }
