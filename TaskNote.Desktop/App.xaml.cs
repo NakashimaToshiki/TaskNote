@@ -11,6 +11,9 @@ using TaskNote.Platform;
 using TaskNote.Platform.Wpf;
 using TaskNote.Storage;
 using TaskNote.Storage.BuiltIn;
+using TaskNote.Http.Client;
+using TaskNote.Http.Client.HttpUrls;
+using TaskNote.Http.Client.Rest;
 
 namespace TaskNote.Desktop
 {
@@ -30,6 +33,7 @@ namespace TaskNote.Desktop
                 .AddPlatform<WpfPlatformServices>()
                 .AddBatch()
                 .AddStorage<BuiltInStorageServices>()
+                .AddHttpClient(_ => _.AddProvider<RestHttpClientServices>())
                 .AddNLog()
                 .BuildServiceProvider();
         }

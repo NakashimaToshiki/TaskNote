@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TaskNote.Abstracts\TaskNote.Abstracts.csproj" />
+    <ProjectReference Include="..\TaskNote\TaskNote.csproj" />
   </ItemGroup>
 
 </Project>

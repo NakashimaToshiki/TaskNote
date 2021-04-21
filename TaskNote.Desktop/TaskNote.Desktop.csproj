@@ -18,6 +18,7 @@
     <ProjectReference Include="..\TaskNote.Batch\TaskNote.Batch.csproj" />
     <ProjectReference Include="..\TaskNote.Configuration\TaskNote.Configuration.csproj" />
     <ProjectReference Include="..\TaskNote.Database.EntityFramework.DbSqlite\TaskNote.Database.EntityFramework.DbSqlite.csproj" />
+    <ProjectReference Include="..\TaskNote.Http.Client.Rest\TaskNote.Http.Client.Rest.csproj" />
     <ProjectReference Include="..\TaskNote.Logging\TaskNote.Logging.csproj" />
     <ProjectReference Include="..\TaskNote.Models\TaskNote.Models.csproj" />
     <ProjectReference Include="..\TaskNote.Platform.Wpf\TaskNote.Platform.Wpf.csproj" />

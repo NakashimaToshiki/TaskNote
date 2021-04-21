@@ -2,7 +2,7 @@
 {
     public class ProductUrl : IHttpUrl
     {
-        public virtual string SaverDomain => $"http://staging.task.nakashima.toshiki.jp";
+        public virtual string SaverDomain => $"http://task.nakashima.toshiki.jp";
 
         // メモ：ルートパラメータEndPointはasp.net coreでも[Http
         // HttpClietnだと{}に囲まれた文字を置き換えるメソッドがないので、自分で作る必要性がある？

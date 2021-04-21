@@ -6,4 +6,9 @@
     <Configurations>Debug;Release;Staging;Mock</Configurations>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TaskNote.Http.Client.Rest\TaskNote.Http.Client.Rest.csproj" />
+    <ProjectReference Include="..\TaskNote.TestDoubles\TaskNote.TestDoubles.csproj" />
+  </ItemGroup>
+
 </Project>
