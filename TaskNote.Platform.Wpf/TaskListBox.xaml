@@ -7,8 +7,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <ListBox>
-            
+        <ListBox x:Name="_list">
+            <ListBoxItem Content="item1"/>
+            <ListBoxItem Content="item2"/>
         </ListBox>
     </Grid>
 </UserControl>
