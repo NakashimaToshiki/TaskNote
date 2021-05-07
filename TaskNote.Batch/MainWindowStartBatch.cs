@@ -17,7 +17,7 @@ namespace TaskNote.Batch
             _synchronization = synchronization ?? throw new ArgumentNullException(nameof(synchronization));
         }
 
-        public async ValueTask<bool> Run()
+        public async ValueTask<bool> RunAsync()
         {
             return await Task.Run(() =>
             {

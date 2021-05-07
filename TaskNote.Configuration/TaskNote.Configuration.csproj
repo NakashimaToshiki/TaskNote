@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TaskNote.Storage\TaskNote.Storage.csproj" />
     <ProjectReference Include="..\TaskNote\TaskNote.csproj" />
   </ItemGroup>
 

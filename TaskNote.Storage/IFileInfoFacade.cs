@@ -1,15 +1,23 @@
-﻿using Microsoft.Extensions.FileProviders;
-
-namespace TaskNote.Storage
+﻿namespace TaskNote.Storage
 {
     public interface IFileInfoFacade
     {
-        IFileInfo NLog { get; }
+        /// <summary>
+        /// インストールローカルディレクトリ
+        /// </summary>
+        string InstalledLocation { get; }
 
-        IFileInfo DefualtNLog { get; }
+        /// <summary>
+        /// アプリケーションディレクトリ
+        /// </summary>
+        string ApplicationPath { get; }
 
-        IFileInfo AppSetting { get; }
+        string Database { get; }
 
-        IFileInfo DefualtAppSetting { get; }
+        string NLog { get; }
+
+        string AppSetting { get; }
+
+        string TraceLogFolder { get; }
     }
 }

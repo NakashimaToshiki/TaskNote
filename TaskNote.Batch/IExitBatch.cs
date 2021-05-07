@@ -1,6 +1,7 @@
 ﻿namespace TaskNote.Batch
 {
-    public interface IExitBatch : IBatch
+    public interface IExitBatch
     {
+        bool Run();
     }
 }

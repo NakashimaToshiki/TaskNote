@@ -7,7 +7,7 @@
   IgnorableNamespaces="uap rescap">
 
   <Identity
-    Name="b9b1a88b-59ce-4341-ac5b-57958786e11b"
+    Name="TaskNote"
     Publisher="CN=toshiki"
     Version="1.0.0.0" />
 

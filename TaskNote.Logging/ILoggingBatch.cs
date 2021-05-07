@@ -1,45 +1,85 @@
-﻿using System.Threading.Tasks;
-using TaskNote.Storage;
+﻿using Microsoft.Extensions.Configuration;
 using System;
-using Microsoft.Extensions.DependencyInjection;
+using System.IO;
+using TaskNote.Storage;
 
 namespace TaskNote.Logging
 {
     /// <summary>
-    /// ロギングを開始するためにバッチ
+    /// ロギング情報
     /// </summary>
-    public interface ILoggingBatch : IBatch
+    public struct LoggingOptions
     {
+        public string FilePath;
+
+        public string LogFolder;
+
+        public IConfiguration Configuration;
     }
 
-    public static class LoggingBatchExtentions
+    /// <summary>
+    /// ロギング情報を取得する
+    /// </summary>
+    public interface ILoggingBatch
     {
-        public static IServiceCollection UseLogging(this IServiceCollection services)
-        {
-            var provider = services.BuildServiceProvider();
-            return services;
-        }
+        LoggingOptions GetOptions();
     }
 
+    /// <summary>
+    /// デクストップ用
+    /// </summary>
     public class LoggingBatch : ILoggingBatch
     {
-        private readonly IStorageDirectoryOptions _options;
+        private readonly IConfiguration _configuration;
+        private readonly IFileInfoFacade _fileInfoFacade;
 
-        public LoggingBatch(IStorageDirectoryOptions options)
+        public LoggingBatch(IConfiguration configuration, IFileInfoFacade fileInfoFacade)
         {
-            _options = options ?? throw new System.ArgumentNullException(nameof(options));
+            _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
+            _fileInfoFacade = fileInfoFacade ?? throw new ArgumentNullException(nameof(fileInfoFacade));
         }
 
-        public async ValueTask<bool> Run()
+        public LoggingOptions GetOptions()
         {
-            throw new System.NotImplementedException();
+            return new LoggingOptions()
+            {
+                FilePath = Path.Combine(_fileInfoFacade.InstalledLocation, _fileInfoFacade.NLog),
+                LogFolder = Path.Combine(_fileInfoFacade.InstalledLocation, _fileInfoFacade.TraceLogFolder),
+                Configuration = _configuration.GetSection("Logging")
+            };
         }
     }
-    public class PackegeLoggingBatch : ILoggingBatch
+
+    /// <summary>
+    /// パッケージ版用
+    /// </summary>
+    public class PackageLoggingBatch : ILoggingBatch
     {
-        public async ValueTask<bool> Run()
+        private readonly IConfiguration _configuration;
+        private readonly IFileInfoFacade _fileInfoFacade;
+
+        public PackageLoggingBatch(IConfiguration configuration, IFileInfoFacade fileInfoFacade)
         {
-            throw new System.NotImplementedException();
+            _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
+            _fileInfoFacade = fileInfoFacade ?? throw new ArgumentNullException(nameof(fileInfoFacade));
+        }
+
+        public LoggingOptions GetOptions()
+        {
+            var nlog = new FileInfo(Path.Combine(_fileInfoFacade.ApplicationPath, _fileInfoFacade.NLog));
+            if (!nlog.Exists)
+            {
+                var nlogDefualt = new FileInfo(Path.Combine(_fileInfoFacade.InstalledLocation, _fileInfoFacade.NLog));
+                if (!nlogDefualt.Exists) throw new FileNotFoundException(nlogDefualt.FullName);
+                File.Copy(nlogDefualt.FullName, nlog.FullName);
+            }
+
+            return new LoggingOptions()
+            {
+                FilePath = Path.Combine(_fileInfoFacade.ApplicationPath, _fileInfoFacade.NLog),
+                LogFolder = Path.Combine(_fileInfoFacade.ApplicationPath, _fileInfoFacade.TraceLogFolder),
+                Configuration = _configuration.GetSection("Logging")
+            };
         }
     }
 }

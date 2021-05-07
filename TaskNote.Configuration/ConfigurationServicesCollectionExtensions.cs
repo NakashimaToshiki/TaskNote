@@ -7,14 +7,8 @@ namespace TaskNote.Configuration
 {
     public static class ConfigurationServicesCollectionExtensions
     {
-        public static IServiceCollection AddConfiguration(this IServiceCollection services, IFileInfo sourceFile, IFileInfo defualtFile)
+        public static IServiceCollection AddConfiguration(this IServiceCollection services, IFileInfo sourceFile)
         {
-            if (!sourceFile.Exists)
-            {
-                if (!defualtFile.Exists) throw new FileNotFoundException(defualtFile.PhysicalPath);
-                File.Copy(defualtFile.PhysicalPath, sourceFile.PhysicalPath);
-            }
-
             var directory = Path.GetDirectoryName(sourceFile.PhysicalPath);
             var root = new ConfigurationBuilder().SetBasePath(directory).AddJsonFile(sourceFile.Name).Build();
 

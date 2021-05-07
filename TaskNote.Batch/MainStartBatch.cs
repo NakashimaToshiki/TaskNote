@@ -15,7 +15,7 @@ namespace TaskNote.Batch
             _window = window ?? throw new ArgumentNullException(nameof(window));
         }
 
-        public async ValueTask<bool> Run()
+        public async ValueTask<bool> RunAsync()
         {
             try
             {
@@ -32,7 +32,7 @@ namespace TaskNote.Batch
                 // 認証処理
 
                 // メイン画面の表示
-                await _window.Run();
+                await _window.RunAsync();
 
                 return true;
             }

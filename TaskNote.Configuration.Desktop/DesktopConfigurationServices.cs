@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using System;
 
 namespace TaskNote.Configuration.Desktop
 {
@@ -7,7 +6,8 @@ namespace TaskNote.Configuration.Desktop
     {
         public void Configure(IServiceCollection services)
         {
-            throw new NotImplementedException();
+            services
+                .AddSingleton<IVersion, AssemblyVersion>();
         }
     }
 }

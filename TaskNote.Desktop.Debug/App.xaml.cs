@@ -37,7 +37,7 @@ namespace TaskNote.Desktop.Debug
 
             var _ = Task.Run(async () =>
             {
-                await batch.Run();
+                await batch.RunAsync();
 
                 Dispatcher.Invoke(() =>
                 {
@@ -50,7 +50,7 @@ namespace TaskNote.Desktop.Debug
         {
             var _ = Task.Run(async () =>
             {
-                await _provider.GetService<IExitBatch>().Run();
+                await _provider.GetService<IExitBatch>().RunAsync();
                 _provider.Dispose(); // IDisposeを実装しているクラスをすべて解放
                 base.OnExit(e);
             });
