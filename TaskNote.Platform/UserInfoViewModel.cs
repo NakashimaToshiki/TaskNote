@@ -8,11 +8,12 @@ using TaskNote.Models.VerificationModels;
 
 namespace TaskNote.Platform
 {
-    public class UserInfoDialogViewModel : BindableBase
+    public class UserInfoViewModel : BindableBase
     {
         private string _userId;
         
-        [Required(ErrorMessage="ユーザーネームを入力して下さい。")]
+        [Required(ErrorMessage="ユーザー名を入力して下さい。")]
+        [RegularExpression("[a-zA-Z0-9]+", ErrorMessage = "ユーザー名は英数字のみです。")]
         public string UserId
         {
             get => _userId;
@@ -20,8 +21,6 @@ namespace TaskNote.Platform
         }
 
         private string _password;
-        private readonly VerficationRepository _repository;
-        private readonly UserOptions _options;
 
         [Required(ErrorMessage = "パスワードを入力して下さい。")]
         public string Password
@@ -30,7 +29,10 @@ namespace TaskNote.Platform
             set { SetProperty(ref _password, value); }
         }
 
-        public UserInfoDialogViewModel(VerficationRepository repository, UserOptions options)
+        private readonly VerficationRepository _repository;
+        private readonly UserOptions _options;
+
+        public UserInfoViewModel(VerficationRepository repository, UserOptions options)
         {
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
             _options = options ?? throw new ArgumentNullException(nameof(options));
@@ -45,7 +47,7 @@ namespace TaskNote.Platform
                 {
                     throw new ValidationException(string.Join("\r\n", errors.Select(_ => _.ErrorMessage)));
                 }
-                // int.Parseもここで呼び出す
+                // 必要があればint.Parseもここで呼び出す
                 _options.UserId = UserId;
                 _options.Password = Password;
             }
