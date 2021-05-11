@@ -1,0 +1,18 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace TaskNote.Entity.FrameworkCore.InMemory
+{
+    public class InMemoryDatabaseServices : BaseDatabaseServices<TaskNoteInMemoryContext>
+    {
+        public override void Configure(IServiceCollection services)
+        {
+            services
+                .AddSingleton<IMigrate, SpyMigrate>()
+                .AddSingleton<DatabaseOptions>()
+                .AddSingleton<IDatabaseOptions>(_ => _.GetService<DatabaseOptions>());
+
+            base.Configure(services);
+        }
+    }
+}

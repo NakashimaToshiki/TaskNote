@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
-using TaskNote.Database.EntityFramework.DbSqlite;
+using TaskNote.Entity.FrameworkCore.DbSqlite;
 
 namespace TaskNote.Desktop
 {

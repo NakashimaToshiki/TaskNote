@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -15,8 +15,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TaskNote.Database.EntityFramework.DbSqlite\TaskNote.Database.EntityFramework.DbSqlite.csproj" />
-    <ProjectReference Include="..\TaskNote.Database.EntityFramework.InMemory\TaskNote.Database.EntityFramework.InMemory.csproj" />
+    <ProjectReference Include="..\TaskNote.Entity.FrameworkCore.DbSqlite\TaskNote.Entity.FrameworkCore.DbSqlite.csproj" />
+    <ProjectReference Include="..\TaskNote.Entity.FrameworkCore.InMemory\TaskNote.Entity.FrameworkCore.InMemory.csproj" />
   </ItemGroup>
 
 </Project>

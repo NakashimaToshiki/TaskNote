@@ -1,15 +1,15 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace TaskNote.Database.Tests
+namespace TaskNote.Entity.Tests
 {
     public static class TestServiceCollectionExtentions
     {
         public static IServiceCollection AddTest(this IServiceCollection services, string database)
         {
 #if DEBUG
-            services.AddDatabase<EntityFramework.InMemory.InMemoryDatabaseServices>();
+            services.AddDatabase<Entity.FrameworkCore.InMemory.InMemoryDatabaseServices>();
 #else
-            services.AddDatabase<EntityFramework.DbSqlite.SqliteDatabaseServices>();
+            services.AddDatabase<Entity.FrameworkCore.DbSqlite.SqliteDatabaseServices>();
 #endif
             return services;
         }

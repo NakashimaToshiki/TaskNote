@@ -8,8 +8,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TaskNote.Batch\TaskNote.Batch.csproj" />
-    <ProjectReference Include="..\TaskNote.Database.EntityFramework.InMemory\TaskNote.Database.EntityFramework.InMemory.csproj" />
-    <ProjectReference Include="..\TaskNote.Database\TaskNote.Database.csproj" />
+    <ProjectReference Include="..\TaskNote.Entity.FrameworkCore.InMemory\TaskNote.Entity.FrameworkCore.InMemory.csproj" />
+    <ProjectReference Include="..\TaskNote.Entity\TaskNote.Entity.csproj" />
     <ProjectReference Include="..\TaskNote.Platform\TaskNote.Platform.csproj" />
   </ItemGroup>
 

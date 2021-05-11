@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using TaskNote.Batch;
-using TaskNote.Database;
-using TaskNote.Database.EntityFramework.InMemory;
+using TaskNote.Entity;
+using TaskNote.Entity.FrameworkCore.InMemory;
 using TaskNote.Platform;
 
 namespace TaskNote.TestDoubles

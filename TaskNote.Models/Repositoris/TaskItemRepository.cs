@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using TaskNote.Database.TaskItems;
+using TaskNote.Entity.TaskItems;
 
 namespace TaskNote.Models.Repositoris
 {

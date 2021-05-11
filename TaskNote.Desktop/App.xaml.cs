@@ -5,15 +5,15 @@ using System.Windows;
 using System.Windows.Threading;
 using TaskNote.Batch;
 using TaskNote.Configuration;
-using TaskNote.Database;
-using TaskNote.Database.EntityFramework.DbSqlite;
+using TaskNote.Entity;
+using TaskNote.Entity.FrameworkCore.DbSqlite;
 using TaskNote.Http.Client;
 using TaskNote.Http.Client.HttpUrls;
 using TaskNote.Http.Client.Rest;
-using TaskNote.Logging;
-using TaskNote.Logging.Installer;
+using TaskNote.Installer;
 using TaskNote.Platform;
 using TaskNote.Platform.Wpf;
+using TaskNote.Logging;
 
 namespace TaskNote.Desktop
 {
