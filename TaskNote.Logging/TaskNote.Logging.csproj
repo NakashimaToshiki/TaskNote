@@ -21,7 +21,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TaskNote.Configuration\TaskNote.Configuration.csproj" />
-    <ProjectReference Include="..\TaskNote.Storage\TaskNote.Storage.csproj" />
   </ItemGroup>
 
   <ItemGroup>

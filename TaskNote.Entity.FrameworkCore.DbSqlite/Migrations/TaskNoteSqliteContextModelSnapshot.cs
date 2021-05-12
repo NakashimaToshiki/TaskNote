@@ -14,9 +14,9 @@ namespace TaskNote.Entity.FrameworkCore.DbSqlite.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "5.0.3");
+                .HasAnnotation("ProductVersion", "5.0.6");
 
-            modelBuilder.Entity("TaskNote.Database.TaskItems.TaskItem", b =>
+            modelBuilder.Entity("TaskNote.Entity.TaskItems.TaskItem", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

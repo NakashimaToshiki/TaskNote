@@ -1,23 +1,16 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-
-    <IsPackable>false</IsPackable>
-
+    <AssemblyName>TaskNote.Database.TestDoubles</AssemblyName>
+    <RootNamespace>TaskNote.Entity</RootNamespace>
     <Configurations>Debug;Release;Staging;Mock</Configurations>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NUnit" Version="3.12.0" />
-    <PackageReference Include="NUnit3TestAdapter" Version="3.16.1" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\TaskNote.Database.TestDoubles\TaskNote.Database.TestDoubles.csproj" />
     <ProjectReference Include="..\TaskNote.Entity.FrameworkCore.DbSqlite\TaskNote.Entity.FrameworkCore.DbSqlite.csproj" />
     <ProjectReference Include="..\TaskNote.Entity.FrameworkCore.InMemory\TaskNote.Entity.FrameworkCore.InMemory.csproj" />
+    <ProjectReference Include="..\TaskNote.TestDoubles\TaskNote.TestDoubles.csproj" />
   </ItemGroup>
 
 </Project>

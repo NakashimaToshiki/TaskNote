@@ -19,5 +19,10 @@ namespace TaskNote.Entity.TaskItems
             Title = title ?? throw new ArgumentNullException(nameof(title));
             Description = description ?? throw new ArgumentNullException(nameof(description));
         }
+
+        public override string ToString()
+        {
+            return this.ToStringProperties();
+        }
     }
 }

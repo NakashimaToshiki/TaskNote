@@ -4,8 +4,6 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
 
     <IsPackable>false</IsPackable>
-
-    <Configurations>Debug;Release;Staging;Mock</Configurations>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TaskNote.Http.Client.TestDoubles\TaskNote.Http.Client.TestDoubles.csproj" />
+    <ProjectReference Include="..\TaskNote.Platform.TestDoubles\TaskNote.Platform.TestDoubles.csproj" />
   </ItemGroup>
 
 </Project>

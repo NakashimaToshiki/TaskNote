@@ -42,5 +42,19 @@ namespace TaskNote.Entity.FrameworkCore
                 throw new DatabaseException(e);
             }
         }
+
+        public async ValueTask<bool> Add(TaskItem item)
+        {
+            try
+            {
+                using var db = _dbFactory.CreateDbContext();
+                db.TaskItems.Add(item);
+                return await db.SaveChangesAsync() > 0;
+            }
+            catch (Exception e)
+            {
+                throw new DatabaseException(e);
+            }
+        }
     }
 }

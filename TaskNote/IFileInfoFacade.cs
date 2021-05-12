@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace TaskNote
 {
@@ -32,7 +33,7 @@ namespace TaskNote
 
         public virtual string InstalledLocation => Environment.CurrentDirectory;
 
-        public virtual string ApplicationPath => Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+        public virtual string ApplicationPath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "TaskNote");
 
         public virtual string Database => "database.db";
 

@@ -1,11 +1,14 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using System.Runtime.CompilerServices;
+using TaskNote.Http.Client.HttpUrls;
 
 namespace TaskNote.Http.Client
 {
     public static class TestServiceCollectionExtentions
     {
-        public static IServiceCollection UseTest(this IServiceCollection services)
+        public static IServiceCollection UseTest(this IServiceCollection services, [CallerMemberName] string testName = "")
         {
+            services.UseTestOptions(new TestOptions(testName));
 #if DEBUG
             services.AddHttpClient(_ => _.AddConfiguration<MockHttpClientServices>());
 #else

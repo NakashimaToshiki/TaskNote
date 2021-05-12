@@ -14,10 +14,10 @@ namespace TaskNote.Logging
         {
             // ${LogPath}を置き換え
             NLog.GlobalDiagnosticsContext.Set("LogPath", loggingBatch.LogFolder + "\\");
-            
+
             // こっちの方法だとパッケージ版だと動かない
             //NLog.LogManager.Configuration.Variables.Add("LogPath", loggingBatch.LogFolder + "\\");
-            
+
             services
                 .AddLogging(_ => _
                     .ClearProviders()

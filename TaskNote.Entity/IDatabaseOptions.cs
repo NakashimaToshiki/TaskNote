@@ -1,5 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 
+/*
 namespace TaskNote.Entity
 {
     /// <summary>
@@ -21,4 +22,4 @@ namespace TaskNote.Entity
 
         public string DatabaseFilePath { get; private set; }
     }
-}
+}*/

@@ -5,16 +5,16 @@ namespace TaskNote.Entity.FrameworkCore.InMemory
 {
     public class TaskNoteInMemoryContext : TaskNoteDbContext
     {
-        private readonly IDatabaseOptions _storagePath; // ここライブラリに置き換えられるかも
+        private readonly IFileInfoFacade _fileInfoFacade; // ここライブラリに置き換えられるかも
 
-        public TaskNoteInMemoryContext(IDatabaseOptions storagePath, DbContextOptions options) : base(options)
+        public TaskNoteInMemoryContext(IFileInfoFacade fileInfoFacade, DbContextOptions options) : base(options)
         {
-            _storagePath = storagePath ?? throw new ArgumentNullException(nameof(storagePath));
+            _fileInfoFacade = fileInfoFacade ?? throw new ArgumentNullException(nameof(fileInfoFacade));
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseInMemoryDatabase(_storagePath.DatabaseFilePath);
+            optionsBuilder.UseInMemoryDatabase(_fileInfoFacade.Database);
             base.OnConfiguring(optionsBuilder);
         }
 

@@ -1,19 +1,21 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.IO;
 
 namespace TaskNote.Entity.FrameworkCore.DbSqlite
 {
     public class TaskNoteSqliteContext : TaskNoteDbContext
     {
-        private readonly IDatabaseOptions _storagePath; // ここライブラリに置き換えられるかも
+        private readonly IFileInfoFacade _fileInfoFacade; // ここライブラリに置き換えられるかも
 
-        public TaskNoteSqliteContext(IDatabaseOptions storagePath, DbContextOptions options) : base(options)
+        public TaskNoteSqliteContext(IFileInfoFacade fileInfoFacade, DbContextOptions options) : base(options)
         {
-            _storagePath = storagePath ?? throw new System.ArgumentNullException(nameof(storagePath));
+            _fileInfoFacade = fileInfoFacade ?? throw new System.ArgumentNullException(nameof(fileInfoFacade));
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite($"Data Source={_storagePath.DatabaseFilePath}");
+            optionsBuilder.UseSqlite($"Data Source={Path.Combine(_fileInfoFacade.ApplicationPath, _fileInfoFacade.Database)}");
+            optionsBuilder.UseLazyLoadingProxies(); // 遅延読み込み。WPFアプリで必要
             base.OnConfiguring(optionsBuilder);
         }
 

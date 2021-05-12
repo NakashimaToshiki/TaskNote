@@ -6,7 +6,6 @@ using System.Windows.Threading;
 using TaskNote.Batch;
 using TaskNote.Platform;
 using TaskNote.Platform.Wpf;
-using TaskNote.TestDoubles;
 
 namespace TaskNote.Desktop.Debug
 {
@@ -23,7 +22,7 @@ namespace TaskNote.Desktop.Debug
         {
             _provider = _services
                 .AddSingleton<SynchronizationContext>(new DispatcherSynchronizationContext(Dispatcher))
-                .AddTestDoubles()
+               // .AddTestDoubles()
                 .AddPlatform<WpfPlatformServices>()
                 .BuildServiceProvider();
         }
@@ -48,12 +47,9 @@ namespace TaskNote.Desktop.Debug
 
         protected override void OnExit(ExitEventArgs e)
         {
-            var _ = Task.Run(async () =>
-            {
-                await _provider.GetService<IExitBatch>().RunAsync();
-                _provider.Dispose(); // IDisposeを実装しているクラスをすべて解放
-                base.OnExit(e);
-            });
+            _provider.GetService<IExitBatch>().Run();
+            _provider.Dispose(); // IDisposeを実装しているクラスをすべて解放
+            base.OnExit(e);
         }
     }
 }

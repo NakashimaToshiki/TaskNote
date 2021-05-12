@@ -1,6 +1,6 @@
 using NUnit.Framework;
 
-namespace TaskNote.Tests
+namespace TaskNote.Platform.Tests
 {
     public class Tests
     {

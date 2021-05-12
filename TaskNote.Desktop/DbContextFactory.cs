@@ -10,7 +10,7 @@ namespace TaskNote.Desktop
         {
             var optionsBuilder = new DbContextOptionsBuilder<TaskNoteSqliteContext>();
 
-            return new TaskNoteSqliteContext(new SqliteDatabaseOptions(), optionsBuilder.Options);
+            return new TaskNoteSqliteContext(new StorageFileInfo(), optionsBuilder.Options);
         }
     }
 }

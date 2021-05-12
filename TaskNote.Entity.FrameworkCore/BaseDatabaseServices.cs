@@ -9,11 +9,11 @@ namespace TaskNote.Entity.FrameworkCore
         public virtual void Configure(IServiceCollection services)
         {
             services
-                .AddSingleton<DbContextOptionsBuilder>()
-                .AddSingleton<DbContextOptions>(_ => _.GetRequiredService<DbContextOptionsBuilder>().Options)
-                .AddSingleton<IMigrate, DatabaseMigrate<TDbContext>>()
                 .AddDbContext<TDbContext>()
                 .AddDbContextFactory<TDbContext>()
+                .AddSingleton<IMigrate, DatabaseMigrate<TDbContext>>()
+                .AddSingleton<DbContextOptionsBuilder>()
+               // .AddSingleton<DbContextOptions>(_ => _.GetRequiredService<DbContextOptionsBuilder>().Options)
                 .AddSingleton<ITaskItemSession, TaskItemSession<TDbContext>>();
         }
     }

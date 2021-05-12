@@ -4,9 +4,7 @@ using Windows.ApplicationModel;
 
 namespace TaskNote.Installer
 {
-    // TODO:プロジェクト名を変えるかどうか悩んでいる
-
-    public static class LoggingServiceCollectionExtentions
+    public static class PackageServiceCollectionExtentions
     {
         /// <summary>
         /// パッケージ版であるかの有無を取得します

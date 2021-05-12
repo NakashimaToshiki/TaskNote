@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 
 namespace TaskNote.Entity.FrameworkCore.InMemory
 {
@@ -8,9 +7,7 @@ namespace TaskNote.Entity.FrameworkCore.InMemory
         public override void Configure(IServiceCollection services)
         {
             services
-                .AddSingleton<IMigrate, SpyMigrate>()
-                .AddSingleton<DatabaseOptions>()
-                .AddSingleton<IDatabaseOptions>(_ => _.GetService<DatabaseOptions>());
+                .AddSingleton<IMigrate, SpyMigrate>();
 
             base.Configure(services);
         }

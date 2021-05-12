@@ -30,9 +30,9 @@ namespace TaskNote.WebServer.Controllers
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new TaskNoteJsonBody
             {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
+                date = DateTime.Now.AddDays(index),
+                titile = rng.Next(-20, 55),
+                context = Summaries[rng.Next(Summaries.Length)]
             })
             .ToArray();
         }

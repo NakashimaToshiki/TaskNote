@@ -7,15 +7,22 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TaskNote.Batch\TaskNote.Batch.csproj" />
-    <ProjectReference Include="..\TaskNote.Entity.FrameworkCore.InMemory\TaskNote.Entity.FrameworkCore.InMemory.csproj" />
-    <ProjectReference Include="..\TaskNote.Entity\TaskNote.Entity.csproj" />
-    <ProjectReference Include="..\TaskNote.Platform\TaskNote.Platform.csproj" />
+    <ProjectReference Include="..\TaskNote.Logging\TaskNote.Logging.csproj" />
+    <ProjectReference Include="..\TaskNote.Storage\TaskNote.Storage.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
     <PackageReference Include="Moq" Version="4.16.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.test.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="NLog.test.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
