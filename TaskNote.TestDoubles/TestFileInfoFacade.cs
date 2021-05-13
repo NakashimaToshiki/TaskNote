@@ -14,7 +14,7 @@ namespace TaskNote
 
         public virtual string InstalledLocation => Environment.CurrentDirectory;
 
-        public virtual string ApplicationPath => Path.Combine(Environment.CurrentDirectory, "ApplicationPath");
+        public virtual string ApplicationLocation => Path.Combine(Environment.CurrentDirectory, "ApplicationPath");
 
         public string Database => $"{_testName.Name}.db";
 

@@ -4,11 +4,11 @@ using Windows.Storage;
 
 namespace TaskNote.Installer
 {
-    public class PackageUserInfo : IConfigurationUserInfo
+    public class PackageUserConfiguration : IUserConfiguration
     {
         private readonly UserOptions _options;
 
-        public PackageUserInfo(UserOptions options)
+        public PackageUserConfiguration(UserOptions options)
         {
             _options = options ?? throw new ArgumentNullException(nameof(options));
         }

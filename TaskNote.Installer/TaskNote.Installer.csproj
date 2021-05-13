@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TaskNote.Configuration\TaskNote.Configuration.csproj" />
+    <ProjectReference Include="..\TaskNote.WpfConfigurationManager\TaskNote.WpfConfigurationManager.csproj" />
     <ProjectReference Include="..\TaskNote\TaskNote.csproj" />
   </ItemGroup>
 

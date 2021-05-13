@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Configuration;
+using TaskNote.Configuration;
 
-namespace TaskNote.Configuration.Desktop
+namespace TaskNote.WpfConfigurationManager
 {
-    public class ConfigurationManagerUserInfo : IConfigurationUserInfo
+    public class WpfManagerUserConfiguration : IUserConfiguration
     {
         private readonly UserOptions _options;
 
-        public ConfigurationManagerUserInfo(UserOptions options)
+        public WpfManagerUserConfiguration(UserOptions options)
         {
             _options = options ?? throw new ArgumentNullException(nameof(options));
         }

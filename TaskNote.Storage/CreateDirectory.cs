@@ -16,7 +16,7 @@ namespace TaskNote.Storage
         {
             try
             {
-                Directory.CreateDirectory(_fileInfoFacade.ApplicationPath);
+                Directory.CreateDirectory(_fileInfoFacade.ApplicationLocation);
             }
             catch (Exception e)
             {

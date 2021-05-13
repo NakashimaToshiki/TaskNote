@@ -21,18 +21,18 @@ namespace TaskNote.Installer
 
         public LoggingOptions GetOptions()
         {
-            var nlog = new FileInfo(Path.Combine(_fileInfoFacade.ApplicationPath, _fileInfoFacade.NLog));
-            if (!nlog.Exists)
+            var fileInfo = new FileInfo(Path.Combine(_fileInfoFacade.ApplicationLocation, _fileInfoFacade.NLog));
+            if (!fileInfo.Exists)
             {
-                var nlogDefualt = new FileInfo(Path.Combine(_fileInfoFacade.InstalledLocation, _fileInfoFacade.NLog));
-                if (!nlogDefualt.Exists) throw new FileNotFoundException(nlogDefualt.FullName);
-                File.Copy(nlogDefualt.FullName, nlog.FullName);
+                var defualtFileInfo = new FileInfo(Path.Combine(_fileInfoFacade.InstalledLocation, _fileInfoFacade.NLog));
+                if (!defualtFileInfo.Exists) throw new FileNotFoundException(defualtFileInfo.FullName);
+                File.Copy(defualtFileInfo.FullName, fileInfo.FullName);
             }
 
             return new LoggingOptions()
             {
-                FilePath = Path.Combine(_fileInfoFacade.ApplicationPath, _fileInfoFacade.NLog),
-                LogFolder = Path.Combine(_fileInfoFacade.ApplicationPath, _fileInfoFacade.TraceLogFolder),
+                FilePath = Path.Combine(_fileInfoFacade.ApplicationLocation, _fileInfoFacade.NLog),
+                LogFolder = Path.Combine(_fileInfoFacade.ApplicationLocation, _fileInfoFacade.TraceLogFolder),
                 Configuration = _configuration.GetSection("Logging")
             };
         }

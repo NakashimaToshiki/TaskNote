@@ -14,7 +14,7 @@ namespace TaskNote.Entity.FrameworkCore.DbSqlite
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite($"Data Source={Path.Combine(_fileInfoFacade.ApplicationPath, _fileInfoFacade.Database)}");
+            optionsBuilder.UseSqlite($"Data Source={Path.Combine(_fileInfoFacade.ApplicationLocation, _fileInfoFacade.Database)}");
             optionsBuilder.UseLazyLoadingProxies(); // 遅延読み込み。WPFアプリで必要
             base.OnConfiguring(optionsBuilder);
         }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using TaskNote.Configuration;
+using TaskNote.WpfConfigurationManager;
 using Windows.ApplicationModel;
 
 namespace TaskNote.Installer
@@ -29,17 +30,23 @@ namespace TaskNote.Installer
         {
             if (IsPackege)
             {
-                services.AddSingleton<IVersion, PackageVersion>();
-                services.AddSingleton<IFileInfoFacade, PackageFileInfoFacade>();
-                services.AddSingleton<ILoggingBatch, PackageLoggingBatch>();
-                services.AddSingleton<IConfigurationBatch, PackageConfigurationBatch>();
+                services
+                    .AddSingleton<IFileInfoFacade, PackageFileInfoFacade>()
+                    .AddSingleton<IVersion, PackageVersion>()
+                    .AddSingleton<IUserConfiguration, WpfManagerUserConfiguration>()
+                    .AddSingleton<ILoggingBatch, PackageLoggingBatch>()
+                    .AddSingleton<IConfigurationBatch, PackageConfigurationBatch>()
+                    ;
             }
             else
             {
-                services.AddSingleton<IVersion, AssemblyVersion>();
-                services.AddSingleton<IFileInfoFacade, StorageFileInfo>();
-                services.AddSingleton<ILoggingBatch, LoggingBatch>();
-                services.AddSingleton<IConfigurationBatch, ConfigurationBatch>();
+                services
+                    .AddSingleton<IFileInfoFacade, StorageFileInfo>()
+                    .AddSingleton<IVersion, AssemblyVersion>()
+                    .AddSingleton<IUserConfiguration, PackageUserConfiguration>()
+                    .AddSingleton<ILoggingBatch, LoggingBatch>()
+                    .AddSingleton<IConfigurationBatch, ConfigurationBatch>()
+                    ;
             }
             return services;
         }

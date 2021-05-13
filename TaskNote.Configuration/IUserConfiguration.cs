@@ -1,6 +1,6 @@
 ﻿namespace TaskNote.Configuration
 {
-    public interface IConfigurationUserInfo
+    public interface IUserConfiguration
     {
         void Load();
 

@@ -13,7 +13,7 @@ namespace TaskNote
         /// <summary>
         /// アプリケーションディレクトリ
         /// </summary>
-        string ApplicationPath { get; }
+        string ApplicationLocation { get; }
 
         string Database { get; }
 
@@ -33,7 +33,7 @@ namespace TaskNote
 
         public virtual string InstalledLocation => Environment.CurrentDirectory;
 
-        public virtual string ApplicationPath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "TaskNote");
+        public virtual string ApplicationLocation => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "TaskNote");
 
         public virtual string Database => "database.db";
 

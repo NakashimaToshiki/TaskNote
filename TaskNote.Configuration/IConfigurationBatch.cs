@@ -32,33 +32,4 @@ namespace TaskNote.Configuration
             return new ConfigurationBuilder().SetBasePath(settingFile.DirectoryName).AddJsonFile(settingFile.Name).Build();
         }
     }
-
-    /// <summary>
-    /// パッケージ用
-    /// アプリケーションフォルダのsetting.jsonファイルを読み込み、
-    /// 存在しなければ、インストーラーフォルダにあるデフォルトのsetting.jsonをコピーしてくる
-    /// </summary>
-    public class PackageConfigurationBatch : IConfigurationBatch
-    {
-        private readonly IFileInfoFacade fileInfo;
-
-        public PackageConfigurationBatch(IFileInfoFacade fileInfoFacade)
-        {
-            fileInfo = fileInfoFacade ?? throw new ArgumentNullException(nameof(fileInfoFacade));
-        }
-
-        public IConfiguration GetConfiguration()
-        {
-            // setting.jsonファイルコピー
-            var settingFile = new FileInfo(Path.Combine(fileInfo.ApplicationPath, fileInfo.AppSetting));
-            if (!settingFile.Exists)
-            {
-                var settingFileDefualt = new FileInfo(Path.Combine(fileInfo.InstalledLocation, fileInfo.AppSetting));
-                if (!settingFileDefualt.Exists) throw new FileNotFoundException(settingFileDefualt.FullName);
-                File.Copy(settingFileDefualt.FullName, settingFile.FullName);
-            }
-
-            return new ConfigurationBuilder().SetBasePath(settingFile.DirectoryName).AddJsonFile(settingFile.Name).Build();
-        }
-    }
 }
