@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using System.IO;
 using System.Runtime.CompilerServices;
 
 namespace TaskNote.Entity
@@ -13,16 +12,22 @@ namespace TaskNote.Entity
 #if DEBUG
             services.AddDatabase<FrameworkCore.InMemory.InMemoryDatabaseServices>();
 #else
+            services.UseSqliteTest();
+#endif
+
+            return services;
+        }
+
+        private static IServiceCollection UseSqliteTest(this IServiceCollection services)
+        {
             services.AddDatabase<FrameworkCore.DbSqlite.SqliteDatabaseServices>();
             var provider = services.BuildServiceProvider();
+            
             // データベースをファイル削除
-            var info = new FileInfo(provider.GetRequiredService<IFileInfoFacade>().Database);
-            if (info.Exists) info.Delete();
+            provider.GetRequiredService<IFileInfoFacade>().GetDatabaseFileInfo().Delete();
 
             // データベース生成
             provider.GetRequiredService<IMigrate>().Migrate();
-#endif
-
 
             return services;
         }

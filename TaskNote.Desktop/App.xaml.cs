@@ -27,17 +27,13 @@ namespace TaskNote.Desktop
 
         public App()
         {
-            _services.AddDesktopOrPackage();
+            _services.AddDesktopOrPackageOptions();
 
             // 設定ファイルの読み込み
             _services.AddSingleton(_services.BuildServiceProvider().GetService<IConfigurationBatch>().GetConfiguration());
 
             // NLogファイルの読み込み
             _services.AddTaskNoteLogging(_services.BuildServiceProvider().GetService<ILoggingBatch>().GetOptions());
-
-            // フォルダの生成
-            _services.AddSingleton<Storage.CreateDirectory>();
-            _services.BuildServiceProvider().GetService<Storage.CreateDirectory>().Create();
         }
 
         protected override void OnStartup(StartupEventArgs e)

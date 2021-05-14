@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using TaskNote.Configuration;
 using TaskNote.Logging;
+using Moq;
 
 namespace TaskNote
 {
@@ -11,28 +12,30 @@ namespace TaskNote
         {
             NLog.GlobalDiagnosticsContext.Set("TestName", options.Name);
 
-            services.AddSingleton(options);
+            // Options注入
             services
-                .AddSingleton<IFileInfoFacade, TestFileInfoFacade>();
+                .AddSingleton(options)
+                .AddSingleton<StopwatchDatetimeOptions>()
+                .AddSingleton<IDateTimeOptions>(_ => _.GetRequiredService<StopwatchDatetimeOptions>())
+                .AddSingleton<IFileInfoFacade, TestFileInfoFacade>()
+                .AddSingleton<DummyVersion>()
+                .AddSingleton<IVersion>(_ => _.GetRequiredService<DummyVersion>())
+                .AddSingleton<IUserConfiguration>(new Mock<IUserConfiguration>().Object)
+                .AddSingleton<IConfigurationBatch, ConfigurationBatch>()
+                .AddSingleton<ILoggingBatch, LoggingBatch>()
+                ;
+#if MOCK
+            services.AddMockDatetimeOptions();
+#else
+            services.AddStopwatchDatetimeOptions(System.DateTime.MinValue);
+#endif
+
 
             // 設定ファイルの読み込み
-            services.AddSingleton<IConfigurationBatch, ConfigurationBatch>();
             services.AddSingleton(services.BuildServiceProvider().GetService<IConfigurationBatch>().GetConfiguration());
 
             // NLogファイルの読み込み
-            services.AddSingleton<ILoggingBatch, LoggingBatch>();
             services.AddTaskNoteLogging(services.BuildServiceProvider().GetService<ILoggingBatch>().GetOptions());
-
-            // Storageが少ないのでここで記述している
-            services.AddSingleton<Storage.CreateDirectory>();
-            services.BuildServiceProvider().GetService<Storage.CreateDirectory>().Create();
-
-            services
-                .AddSingleton<StopwatchDatetimeOptions>()
-                .AddSingleton<IDateTimeOptions>(_ => _.GetRequiredService<StopwatchDatetimeOptions>())
-                .AddSingleton<DummyVersion>()
-                .AddSingleton<IVersion>(_ => _.GetRequiredService<DummyVersion>())
-                ;
 
             return services;
         }

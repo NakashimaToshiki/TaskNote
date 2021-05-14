@@ -17,6 +17,8 @@ namespace TaskNote.Http.Client
 
             var provider = services.BuildServiceProvider();
 
+            // ここでUserOptionsの値を変更して認証が通るようにするのもアリ
+
             return services
                 .AddSingleton<IAuthService>(_ => new SpyAuthService(provider.GetRequiredService<IAuthService>()))
                 .AddSingleton<ILogConfigDownloadService>(_ => new SpyLogConfigDownloadService(provider.GetRequiredService<ILogConfigDownloadService>()))

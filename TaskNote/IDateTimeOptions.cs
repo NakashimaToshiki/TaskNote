@@ -11,4 +11,15 @@ namespace TaskNote
     {
         public DateTime Now => DateTime.Now;
     }
+
+    public class StopwatchDatetimeOptions : System.Diagnostics.Stopwatch, IDateTimeOptions
+    {
+        public DateTime Offset { get; set; } = DateTime.MinValue;
+
+        public DateTime Now => Offset + TimeSpan.FromMilliseconds(ElapsedMilliseconds);
+
+        public StopwatchDatetimeOptions()
+        {
+        }
+    }
 }

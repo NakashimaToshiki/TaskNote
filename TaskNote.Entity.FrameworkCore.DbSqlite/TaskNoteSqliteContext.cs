@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.IO;
 
 namespace TaskNote.Entity.FrameworkCore.DbSqlite
 {
@@ -14,7 +13,7 @@ namespace TaskNote.Entity.FrameworkCore.DbSqlite
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite($"Data Source={Path.Combine(_fileInfoFacade.ApplicationLocation, _fileInfoFacade.Database)}");
+            optionsBuilder.UseSqlite($"Data Source={_fileInfoFacade.GetDatabaseFileInfo().FullName}");
             optionsBuilder.UseLazyLoadingProxies(); // 遅延読み込み。WPFアプリで必要
             base.OnConfiguring(optionsBuilder);
         }

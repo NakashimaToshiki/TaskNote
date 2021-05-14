@@ -13,7 +13,7 @@ namespace TaskNote.Logging
         public static IServiceCollection AddTaskNoteLogging(this IServiceCollection services, LoggingOptions options)
         {
             // ${LogPath}を置き換え
-            NLog.GlobalDiagnosticsContext.Set("LogPath", options.LogFolder + "\\");
+            NLog.GlobalDiagnosticsContext.Set("LogPath", options.LogFolder.FullName + "\\");
 
             // こっちの方法だとパッケージ版だと動かない
             //NLog.LogManager.Configuration.Variables.Add("LogPath", loggingBatch.LogFolder + "\\");
@@ -21,7 +21,7 @@ namespace TaskNote.Logging
             services
                 .AddLogging(_ => _
                     .ClearProviders()
-                    .AddNLog(options.FilePath)
+                    .AddNLog(options.FilePath.FullName)
                     .AddConfiguration(options.Configuration)
                     )
                 .AddSingleton<ILoggerFactory, LoggerFactory>()

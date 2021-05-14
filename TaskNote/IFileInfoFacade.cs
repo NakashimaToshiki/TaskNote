@@ -15,19 +15,27 @@ namespace TaskNote
         /// </summary>
         string ApplicationLocation { get; }
 
+        string TraceLogFolder { get; }
+
         string Database { get; }
 
         string NLog { get; }
 
         string AppSetting { get; }
 
-        string TraceLogFolder { get; }
+        DirectoryInfo GetTraceLogDirectoryInfo();
+
+        FileInfo GetDatabaseFileInfo();
+
+        FileInfo GetNLogFileInfo();
+
+        FileInfo GetAppSettingFileInfo();
     }
 
-    public class StorageFileInfo : IFileInfoFacade
+    public class FileInfoFacade : IFileInfoFacade
     {
 
-        public StorageFileInfo()
+        public FileInfoFacade()
         {
         }
 
@@ -35,12 +43,20 @@ namespace TaskNote
 
         public virtual string ApplicationLocation => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "TaskNote");
 
+        public virtual string TraceLogFolder => "Logs";
+
         public virtual string Database => "database.db";
 
         public virtual string NLog => "NLog.config";
 
         public virtual string AppSetting => "appsettings.json";
 
-        public virtual string TraceLogFolder => "Logs";
+        public virtual DirectoryInfo GetTraceLogDirectoryInfo() => new DirectoryInfo(Path.Combine(ApplicationLocation, TraceLogFolder));
+
+        public virtual FileInfo GetDatabaseFileInfo() => new FileInfo(Path.Combine(ApplicationLocation, Database));
+
+        public virtual FileInfo GetNLogFileInfo() => new FileInfo(Path.Combine(InstalledLocation, NLog));
+
+        public virtual FileInfo GetAppSettingFileInfo() => new FileInfo(Path.Combine(InstalledLocation, AppSetting));
     }
 }

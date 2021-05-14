@@ -26,8 +26,15 @@ namespace TaskNote.Installer
             }
         }
 
-        public static IServiceCollection AddDesktopOrPackage(this IServiceCollection services)
+        public static IServiceCollection AddDesktopOrPackageOptions(this IServiceCollection services)
         {
+            services.AddOptions();
+#if MOCK
+            services.AddMockDatetimeOptions();
+#else
+            services.AddSingleton<IDateTimeOptions, DateTimeOptions>();
+#endif
+
             if (IsPackege)
             {
                 services
@@ -41,7 +48,7 @@ namespace TaskNote.Installer
             else
             {
                 services
-                    .AddSingleton<IFileInfoFacade, StorageFileInfo>()
+                    .AddSingleton<IFileInfoFacade, FileInfoFacade>()
                     .AddSingleton<IVersion, AssemblyVersion>()
                     .AddSingleton<IUserConfiguration, PackageUserConfiguration>()
                     .AddSingleton<ILoggingBatch, LoggingBatch>()

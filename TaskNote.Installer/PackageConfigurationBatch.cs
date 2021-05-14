@@ -21,16 +21,16 @@ namespace TaskNote.Installer
 
         public IConfiguration GetConfiguration()
         {
-            // setting.jsonファイルコピー
-            var settingFile = new FileInfo(Path.Combine(_fileInfoFacade.ApplicationLocation, _fileInfoFacade.AppSetting));
-            if (!settingFile.Exists)
+            var fileInfo = _fileInfoFacade.GetAppSettingFileInfo();
+            if (!fileInfo.Exists)
             {
-                var settingFileDefualt = new FileInfo(Path.Combine(_fileInfoFacade.InstalledLocation, _fileInfoFacade.AppSetting));
-                if (!settingFileDefualt.Exists) throw new FileNotFoundException(settingFileDefualt.FullName);
-                File.Copy(settingFileDefualt.FullName, settingFile.FullName);
+                var defualtFileInfo = new FileInfo(Path.Combine(_fileInfoFacade.InstalledLocation, _fileInfoFacade.AppSetting));
+                if (!defualtFileInfo.Exists) throw new FileNotFoundException(defualtFileInfo.FullName);
+                if (!fileInfo.Directory.Exists) fileInfo.Directory.Create();
+                File.Copy(defualtFileInfo.FullName, fileInfo.FullName);
             }
 
-            return new ConfigurationBuilder().SetBasePath(settingFile.DirectoryName).AddJsonFile(settingFile.Name).Build();
+            return new ConfigurationBuilder().SetBasePath(fileInfo.DirectoryName).AddJsonFile(fileInfo.Name).Build();
         }
     }
 }

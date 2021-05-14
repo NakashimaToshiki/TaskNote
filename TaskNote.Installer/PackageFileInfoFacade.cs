@@ -2,7 +2,7 @@
 
 namespace TaskNote.Installer
 {
-    public class PackageFileInfoFacade : StorageFileInfo
+    public class PackageFileInfoFacade : FileInfoFacade
     {
         public override string ApplicationLocation => ApplicationData.Current.LocalFolder.Path;
 

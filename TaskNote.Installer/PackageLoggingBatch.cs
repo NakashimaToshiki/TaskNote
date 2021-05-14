@@ -31,8 +31,8 @@ namespace TaskNote.Installer
 
             return new LoggingOptions()
             {
-                FilePath = Path.Combine(_fileInfoFacade.ApplicationLocation, _fileInfoFacade.NLog),
-                LogFolder = Path.Combine(_fileInfoFacade.ApplicationLocation, _fileInfoFacade.TraceLogFolder),
+                FilePath = _fileInfoFacade.GetNLogFileInfo(),
+                LogFolder = _fileInfoFacade.GetTraceLogDirectoryInfo(),
                 Configuration = _configuration.GetSection("Logging")
             };
         }

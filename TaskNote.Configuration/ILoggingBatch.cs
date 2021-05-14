@@ -9,9 +9,9 @@ namespace TaskNote
     /// </summary>
     public struct LoggingOptions
     {
-        public string FilePath;
+        public FileInfo FilePath;
 
-        public string LogFolder;
+        public DirectoryInfo LogFolder;
 
         public IConfiguration Configuration;
     }
@@ -43,8 +43,8 @@ namespace TaskNote
         {
             return new LoggingOptions()
             {
-                FilePath = Path.Combine(_fileInfoFacade.InstalledLocation, _fileInfoFacade.NLog),
-                LogFolder = Path.Combine(_fileInfoFacade.ApplicationLocation, _fileInfoFacade.TraceLogFolder),
+                FilePath = _fileInfoFacade.GetNLogFileInfo(),
+                LogFolder = _fileInfoFacade.GetTraceLogDirectoryInfo(),
                 Configuration = _configuration.GetSection("Logging")
             };
         }

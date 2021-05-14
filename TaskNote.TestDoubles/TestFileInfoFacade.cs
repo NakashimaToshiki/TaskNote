@@ -3,25 +3,25 @@ using System.IO;
 
 namespace TaskNote
 {
-    public class TestFileInfoFacade : IFileInfoFacade
+    public class TestFileInfoFacade : FileInfoFacade
     {
-        private readonly TestOptions _testName;
+        private readonly TestOptions _options;
 
-        public TestFileInfoFacade(TestOptions testName)
+        public TestFileInfoFacade(TestOptions options)
         {
-            _testName = testName ?? throw new ArgumentNullException(nameof(testName));
+            _options = options ?? throw new ArgumentNullException(nameof(options));
         }
 
-        public virtual string InstalledLocation => Environment.CurrentDirectory;
+        public override string InstalledLocation => Environment.CurrentDirectory;
 
-        public virtual string ApplicationLocation => Path.Combine(Environment.CurrentDirectory, "ApplicationPath");
+        public override string ApplicationLocation => Path.Combine(Environment.CurrentDirectory, "Application");
 
-        public string Database => $"{_testName.Name}.db";
+        public override string Database => $"{_options.Name}.db";
 
-        public virtual string NLog => "NLog.test.config";
+        public override string NLog => "NLog.test.config";
 
-        public virtual string AppSetting => "appsettings.test.json";
+        public override string AppSetting => "appsettings.test.json";
 
-        public virtual string TraceLogFolder => "Logs"; // 未使用
+        public override FileInfo GetDatabaseFileInfo() => new FileInfo(Path.Combine(Environment.CurrentDirectory, "Database", Database));
     }
 }
