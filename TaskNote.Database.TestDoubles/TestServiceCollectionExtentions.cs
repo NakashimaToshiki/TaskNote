@@ -7,14 +7,19 @@ namespace TaskNote.Entity
     {
         public static IServiceCollection UseTest(this IServiceCollection services, [CallerMemberName] string testName = "")
         {
-            services.UseTestOptions(new TestOptions(testName));
+            return services
+                .UseTestOptions(new TestOptions(testName))
+                .AddTest()
+                ;
+        }
 
+        public static IServiceCollection AddTest(this IServiceCollection services)
+        {
 #if DEBUG
             services.AddDatabase<FrameworkCore.InMemory.InMemoryDatabaseServices>();
 #else
             services.UseSqliteTest();
 #endif
-
             return services;
         }
 
