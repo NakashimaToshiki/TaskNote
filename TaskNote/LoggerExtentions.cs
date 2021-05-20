@@ -2,7 +2,7 @@
 using System;
 using System.Runtime.CompilerServices;
 
-namespace TaskNote.Logging
+namespace TaskNote
 {
     public static class LoggerExtentions
     {
