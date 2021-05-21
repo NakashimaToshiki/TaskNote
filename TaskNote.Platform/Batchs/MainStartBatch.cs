@@ -3,7 +3,7 @@ using System;
 using System.Threading.Tasks;
 using TaskNote.Entity;
 
-namespace TaskNote.Batch
+namespace TaskNote.Platform.Batchs
 {
     public class MainStartBatch : IStartBatch
     {

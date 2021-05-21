@@ -3,7 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using TaskNote.Platform;
 
-namespace TaskNote.Batch
+namespace TaskNote.Platform.Batchs
 {
     public class MainWindowStartBatch : IStartBatch
     {
@@ -12,7 +12,6 @@ namespace TaskNote.Batch
 
         public MainWindowStartBatch(IMainWindow mainWindow, SynchronizationContext synchronization)
         {
-
             _mainWindow = mainWindow ?? throw new ArgumentNullException(nameof(mainWindow));
             _synchronization = synchronization ?? throw new ArgumentNullException(nameof(synchronization));
         }

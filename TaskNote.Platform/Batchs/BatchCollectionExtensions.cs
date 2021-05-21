@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace TaskNote.Batch
+namespace TaskNote.Platform.Batchs
 {
     public static class BatchCollectionExtensions
     {
-        public static IServiceCollection AddBatch(this IServiceCollection services) =>
+        public static IServiceCollection AddPlatformBatch(this IServiceCollection services) =>
             services
                 .AddSingleton<MainStartBatch>()
                 .AddSingleton<MainExitBatch>()

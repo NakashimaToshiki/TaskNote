@@ -3,7 +3,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
-using TaskNote.Batch;
 using TaskNote.Configuration;
 using TaskNote.Entity;
 using TaskNote.Entity.FrameworkCore.DbSqlite;
@@ -14,6 +13,7 @@ using TaskNote.Installer;
 using TaskNote.Platform;
 using TaskNote.Platform.Wpf;
 using TaskNote.Logging;
+using TaskNote.Platform.Batchs;
 
 namespace TaskNote.Desktop
 {
@@ -46,7 +46,7 @@ namespace TaskNote.Desktop
                 .AddSingleton<SynchronizationContext>(new DispatcherSynchronizationContext(Dispatcher))
                 .AddDatabase<SqliteDatabaseServices>()
                 .AddPlatform<WpfPlatformServices>()
-                .AddBatch()
+                .AddPlatformBatch()
                 .AddHttpClient(_ => _.AddProvider<RestHttpClientServices>())
                 .BuildServiceProvider().GetService<IStartBatch>();
 

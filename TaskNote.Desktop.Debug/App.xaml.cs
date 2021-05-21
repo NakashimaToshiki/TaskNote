@@ -3,8 +3,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
-using TaskNote.Batch;
 using TaskNote.Platform;
+using TaskNote.Platform.Batchs;
 using TaskNote.Platform.Wpf;
 
 namespace TaskNote.Desktop.Debug

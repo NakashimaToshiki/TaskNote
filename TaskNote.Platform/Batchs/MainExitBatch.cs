@@ -1,4 +1,4 @@
-﻿namespace TaskNote.Batch
+﻿namespace TaskNote.Platform.Batchs
 {
     public class MainExitBatch : IExitBatch
     {

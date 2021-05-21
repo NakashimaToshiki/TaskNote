@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace TaskNote.Batch
+namespace TaskNote.Platform.Batchs
 {
     public class UserInfoBatch
     {

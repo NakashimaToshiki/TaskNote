@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace TaskNote.Batch
+namespace TaskNote.Platform.Batchs
 {
     public interface IStartBatch
     {
