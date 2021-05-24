@@ -10,8 +10,4 @@
     <ProjectReference Include="..\TaskNote.Http.Client\TaskNote.Http.Client.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="TaskModels\" />
-  </ItemGroup>
-
 </Project>
