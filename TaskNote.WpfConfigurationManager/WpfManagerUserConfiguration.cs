@@ -15,23 +15,37 @@ namespace TaskNote.WpfConfigurationManager
 
         public void Load()
         {
-            var settings = ConfigurationManager.AppSettings;
-            _options.Password = settings[nameof(_options.Password)];
-            _options.UserId = settings[nameof(_options.UserId)];
+            try
+            {
+                var settings = ConfigurationManager.AppSettings;
+                _options.Password = settings[nameof(_options.Password)];
+                _options.UserId = settings[nameof(_options.UserId)];
+            }
+            catch (Exception e)
+            {
+                throw new Configuration.ConfigurationException(e);
+            }
         }
 
         public void Save()
         {
-            var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            var settings = configFile.AppSettings.Settings;
+            try
+            {
+                var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                var settings = configFile.AppSettings.Settings;
 
-            settings.Remove(nameof(_options.Password));
-            settings.Remove(nameof(_options.UserId));
+                settings.Remove(nameof(_options.Password));
+                settings.Remove(nameof(_options.UserId));
 
-            settings.Add(nameof(_options.Password), _options.Password);
-            settings.Add(nameof(_options.UserId), _options.UserId);
+                settings.Add(nameof(_options.Password), _options.Password);
+                settings.Add(nameof(_options.UserId), _options.UserId);
 
-            configFile.Save();
+                configFile.Save();
+            }
+            catch (Exception e)
+            {
+                throw new Configuration.ConfigurationException(e);
+            }
         }
     }
 }

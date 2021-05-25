@@ -9,11 +9,11 @@ using TaskNote.Entity.FrameworkCore.DbSqlite;
 using TaskNote.Http.Client;
 using TaskNote.Http.Client.HttpUrls;
 using TaskNote.Http.Client.Rest;
-using TaskNote.Installer;
 using TaskNote.Platform;
 using TaskNote.Platform.Wpf;
 using TaskNote.Logging;
 using TaskNote.Platform.Batchs;
+using TaskNote.WinRT;
 
 namespace TaskNote.Desktop
 {

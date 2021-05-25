@@ -3,7 +3,7 @@ using TaskNote.Configuration;
 using TaskNote.WpfConfigurationManager;
 using Windows.ApplicationModel;
 
-namespace TaskNote.Installer
+namespace TaskNote.WinRT
 {
     public static class PackageServiceCollectionExtentions
     {

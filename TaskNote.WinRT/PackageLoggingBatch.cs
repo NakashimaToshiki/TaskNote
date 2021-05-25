@@ -2,7 +2,7 @@
 using System;
 using System.IO;
 
-namespace TaskNote.Installer
+namespace TaskNote.WinRT
 {
 
     /// <summary>

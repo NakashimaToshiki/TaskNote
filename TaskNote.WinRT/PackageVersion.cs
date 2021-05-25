@@ -1,6 +1,6 @@
 ﻿using Windows.ApplicationModel;
 
-namespace TaskNote.Installer
+namespace TaskNote.WinRT
 {
     public class PackageVersion : IVersion
     {

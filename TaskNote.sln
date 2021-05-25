@@ -63,7 +63,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskNote.Http.Client.Tests"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskNote.Database.Tests", "TaskNote.Database.Tests\TaskNote.Database.Tests.csproj", "{AD7B4D8D-5CC3-47EB-B394-AD807A0FF217}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskNote.Installer", "TaskNote.Installer\TaskNote.Installer.csproj", "{D4AA375A-7EB0-42EF-8ACC-5F9714D82AA8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskNote.WinRT", "TaskNote.WinRT\TaskNote.WinRT.csproj", "{D4AA375A-7EB0-42EF-8ACC-5F9714D82AA8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskNote.WpfConfigurationManager", "TaskNote.WpfConfigurationManager\TaskNote.WpfConfigurationManager.csproj", "{8B0FA21F-3C78-4285-905E-4C5F2C81BEF7}"
 EndProject

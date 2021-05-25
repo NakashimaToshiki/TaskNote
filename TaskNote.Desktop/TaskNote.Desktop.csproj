@@ -19,7 +19,7 @@
     <ProjectReference Include="..\TaskNote.Configuration\TaskNote.Configuration.csproj" />
     <ProjectReference Include="..\TaskNote.Entity.FrameworkCore.DbSqlite\TaskNote.Entity.FrameworkCore.DbSqlite.csproj" />
     <ProjectReference Include="..\TaskNote.Http.Client.Rest\TaskNote.Http.Client.Rest.csproj" />
-    <ProjectReference Include="..\TaskNote.Installer\TaskNote.Installer.csproj" />
+    <ProjectReference Include="..\TaskNote.WinRT\TaskNote.WinRT.csproj" />
     <ProjectReference Include="..\TaskNote.Logging\TaskNote.Logging.csproj" />
     <ProjectReference Include="..\TaskNote.Models\TaskNote.Models.csproj" />
     <ProjectReference Include="..\TaskNote.Platform.Wpf\TaskNote.Platform.Wpf.csproj" />

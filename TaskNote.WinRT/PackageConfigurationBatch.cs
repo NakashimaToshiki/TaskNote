@@ -3,7 +3,7 @@ using System;
 using System.IO;
 using TaskNote.Configuration;
 
-namespace TaskNote.Installer
+namespace TaskNote.WinRT
 {
     /// <summary>
     /// パッケージ用

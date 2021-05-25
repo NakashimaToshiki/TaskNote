@@ -1,6 +1,6 @@
 ﻿using Windows.Storage;
 
-namespace TaskNote.Installer
+namespace TaskNote.WinRT
 {
     public class PackageFileInfoFacade : FileInfoFacade
     {
