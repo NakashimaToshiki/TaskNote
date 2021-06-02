@@ -19,7 +19,7 @@ namespace TaskNote.WinRT
             _fileInfoFacade = fileInfoFacade ?? throw new ArgumentNullException(nameof(fileInfoFacade));
         }
 
-        public IConfiguration GetConfiguration()
+        public IConfigurationRoot GetConfiguration()
         {
             var fileInfo = _fileInfoFacade.GetAppSettingFileInfo();
             if (!fileInfo.Exists)

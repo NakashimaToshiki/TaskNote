@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System.Runtime.CompilerServices;
+using Microsoft.Extensions.Options;
 
 namespace TaskNote.Entity
 {
@@ -7,19 +8,25 @@ namespace TaskNote.Entity
     {
         public static IServiceCollection UseTest(this IServiceCollection services, [CallerMemberName] string testName = "")
         {
-            return services
+            services
                 .UseTestOptions(new TestOptions(testName))
-                .AddTest()
                 ;
+            // var dataOptions = services.BuildServiceProvider().GetService<IOptions<DatabaseOptions>>();
+            var dataOptions = services.BuildServiceProvider().GetService<IConfigureOptions<DatabaseOptions>>();
+            var options = new DatabaseOptions();
+            dataOptions.Configure(options);
+            return services.AddTest(options.Type);
         }
 
-        public static IServiceCollection AddTest(this IServiceCollection services)
+        public static IServiceCollection AddTest(this IServiceCollection services, string key)
         {
-#if DEBUG
-            services.AddDatabase<FrameworkCore.InMemory.InMemoryDatabaseServices>();
-#else
-            services.UseSqliteTest();
-#endif
+            switch (key)
+            {
+                case "Sqlite":
+                    return services.UseSqliteTest();
+                case "Memory":
+                    return services.AddDatabase<FrameworkCore.InMemory.InMemoryDatabaseServices>();
+            }
             return services;
         }
 

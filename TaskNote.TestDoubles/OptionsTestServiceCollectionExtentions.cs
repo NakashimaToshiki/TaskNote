@@ -15,6 +15,7 @@ namespace TaskNote
             // Options注入
             services
                 .AddSingleton(options)
+                .AddOptions()
                 .AddSingleton<StopwatchDatetimeOptions>()
                 .AddSingleton<IDateTimeOptions>(_ => _.GetRequiredService<StopwatchDatetimeOptions>())
                 .AddSingleton<IFileInfoFacade, TestFileInfoFacade>()
@@ -32,7 +33,7 @@ namespace TaskNote
 
 
             // 設定ファイルの読み込み
-            services.AddSingleton(services.BuildServiceProvider().GetService<IConfigurationBatch>().GetConfiguration());
+            services.AddConfiguration(services.BuildServiceProvider().GetService<IConfigurationBatch>().GetConfiguration());
 
             // NLogファイルの読み込み
             services.AddTaskNoteLogging(services.BuildServiceProvider().GetService<ILoggingBatch>().GetOptions());

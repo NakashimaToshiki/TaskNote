@@ -43,6 +43,10 @@ namespace TaskNote.Entity.Arranges
 
     public class SampleEntityArrange : BaseTaskEntityArrange
     {
+        public SampleEntityArrange(TaskEntityCreater creater) : base(creater)
+        {
+        }
+
         public override int Id => 1;
 
         public override TimeSpan Offset => throw new NotImplementedException();

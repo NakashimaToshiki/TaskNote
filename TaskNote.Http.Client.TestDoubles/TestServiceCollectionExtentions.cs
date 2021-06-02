@@ -14,14 +14,17 @@ namespace TaskNote.Http.Client
                 ;
         }
 
-        public static IServiceCollection AddHttpTest(this IServiceCollection services) // ここBuildServiceProviderを呼び出しているのでUseにする？
+        public static IServiceCollection AddHttpTest(this IServiceCollection services) 
         {
+
 #if DEBUG
             services.AddHttpClient(_ => _.AddConfiguration<MockHttpClientServices>());
 #else
             services.AddHttpClient(_ => _.AddProvider<Rest.RestHttpClientServices>());
 #endif
 
+            // ここBuildServiceProviderを呼び出しているのでUseにすべき
+            // ⇒ Spyはテストコード側で差し込むように変更するのでここのproviderは消える予定
             var provider = services.BuildServiceProvider();
 
             // ここでUserOptionsの値を変更して認証が通るようにするのもアリ

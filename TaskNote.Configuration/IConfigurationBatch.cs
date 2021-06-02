@@ -9,7 +9,7 @@ namespace TaskNote.Configuration
     /// </summary>
     public interface IConfigurationBatch
     {
-        IConfiguration GetConfiguration();
+        IConfigurationRoot GetConfiguration();
     }
 
     /// <summary>
@@ -25,7 +25,7 @@ namespace TaskNote.Configuration
             fileInfo = fileInfoFacade ?? throw new ArgumentNullException(nameof(fileInfoFacade));
         }
 
-        public IConfiguration GetConfiguration()
+        public IConfigurationRoot GetConfiguration()
         {
             var settingFile = new FileInfo(Path.Combine(fileInfo.InstalledLocation, fileInfo.AppSetting));
             
