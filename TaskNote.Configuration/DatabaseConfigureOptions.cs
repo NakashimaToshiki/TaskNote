@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
-using System;
 
 namespace TaskNote.Configuration
 {
@@ -12,6 +11,11 @@ namespace TaskNote.Configuration
 
         public DatabaseConfigureOptions(IConfigurationRoot configuration)
         {
+            if (configuration is null)
+            {
+                throw new System.ArgumentNullException(nameof(configuration));
+            }
+
             _configuration = configuration.GetSection(DatabaseConfigureOptions.Key);
         }
 

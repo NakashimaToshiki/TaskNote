@@ -30,7 +30,7 @@ namespace TaskNote.Desktop
             _services.AddDesktopOrPackageOptions();
 
             // 設定ファイルの読み込み
-            _services.AddSingleton(_services.BuildServiceProvider().GetService<IConfigurationBatch>().GetConfiguration());
+            _services.AddConfiguration(_services.BuildServiceProvider().GetService<IConfigurationBatch>().GetConfiguration());
 
             // NLogファイルの読み込み
             _services.AddTaskNoteLogging(_services.BuildServiceProvider().GetService<ILoggingBatch>().GetOptions());

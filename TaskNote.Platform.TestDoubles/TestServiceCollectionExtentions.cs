@@ -18,12 +18,13 @@ namespace TaskNote.Platform
 
         public static IServiceCollection AddHttpTest(this IServiceCollection services)
         {
+            /*
 #if DEBUG
             services.AddHttpClient(_ => _.AddConfiguration<MockHttpClientServices>());
 #else
             services.AddHttpClient(_ => _.AddProvider<Rest.RestHttpClientServices>());
 #endif
-
+            */
             return services
                 ;
         }

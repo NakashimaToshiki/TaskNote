@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System.Runtime.CompilerServices;
-using Microsoft.Extensions.Options;
 
 namespace TaskNote.Entity
 {
@@ -11,16 +10,13 @@ namespace TaskNote.Entity
             services
                 .UseTestOptions(new TestOptions(testName))
                 ;
-            // var dataOptions = services.BuildServiceProvider().GetService<IOptions<DatabaseOptions>>();
-            var dataOptions = services.BuildServiceProvider().GetService<IConfigureOptions<DatabaseOptions>>();
-            var options = new DatabaseOptions();
-            dataOptions.Configure(options);
-            return services.AddTest(options.Type);
+            var provider = services.BuildServiceProvider();
+            return services.AddTest(provider.GetService<IDatabaseOptions>());
         }
 
-        public static IServiceCollection AddTest(this IServiceCollection services, string key)
+        public static IServiceCollection AddTest(this IServiceCollection services, IDatabaseOptions options)
         {
-            switch (key)
+            switch (options.Type)
             {
                 case "Sqlite":
                     return services.UseSqliteTest();
@@ -34,9 +30,10 @@ namespace TaskNote.Entity
         {
             services.AddDatabase<FrameworkCore.DbSqlite.SqliteDatabaseServices>();
             var provider = services.BuildServiceProvider();
-            
+
             // データベースをファイル削除
-            provider.GetRequiredService<IFileInfoFacade>().GetDatabaseFileInfo().Delete();
+            var databaseFileInfo = provider.GetRequiredService<IFileInfoFacade>().GetDatabaseFileInfo();
+            if (databaseFileInfo.Exists) databaseFileInfo.Delete();
 
             // データベース生成
             provider.GetRequiredService<IMigrate>().Migrate();
