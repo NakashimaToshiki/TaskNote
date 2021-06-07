@@ -13,7 +13,7 @@ namespace TaskNote.Entity.Arranges
 
         string Description { get; }
 
-        TaskItem Generate();
+        TaskEntity Generate();
     }
 
     public abstract class BaseTaskEntityArrange : ITaskEntityArrange
@@ -33,7 +33,7 @@ namespace TaskNote.Entity.Arranges
 
         public abstract string Description { get; }
 
-        public TaskItem Generate()
+        public TaskEntity Generate()
         {
             return _creater.Factory(Id, Title, Description);
         }

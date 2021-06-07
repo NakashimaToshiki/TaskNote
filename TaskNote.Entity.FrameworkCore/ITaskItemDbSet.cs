@@ -10,12 +10,12 @@ namespace TaskNote.Entity.FrameworkCore
     /// </summary>
     public interface ITaskItemDbSet
     {
-        public DbSet<TaskItem> TaskItems { get; }
+        public DbSet<TaskEntity> TaskItems { get; }
     }
 
-    public class TaskItemMap : IEntityTypeConfiguration<TaskItem>
+    public class TaskItemMap : IEntityTypeConfiguration<TaskEntity>
     {
-        public void Configure(EntityTypeBuilder<TaskItem> builder)
+        public void Configure(EntityTypeBuilder<TaskEntity> builder)
         {
             builder.ToTable("tasks");
             builder.HasKey(p => p.Id);

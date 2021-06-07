@@ -2,7 +2,7 @@
 
 namespace TaskNote.Entity.TaskItems
 {
-    public class TaskItem : IEntity
+    public class TaskEntity : IEntity
     {
         public int Id { get; protected set; }
 
@@ -12,7 +12,9 @@ namespace TaskNote.Entity.TaskItems
 
         public string Description { get; protected set; }
 
-        public TaskItem(int id, DateTime updateData, string title, string description)
+        public bool IsCompleted { get; set; }
+
+        public TaskEntity(int id, DateTime updateData, string title, string description)
         {
             Id = id;
             UpdateData = updateData;

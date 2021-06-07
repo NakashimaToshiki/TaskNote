@@ -19,7 +19,7 @@ namespace TaskNote.Entity.Tests
             var sut = provider.GetRequiredService<ITaskItemSession>();
             var logger = provider.GetRequiredService<ILogger>();
 
-            await sut.Add(new TaskItem(1, DateTime.MinValue, "title", "description"));
+            await sut.Add(new TaskEntity(1, DateTime.MinValue, "title", "description"));
             var a = await sut.GetById(1);
             logger.LogInformation("TaskItem = {TaskItem}", a);
 

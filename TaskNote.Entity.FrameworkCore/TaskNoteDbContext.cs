@@ -5,7 +5,7 @@ namespace TaskNote.Entity.FrameworkCore
 {
     public class TaskNoteDbContext : DbContext, ITaskItemDbSet
     {
-        public DbSet<TaskItem> TaskItems { get; set; }
+        public DbSet<TaskEntity> TaskItems { get; set; }
 
         public TaskNoteDbContext(DbContextOptions options) : base(options)
         {

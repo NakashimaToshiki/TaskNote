@@ -14,7 +14,7 @@ namespace TaskNote.Entity.FrameworkCore
             _dbFactory = dbFactory ?? throw new ArgumentNullException(nameof(dbFactory));
         }
 
-        public async ValueTask<TaskItem> GetById(int id)
+        public async ValueTask<TaskEntity> GetById(int id)
         {
             try
             {
@@ -43,7 +43,7 @@ namespace TaskNote.Entity.FrameworkCore
             }
         }
 
-        public async ValueTask<bool> Add(TaskItem item)
+        public async ValueTask<bool> Add(TaskEntity item)
         {
             try
             {

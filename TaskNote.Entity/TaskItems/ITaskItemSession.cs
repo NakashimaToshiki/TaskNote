@@ -4,9 +4,9 @@ namespace TaskNote.Entity.TaskItems
 {
     public interface ITaskItemSession
     {
-        ValueTask<bool> Add(TaskItem item);
+        ValueTask<bool> Add(TaskEntity item);
 
-        ValueTask<TaskItem> GetById(int id);
+        ValueTask<TaskEntity> GetById(int id);
 
         ValueTask<bool> AllDelete();
     }

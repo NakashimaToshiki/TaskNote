@@ -14,19 +14,19 @@ namespace TaskNote.Entity.TaskItems
             _time = time ?? throw new ArgumentNullException(nameof(time));
         }
 
-        public TaskItem Factory(int id, string title, string description, DateTime now)
+        public TaskEntity Factory(int id, string title, string description, DateTime now)
         {
             try
             {
-                return new TaskItem(id, now, title, description);
+                return new TaskEntity(id, now, title, description);
             }
             catch (Exception e)
             {
                 _logger.LogWarning(e);
-                return MissingTaskItem.Instance;
+                return MissingTaskEntity.Instance;
             }
         }
 
-        public TaskItem Factory(int id, string title, string description) => Factory(id, title, description, _time.Now);
+        public TaskEntity Factory(int id, string title, string description) => Factory(id, title, description, _time.Now);
     }
 }
