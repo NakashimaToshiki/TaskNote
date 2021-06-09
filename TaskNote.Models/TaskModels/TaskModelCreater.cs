@@ -12,11 +12,11 @@ namespace TaskNote.Models.TaskModels
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public TaskModel Factory(string text, bool isComplted)
+        public TaskModel Factory(string text, string description, bool isComplted)
         {
             try
             {
-                return new TaskModel(text, isComplted);
+                return new TaskModel(text, description,isComplted);
             }
             catch (Exception e)
             {

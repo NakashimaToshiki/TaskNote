@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 using TaskNote.Configuration;
@@ -9,10 +8,10 @@ using TaskNote.Entity.FrameworkCore.DbSqlite;
 using TaskNote.Http.Client;
 using TaskNote.Http.Client.HttpUrls;
 using TaskNote.Http.Client.Rest;
-using TaskNote.Platform;
-using TaskNote.Platform.Wpf;
 using TaskNote.Logging;
+using TaskNote.Platform;
 using TaskNote.Platform.Batchs;
+using TaskNote.Platform.Wpf;
 using TaskNote.WinRT;
 
 namespace TaskNote.Desktop
@@ -47,18 +46,11 @@ namespace TaskNote.Desktop
                 .AddDatabase<SqliteDatabaseServices>()
                 .AddPlatform<WpfPlatformServices>()
                 .AddPlatformBatch()
+                .AddWpfPlatform(Dispatcher)
                 .AddHttpClient(_ => _.AddProvider<RestHttpClientServices>())
-                .BuildServiceProvider().GetService<IStartBatch>();
+                .BuildServiceProvider().GetService<ApplicationOnStartup>();
 
-            var _ = Task.Run(async () =>
-            {
-                await batch.RunAsync();
-
-                Dispatcher.Invoke(() =>
-                {
-                    Application.Current.Shutdown();
-                });
-            });
+            batch.Start();
         }
 
         protected override void OnExit(ExitEventArgs e)

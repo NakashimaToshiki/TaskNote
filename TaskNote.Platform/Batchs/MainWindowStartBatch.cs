@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using TaskNote.Platform;
 
 namespace TaskNote.Platform.Batchs
 {
@@ -22,7 +21,7 @@ namespace TaskNote.Platform.Batchs
             {
                 _synchronization.Send(state =>
                 {
-                    _mainWindow.ShowDialog();
+                    _mainWindow.Show();
                 }, null);
                 return true;
             });

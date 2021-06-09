@@ -11,6 +11,8 @@ namespace TaskNote.Platform.Wpf
         {
             InitializeComponent();
             _grid.Children.Add(taskListBox);
+
+            this.Closed += (object sender, System.EventArgs e) => Application.Current.Shutdown();
         }
     }
 }

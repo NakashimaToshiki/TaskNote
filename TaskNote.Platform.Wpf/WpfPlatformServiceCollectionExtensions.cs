@@ -8,7 +8,10 @@ namespace TaskNote.Platform.Wpf
         public static IServiceCollection AddWpfPlatform(this IServiceCollection services, Dispatcher dispatcher)
         {
 
-            return services.AddSingleton(dispatcher);
+            return services
+                .AddSingleton(dispatcher)
+                .AddSingleton<ApplicationOnStartup>()
+                ;
         }
     }
 }

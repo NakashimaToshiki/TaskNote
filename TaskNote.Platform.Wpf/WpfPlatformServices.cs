@@ -9,6 +9,8 @@ namespace TaskNote.Platform.Wpf
                 .AddSingleton<MainWindow>()
                 .AddSingleton<TaskListBox>()
                 .AddSingleton<IMainWindow>(_ => _.GetService<MainWindow>())
-                .AddSingleton<ITaskListBox>(_ => _.GetService<TaskListBox>());
+                .AddSingleton<ITaskListBox>(_ => _.GetService<TaskListBox>())
+                .AddSingleton<IMessageBox, MessageBoxDialog>()
+            ;
     }
 }
