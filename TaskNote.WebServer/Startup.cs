@@ -17,20 +17,14 @@ namespace TaskNote.WebServer
     {
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-
             services.AddSwaggerGen();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -46,24 +40,12 @@ namespace TaskNote.WebServer
                 c.RoutePrefix = string.Empty; // EmptyÇ…ê›íËÇ∑ÇÈÇ∆http://localhost:<port>/Ç…ê⁄ë±Ç≥ÇÍÇÈ
             });
 
-            app.UseHttpsRedirection();
-
             app.UseRouting();
-
-            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
-
-            /*
-            app.UseStaticFiles(new StaticFileOptions
-            {
-                FileProvider = new Microsoft.Extensions.FileProviders.PhysicalFileProvider(
-                    System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), "StaticFiles")),
-                RequestPath = "/StaticFiles"
-            });*/
         }
     }
 }
