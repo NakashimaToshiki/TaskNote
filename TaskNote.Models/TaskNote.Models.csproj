@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TaskNote.Configuration\TaskNote.Configuration.csproj" />
     <ProjectReference Include="..\TaskNote.Entity.FrameworkCore\TaskNote.Entity.FrameworkCore.csproj" />
     <ProjectReference Include="..\TaskNote.Http.Client\TaskNote.Http.Client.csproj" />
   </ItemGroup>
