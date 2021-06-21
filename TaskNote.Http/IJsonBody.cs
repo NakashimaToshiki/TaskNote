@@ -1,4 +1,6 @@
-﻿namespace TaskNote.Http
+﻿using TaskNote.Shared;
+
+namespace TaskNote.Http
 {
     /// <summary>
     /// レスポンスデータクラスを示すマーカーインターフィエス

@@ -2,6 +2,7 @@
 using System.Net;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
+using TaskNote.Shared;
 
 namespace TaskNote.Http.Client
 {

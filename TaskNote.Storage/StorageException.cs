@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
+using TaskNote.Shared;
 
 namespace TaskNote.Storage
 {

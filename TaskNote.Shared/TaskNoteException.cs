@@ -2,7 +2,7 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 
-namespace TaskNote
+namespace TaskNote.Shared
 {
     /// <summary>
     /// <see cref="TaskNote"/>名前空間の<see cref="Exception"/>基底クラスとして機能します。

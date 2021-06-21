@@ -1,4 +1,6 @@
-﻿namespace TaskNote.Entity
+﻿using TaskNote.Shared;
+
+namespace TaskNote.Entity
 {
     /// <summary>
     /// データベースのEntityデータクラスを示すマーカーインターフェース
