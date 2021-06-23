@@ -75,7 +75,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskNote.Platform.Tests", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskNote.Models.Logging", "TaskNote.Models.Logging\TaskNote.Models.Logging.csproj", "{870EAAF1-6B6A-45D0-8DE6-C6825A0A7E9D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskNote.Shared", "TaskNote.Shared\TaskNote.Shared.csproj", "{D7323B01-0F49-49F5-BBA2-CC8798A326C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskNote.Shared", "TaskNote.Shared\TaskNote.Shared.csproj", "{D7323B01-0F49-49F5-BBA2-CC8798A326C1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

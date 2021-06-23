@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TaskNote.WebServer.Controllers;
 
 namespace TaskNote.WebServer
 {
@@ -23,6 +24,9 @@ namespace TaskNote.WebServer
         {
             services.AddControllers();
             services.AddSwaggerGen();
+            services.AddRazorPages();
+
+            services.AddTaskNoteController();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -31,7 +35,7 @@ namespace TaskNote.WebServer
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            
             app.UseSwagger();
 
             app.UseSwaggerUI(c =>
@@ -44,7 +48,8 @@ namespace TaskNote.WebServer
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapControllers(); // このメソッドだとControllerとViewがリンクしない
+                endpoints.MapRazorPages();
             });
         }
     }
