@@ -11,10 +11,15 @@ namespace TaskNote.WebServer.Controllers
     [ApiController]
     public class TaskController : Controller
     {
-        [HttpGet]
-        public string Get()
+        public TaskController()
         {
-            return "Hellow World";
+
+        }
+
+        [HttpGet("{username}/{id}")]
+        public async Task<IActionResult> Get(string username, int id)
+        {
+            return Content($"{username}/{id}");
         }
     }
 }

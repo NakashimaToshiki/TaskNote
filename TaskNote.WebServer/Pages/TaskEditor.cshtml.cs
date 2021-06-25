@@ -12,13 +12,19 @@ namespace TaskNote.WebServer.Pages
     {
         private readonly TaskController _controller;
 
+        public string UserName => RouteData.Values["username"].ToString();
+
+        public int TaskId => (int)RouteData.Values["id"];
+
         public TaskEditorModel(TaskController controller)
         {
             this._controller = controller ?? throw new ArgumentNullException(nameof(controller));
         }
 
-        public void OnGet()
+        public async Task<string> OnGet()
         {
+            var a = await _controller.Get(UserName, TaskId);
+            return a.ToString();
         }
     }
 }
