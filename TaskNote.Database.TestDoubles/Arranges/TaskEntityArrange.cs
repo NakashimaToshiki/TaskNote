@@ -1,6 +1,5 @@
 ﻿using System;
 using TaskNote.Entity.TaskItems;
-using TaskNote.Shared;
 
 namespace TaskNote.Entity.Arranges
 {

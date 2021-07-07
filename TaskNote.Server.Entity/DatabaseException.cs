@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
-using System.Runtime.Serialization;
 
-namespace TaskNote.Entity
+namespace TaskNote.Server.Entity
 {
     [Serializable()]
     public class DatabaseException : TaskNoteException
@@ -20,10 +19,6 @@ namespace TaskNote.Entity
         }
 
         public DatabaseException(Exception innerException, [CallerFilePath] string filePath = "", [CallerMemberName] string memberName = "") : base(innerException, filePath, memberName)
-        {
-        }
-
-        protected DatabaseException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }
     }

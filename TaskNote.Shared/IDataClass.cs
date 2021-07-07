@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Reflection;
 
-namespace TaskNote.Shared
+namespace TaskNote
 {
     /// <summary>
     /// データクラスを示すマーカーインターフェース

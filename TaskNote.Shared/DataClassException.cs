@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 
-namespace TaskNote.Shared
+namespace TaskNote
 {
     /// <summary>
     /// <see cref="IDataClass"/>を実装したデータクラスの<see cref="Exception"/>を提供します。

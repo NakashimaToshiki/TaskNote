@@ -1,5 +1,4 @@
 ﻿using System;
-using TaskNote.Shared;
 
 namespace TaskNote.Entity.TaskItems
 {

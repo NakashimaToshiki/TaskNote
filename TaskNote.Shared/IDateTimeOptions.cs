@@ -1,5 +1,5 @@
 ﻿using System;
-using TaskNote.Shared;
+using System.Diagnostics;
 
 namespace TaskNote
 {
@@ -11,16 +11,21 @@ namespace TaskNote
     public class DateTimeOptions : IDateTimeOptions
     {
         public DateTime Now => DateTime.Now;
+
+        public override string ToString() => this.ToStringProperties();
     }
 
-    public class StopwatchDatetimeOptions : System.Diagnostics.Stopwatch, IDateTimeOptions
+    public class StopwatchDatetimeOptions : Stopwatch, IDateTimeOptions
     {
         public DateTime Offset { get; set; } = DateTime.MinValue;
 
         public DateTime Now => Offset + TimeSpan.FromMilliseconds(ElapsedMilliseconds);
 
+        public override string ToString() => this.ToStringProperties();
+
         public StopwatchDatetimeOptions()
         {
+
         }
     }
 }
