@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
-using TaskNote.Server.Entity;
 using TaskNote.Server.Models.Tasks;
 using System.Linq;
 using System.Collections.Generic;
+using TaskNote.Server.Entity.Tasks;
 
 namespace TaskNote.Server.Models.Repositories
 {

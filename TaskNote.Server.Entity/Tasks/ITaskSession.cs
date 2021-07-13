@@ -1,8 +1,7 @@
 ﻿using System.Threading.Tasks;
-using TaskNote.Server.Entity.Tasks;
 using System.Collections.Generic;
 
-namespace TaskNote.Server.Entity
+namespace TaskNote.Server.Entity.Tasks
 {
     public interface ITaskSession
     {

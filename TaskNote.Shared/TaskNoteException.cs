@@ -8,7 +8,7 @@ namespace TaskNote
     /// <see cref="TaskNote"/>名前空間の<see cref="Exception"/>基底クラスとして機能します。
     /// </summary>
     [Serializable()]
-    public class TaskNoteException : SystemException
+    public class TaskNoteException : Exception
     {
 
         public TaskNoteException()

@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace TaskNote.Server.Entity.Tasks
 {
-    public class TaskEntity
+    public class TaskEntity : IEntity
     {
         public int Id { get; protected set; }
 
@@ -29,5 +27,6 @@ namespace TaskNote.Server.Entity.Tasks
             Description = description ?? throw new ArgumentNullException(nameof(description));
         }
 
+        public override string ToString() => this.ToStringProperties();
     }
 }
