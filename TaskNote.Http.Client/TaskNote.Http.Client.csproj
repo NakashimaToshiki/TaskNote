@@ -7,4 +7,8 @@
     <Configurations>Debug;Release;Staging;Mock</Configurations>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TaskNote\TaskNote.csproj" />
+  </ItemGroup>
+
 </Project>

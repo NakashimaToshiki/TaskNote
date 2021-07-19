@@ -15,7 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TaskNote.Batch\TaskNote.Batch.csproj" />
     <ProjectReference Include="..\TaskNote.Configuration\TaskNote.Configuration.csproj" />
     <ProjectReference Include="..\TaskNote.Entity.FrameworkCore.DbSqlite\TaskNote.Entity.FrameworkCore.DbSqlite.csproj" />
     <ProjectReference Include="..\TaskNote.Http.Client.Rest\TaskNote.Http.Client.Rest.csproj" />
