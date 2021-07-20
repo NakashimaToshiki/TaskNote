@@ -4,7 +4,7 @@ using TaskNote.Server.Entity.Tasks;
 
 namespace TaskNote.Server.Entity.FrameworkCore
 {
-    public interface ITaskDbSet
+    public interface ITaskDbSet : IUserDbSet
     {
         public DbSet<TaskEntity> Tasks { get; }
     }

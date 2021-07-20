@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TaskNote.WebServer.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class TaskController : Controller
     {

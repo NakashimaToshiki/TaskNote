@@ -1,4 +1,5 @@
 ﻿using System;
+using TaskNote.Server.Entity.Users;
 
 namespace TaskNote.Server.Entity.Tasks
 {
@@ -6,7 +7,7 @@ namespace TaskNote.Server.Entity.Tasks
     {
         public static NullTaskEntity Instance = new NullTaskEntity();
 
-        protected NullTaskEntity() : base("null", DateTime.MinValue, DateTime.MinValue, "no title", "no description")
+        protected NullTaskEntity() : base(NullUserEntity.Instance, DateTime.MinValue, DateTime.MinValue, "no title", "no description")
         {
         }
     }

@@ -1,4 +1,5 @@
 ﻿using System;
+using TaskNote.Server.Entity.Users;
 
 namespace TaskNote.Server.Entity.ClientTraceLogs
 {
@@ -6,7 +7,9 @@ namespace TaskNote.Server.Entity.ClientTraceLogs
     {
         public int Id { get; protected set; }
 
-        public string UserId { get; protected set; }
+        public int UserId { get; protected set; }
+
+        public virtual UserEntity User { get; protected set; }
 
         public byte[] Content { get; protected set; }
 
@@ -17,14 +20,15 @@ namespace TaskNote.Server.Entity.ClientTraceLogs
 
         }
 
-        public ClientTraceLogEntity(string userId, byte[] context, DateTime createDate)
+        public ClientTraceLogEntity(UserEntity user, byte[] context, DateTime createDate)
         {
-            UserId = userId;
+            User = user ?? throw new ArgumentNullException(nameof(user));
+            UserId = User.Id;
             Content = context;
             CreateDate = createDate;
         }
 
-        public ClientTraceLogEntity(int id, string userId, byte[] context, DateTime createDate) : this(userId, context, createDate)
+        public ClientTraceLogEntity(int id, UserEntity user, byte[] context, DateTime createDate) : this(user, context, createDate)
         {
             if (id <= 0) throw new ArgumentException(nameof(id));
             Id = id;

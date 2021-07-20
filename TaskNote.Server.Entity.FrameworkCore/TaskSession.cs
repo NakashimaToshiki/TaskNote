@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using TaskNote.Server.Entity.Tasks;
+using TaskNote.Server.Entity.Users;
 using System.Linq;
 
 namespace TaskNote.Server.Entity.FrameworkCore
@@ -23,7 +24,7 @@ namespace TaskNote.Server.Entity.FrameworkCore
             try
             {
                 using var db = _dbFactory.CreateDbContext();
-                return await db.Tasks.FirstOrDefaultAsync(_ => _.Id == id);
+                return await db.Tasks.Include(_ => _.User).FirstOrDefaultAsync(_ => _.Id == id);
             }
             catch (Exception e)
             {
@@ -36,7 +37,7 @@ namespace TaskNote.Server.Entity.FrameworkCore
             try
             {
                 using var db = _dbFactory.CreateDbContext();
-                return await db.Tasks.Where(_ => _.UserName == username).ToListAsync();
+                return await db.Tasks.Include(_ => _.User).Where(_ => _.User.Name == username).ToListAsync();
             }
             catch (Exception e)
             {
@@ -49,7 +50,8 @@ namespace TaskNote.Server.Entity.FrameworkCore
             try
             {
                 using var db = _dbFactory.CreateDbContext();
-                db.Tasks.Add(new TaskEntity(username, _datetime.Now, _datetime.Now, title, description));
+                var user = await db.Users.FirstAsync(_ => _.Name == username);
+                db.Tasks.Add(new TaskEntity(user, _datetime.Now, _datetime.Now, title, description));
                 return await db.SaveChangesAsync() > 0;
             }
             catch (Exception e)

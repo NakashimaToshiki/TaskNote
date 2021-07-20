@@ -12,7 +12,7 @@ namespace TaskNote.Server.Entity.FrameworkCore.InMemory
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) =>
             modelBuilder.Entity<TaskEntity>().HasData(
-                new TaskEntity("", DateTime.Now, DateTime.Now, "", "")
+                new TaskEntity(1, DateTime.Now, DateTime.Now, "", "")
                 );
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

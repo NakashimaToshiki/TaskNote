@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using System;
+using TaskNote.Server.Entity.Users;
 
 namespace TaskNote.Server.Entity.Tasks
 {
@@ -14,11 +15,11 @@ namespace TaskNote.Server.Entity.Tasks
             _datetime = datetime ?? throw new ArgumentNullException(nameof(datetime));
         }
 
-        public TaskEntity Create(string userName, string title)
+        public TaskEntity Create(UserEntity user, string title)
         {
             try
             {
-                return new TaskEntity(userName, _datetime.Now, _datetime.Now, title, "");
+                return new TaskEntity(user, _datetime.Now, _datetime.Now, title, "");
             }
             catch (Exception e)
             {

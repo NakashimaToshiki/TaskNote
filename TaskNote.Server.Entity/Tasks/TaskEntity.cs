@@ -1,4 +1,5 @@
 ﻿using System;
+using TaskNote.Server.Entity.Users;
 
 namespace TaskNote.Server.Entity.Tasks
 {
@@ -6,7 +7,9 @@ namespace TaskNote.Server.Entity.Tasks
     {
         public int Id { get; protected set; }
 
-        public string UserName { get; protected set; }
+        public int UserId { get; protected set; }
+
+        public virtual UserEntity User { get; protected set; }
 
         public DateTime CreatedDate { get; protected set; }
 
@@ -18,9 +21,10 @@ namespace TaskNote.Server.Entity.Tasks
 
         public bool IsCompleted { get; set; } = false;
 
-        public TaskEntity(string userName, DateTime createdDate, DateTime updateDate, string title, string description)
+        public TaskEntity(UserEntity user, DateTime createdDate, DateTime updateDate, string title, string description)
         {
-            UserName = userName ?? throw new ArgumentNullException(nameof(userName));
+            User = user ?? throw new ArgumentNullException(nameof(user));
+            UserId = user.Id;
             CreatedDate = createdDate;
             UpdateDate = updateDate;
             Title = title ?? throw new ArgumentNullException(nameof(title));
