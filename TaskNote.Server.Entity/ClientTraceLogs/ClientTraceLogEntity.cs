@@ -33,6 +33,7 @@ namespace TaskNote.Server.Entity.ClientTraceLogs
             if (id <= 0) throw new ArgumentException(nameof(id));
             Id = id;
         }
+
         public override string ToString() => this.ToStringProperties();
     }
 }

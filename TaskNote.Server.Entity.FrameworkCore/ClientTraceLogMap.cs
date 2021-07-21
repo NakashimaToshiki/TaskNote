@@ -4,7 +4,7 @@ using TaskNote.Server.Entity.ClientTraceLogs;
 
 namespace TaskNote.Server.Entity.FrameworkCore
 {
-    public interface IClientTraceLogDbSet
+    public interface IClientTraceLogDbSet : IUserDbSet
     {
         public DbSet<ClientTraceLogEntity> ClientTraceLogs { get; }
     }
