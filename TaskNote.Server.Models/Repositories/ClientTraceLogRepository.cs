@@ -29,6 +29,19 @@ namespace TaskNote.Server.Models.Repositories
                 _logger.LogWarning(e);
                 return false;
             }
-        } 
+        }
+
+        public async ValueTask<IEnumerable<(int id, DateTime time)>> FindDateTimes(int userId)
+        {
+            try
+            {
+                return await _session.GetTimesById(userId);
+            }
+            catch (Exception e)
+            {
+                _logger.LogWarning(e);
+                return new (int id, DateTime time)[0];
+            }
+        }
     }
 }

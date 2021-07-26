@@ -5,13 +5,17 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using TaskNote.Server.Models.Repositories;
+using System.ComponentModel.DataAnnotations;
 
 namespace TaskNote.WebServer.Pages
 {
     public class TraceLogListViewModel
     {
+        [Display(Name = "ID")]
         public int Id { get; set; }
 
+        [Display(Name = "Created (UTC)")]
+        [DisplayFormat(DataFormatString = "{0:G}")]
         public DateTime Date { get; set; }
     }
 
@@ -27,8 +31,16 @@ namespace TaskNote.WebServer.Pages
         [BindProperty]
         public IReadOnlyList<TraceLogListViewModel> ViewModels { get; private set; }
 
-        public void OnGet()
+        public async Task<IActionResult> OnGetAsync(int user_id)
         {
+            if (user_id <= 0)
+            {
+                return RedirectToPage("/Index");
+            }
+
+            var items = await _repository.FindDateTimes(user_id);
+
+            return Page();
         }
 
         /*
