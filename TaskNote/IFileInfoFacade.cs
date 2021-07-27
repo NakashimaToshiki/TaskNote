@@ -23,6 +23,8 @@ namespace TaskNote
 
         string AppSetting { get; }
 
+        DirectoryInfo GetApplicationDirectoryInfo();
+
         DirectoryInfo GetTraceLogDirectoryInfo();
 
         FileInfo GetDatabaseFileInfo();
@@ -50,6 +52,8 @@ namespace TaskNote
         public virtual string NLog => "NLog.config";
 
         public virtual string AppSetting => "appsettings.json";
+
+        public DirectoryInfo GetApplicationDirectoryInfo() => new DirectoryInfo(ApplicationLocation);
 
         public virtual DirectoryInfo GetTraceLogDirectoryInfo() => new DirectoryInfo(Path.Combine(ApplicationLocation, TraceLogFolder));
 

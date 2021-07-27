@@ -13,13 +13,14 @@ namespace TaskNote.WpfConfigurationManager
             _options = options ?? throw new ArgumentNullException(nameof(options));
         }
 
-        public void Load()
+        public bool Load()
         {
             try
             {
                 var settings = ConfigurationManager.AppSettings;
                 _options.Password = settings[nameof(_options.Password)];
                 _options.UserId = settings[nameof(_options.UserId)];
+                return !string.IsNullOrEmpty(_options.Password) && !string.IsNullOrEmpty(_options.UserId);
             }
             catch (Exception e)
             {

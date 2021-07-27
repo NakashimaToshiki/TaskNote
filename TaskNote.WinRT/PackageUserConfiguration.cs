@@ -13,13 +13,17 @@ namespace TaskNote.WinRT
             _options = options ?? throw new ArgumentNullException(nameof(options));
         }
 
-        public void Load()
+        public bool Load()
         {
             try
             {
                 var settings = ApplicationData.Current.LocalSettings;
-                _options.UserId = settings.Values[nameof(_options.UserId)] as string;
-                _options.Password = settings.Values[nameof(_options.Password)] as string;
+                bool ret = true;
+                if (settings.Values.TryGetValue(nameof(_options.UserId), out var userId)) _options.UserId = userId as string;
+                else ret = false;
+                if (settings.Values.TryGetValue(nameof(_options.Password), out var password)) _options.Password = password as string;
+                else ret = false;
+                return ret;
             }
             catch (Exception e)
             {

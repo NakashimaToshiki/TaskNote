@@ -7,6 +7,17 @@ namespace TaskNote.Models.VerificationModels
         public abstract string Text { get; }
     }
 
+    public class NullVerificationModel : BaseVerificationModel
+    {
+        public static NullVerificationModel Instance = new NullVerificationModel();
+
+        private NullVerificationModel()
+        {
+        }
+
+        public override string Text => "Null";
+    }
+
     public class VerificationSuccessModel : BaseVerificationModel
     {
         public override string Text => "認証に成功しました。";

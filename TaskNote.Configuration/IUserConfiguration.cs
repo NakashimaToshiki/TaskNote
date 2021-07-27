@@ -2,7 +2,7 @@
 {
     public interface IUserConfiguration
     {
-        void Load();
+        bool Load();
 
         void Save();
     }

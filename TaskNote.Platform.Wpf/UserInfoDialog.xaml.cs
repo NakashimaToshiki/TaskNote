@@ -21,5 +21,7 @@ namespace TaskNote.Platform.Wpf
         {
             InitializeComponent();
         }
+
+        public UserInfoDialogResult Result => throw new NotImplementedException();
     }
 }

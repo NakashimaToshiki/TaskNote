@@ -28,9 +28,12 @@ namespace TaskNote.Platform.Wpf
             {
                 if (!await _batch.RunAsync())
                 {
-                    _message.Show("正常起動できませんでした。アプリを終了します。\r\n詳細はログファイルを確認して下さい。", "起動エラー");
-                    _logger.LogInformation("正常起動しませんでした。アプリを終了します。");
-                    _dispatcher.Invoke(() => Application.Current.Shutdown());
+                    _dispatcher.Invoke(() =>
+                    {
+                        _message.Show("正常起動できませんでした。アプリを終了します。\r\n詳細はログファイルを確認して下さい。", "起動エラー");
+                        _logger.LogInformation("正常起動しませんでした。アプリを終了します。");
+                        Application.Current.Shutdown();
+                    });
                 }
             });
         }

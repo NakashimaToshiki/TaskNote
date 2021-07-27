@@ -8,7 +8,9 @@ namespace TaskNote.Platform.Batchs
             services
                 .AddSingleton<MainStartBatch>()
                 .AddSingleton<MainExitBatch>()
-                .AddSingleton<MainWindowStartBatch>()
+                .AddSingleton<StartupWindowBatch>()
+                .AddSingleton<StorageMigrateBatch>()
+                .AddSingleton<LoginIntialBatch>()
                 .AddSingleton<IStartBatch>(_ => _.GetService<MainStartBatch>())
                 .AddSingleton<IExitBatch>(_ => _.GetService<MainExitBatch>());
     }
