@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>TaskNote.Models.TestDoubles</AssemblyName>
+    <RootNamespace>TaskNote.Models</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TaskNote.Database.TestDoubles\TaskNote.Database.TestDoubles.csproj" />
+    <ProjectReference Include="..\TaskNote.Http.Client.TestDoubles\TaskNote.Http.Client.TestDoubles.csproj" />
+    <ProjectReference Include="..\TaskNote.Models.Logging\TaskNote.Models.Logging.csproj" />
+    <ProjectReference Include="..\TaskNote.Storage.TestDoubles\TaskNote.Storage.TestDoubles.csproj" />
+  </ItemGroup>
+
+</Project>

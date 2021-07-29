@@ -11,9 +11,11 @@ namespace TaskNote.Platform
     public class UserInfoViewModel : BindableBase
     {
         private string _userId;
+
+        public const string NUMBER_PATTERN = "[a-zA-Z0-9]+";
         
         [Required(ErrorMessage="ユーザー名を入力して下さい。")]
-        [RegularExpression("[a-zA-Z0-9]+", ErrorMessage = "ユーザー名は英数字のみです。")]
+        [RegularExpression(NUMBER_PATTERN, ErrorMessage = "ユーザー名は英数字のみです。")]
         public string UserId
         {
             get => _userId;

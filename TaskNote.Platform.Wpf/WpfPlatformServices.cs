@@ -6,11 +6,12 @@ namespace TaskNote.Platform.Wpf
     {
         public void ConfigureServices(IServiceCollection services) =>
             services
+                .AddSingleton<IMessageBox, MessageBoxDialog>()
+                .AddSingleton<IMainWindow>(_ => _.GetService<MainWindow>())
+                .AddSingleton<IUserInfoView, UserInfoDialog>()
                 .AddSingleton<MainWindow>()
                 .AddSingleton<TaskListBox>()
-                .AddSingleton<IMainWindow>(_ => _.GetService<MainWindow>())
                 .AddSingleton<ITaskListBox>(_ => _.GetService<TaskListBox>())
-                .AddSingleton<IMessageBox, MessageBoxDialog>()
             ;
     }
 }

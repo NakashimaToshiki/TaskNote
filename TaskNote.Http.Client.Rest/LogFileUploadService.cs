@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TaskNote.Http.Client.Rest
 {
-    public class LogFileUploadService : ILogFileUploadService
+    public class LogFileUploadService : IUploadTraceLogService
     {
         private readonly ClientFactory _clientFactory;
         private readonly IHttpUrl _url;
@@ -19,19 +19,19 @@ namespace TaskNote.Http.Client.Rest
             _user = user ?? throw new ArgumentNullException(nameof(user));
         }
 
-        public async ValueTask<bool> Upload(string filePath, string text)
+        public async ValueTask<bool> Upload(string filePath)
         {
             try
             {
                 var client = _clientFactory.Factory(_url.SaverDomain);
 
-                byte[] bytes = System.Text.Encoding.UTF8.GetBytes(text);
-
-                var request = new RestRequest(_url.LogEndPoint, Method.GET)
+                var request = new RestRequest(_url.LogEndPoint, DataFormat.Json)
+                    //.AddParameter("user_id", _user.UserId) // これは上手くいかなかった
+                    //.AddQueryParameter("user_id", _user.UserId) // クエリはこっち
                     .AddUrlSegment("user_id", _user.UserId)
-                    .AddFile(Path.GetFileName(filePath), bytes, filePath);
+                    .AddFile(Path.GetFileName(filePath), filePath);
 
-                var response = await client.ExecuteAsync(request);
+                var response = await client.ExecuteAsync(request, Method.POST);
                 if (response.StatusCode != HttpStatusCode.OK)
                 {
                     throw new HttpRequestException(response.StatusCode);

@@ -23,7 +23,7 @@ namespace TaskNote.Http.Client.Rest
             {
                 var client = _clientFactory.Factory(_url.SaverDomain);
 
-                var response = await client.ExecuteAsync(new RestRequest(_url.SessionEndPoint));
+                var response = await client.ExecuteAsync(new RestRequest(_url.SaverDomain + "/" + _url.CredentialEndPoint));
 
                 if (response.StatusCode != HttpStatusCode.OK)
                 {

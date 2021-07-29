@@ -1,8 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using System.Text;
+using System.Threading;
+using TaskNote.Models;
 
 namespace TaskNote.Platform
 {
@@ -10,22 +9,22 @@ namespace TaskNote.Platform
     {
         public static IServiceCollection UseTest(this IServiceCollection services, [CallerMemberName] string testName = "")
         {
-            return services
+            SynchronizationContext.SetSynchronizationContext(new SynchronizationContext());
+            services
                 .UseTestOptions(new TestOptions(testName))
-                .AddHttpTest()
                 ;
+
+            var databaseOptions = services.BuildServiceProvider().GetService<IDatabaseOptions>();
+
+            return services
+                .AddPlatformTest(SynchronizationContext.Current, databaseOptions);
         }
 
-        public static IServiceCollection AddHttpTest(this IServiceCollection services)
+        public static IServiceCollection AddPlatformTest(this IServiceCollection services, SynchronizationContext synchronization, IDatabaseOptions options)
         {
-            /*
-#if DEBUG
-            services.AddHttpClient(_ => _.AddConfiguration<MockHttpClientServices>());
-#else
-            services.AddHttpClient(_ => _.AddProvider<Rest.RestHttpClientServices>());
-#endif
-            */
             return services
+                .AddPlatform<MockPlatformServices>(synchronization)
+                .AddModelTest(options)
                 ;
         }
     }

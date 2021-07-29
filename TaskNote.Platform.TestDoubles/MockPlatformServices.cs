@@ -7,7 +7,11 @@ namespace TaskNote.Platform
     {
         public void ConfigureServices(IServiceCollection services) =>
             services
+                .AddSingleton<IMessageBox>( _ => new Mock<IMessageBox>().Object)
                 .AddSingleton<IMainWindow>(_ => new Mock<IMainWindow>().Object)
-                .AddSingleton<ITaskListBox>(_ => new Mock<ITaskListBox>().Object);
+                .AddSingleton<ITaskListBox>(_ => new Mock<ITaskListBox>().Object)
+                .AddSingleton<SpyUserInfoView>()
+                .AddSingleton<IUserInfoView>(_ => _.GetService<SpyUserInfoView>())
+                ;
     }
 }

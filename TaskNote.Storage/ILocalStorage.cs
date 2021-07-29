@@ -3,8 +3,12 @@ using System.IO;
 
 namespace TaskNote.Storage
 {
+    public interface ILocalStorage
+    {
+        void AllDeleteApplication();
+    }
 
-    public class LocalStorage
+    public class LocalStorage : ILocalStorage
     {
         private readonly IFileInfoFacade _fileInfoFacade;
 
@@ -16,7 +20,7 @@ namespace TaskNote.Storage
         /// <summary>
         /// アプリケーションフォルダを削除。中にあるファイルやフォルダも削除されます。
         /// </summary>
-        public void DeleteApplicationDirectory()
+        public void AllDeleteApplication()
         {
             try
             {

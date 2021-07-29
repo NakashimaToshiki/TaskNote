@@ -31,6 +31,20 @@ namespace TaskNote.Server.Models.Repositories
             }
         }
 
+        public async ValueTask<byte[]> GetById(int id)
+        {
+            try
+            {
+                var entity = await _session.GetById(id);
+                return entity.Content;
+            }
+            catch (Exception e)
+            {
+                _logger.LogWarning(e);
+                return new byte[0];
+            }
+        }
+
         public async ValueTask<IEnumerable<(int id, DateTime time)>> FindDateTimes(int userId)
         {
             try

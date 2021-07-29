@@ -2,19 +2,19 @@
 {
     public class ProductUrl : IHttpUrl
     {
-        public virtual string SaverDomain => $"http://task.nakashima.toshiki.jp";
+        public virtual string SaverDomain => $"https://localhost:44318";
 
         // メモ：ルートパラメータEndPointはasp.net coreでも[Http
         // HttpClietnだと{}に囲まれた文字を置き換えるメソッドがないので、自分で作る必要性がある？
         // 文字リテラルで置き換えてもいいけど、asp.net coreサイドでも
         // [HttpGet("[action]/{productId}}]属性でルートパラメータを指定するので、
         // サーバサイドと共通化するならTask.Note.Httpに移動したほうがいいかも
-        public string SessionEndPoint => "credential/verfication";
+        public string CredentialEndPoint => "api/credential";
 
-        public virtual string TaskEndPoint => "{user_id}/task";
+        public virtual string TaskEndPoint => "api/task/{user_id}";
 
-        public string LogEndPoint => "{user_id}/log";
+        public string LogEndPoint => "api​/ClientTraceLog/{user_id}";
 
-        public string ConfigEndPoint => "{user_id}/config";
+        public string ConfigEndPoint => "config/{user_id}";
     }
 }

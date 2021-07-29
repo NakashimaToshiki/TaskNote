@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using System.Runtime.CompilerServices;
 
 namespace TaskNote.Entity
@@ -11,11 +12,18 @@ namespace TaskNote.Entity
                 .UseTestOptions(new TestOptions(testName))
                 ;
             var provider = services.BuildServiceProvider();
-            return services.AddTest(provider.GetService<IDatabaseOptions>());
+            var configureOptions = provider.GetService<IConfigureOptions<DatabaseOptions>>();
+            var options = new DatabaseOptions();
+            configureOptions.Configure(options);
+
+            return services.AddDatabaseTest(options);
         }
 
-        public static IServiceCollection AddTest(this IServiceCollection services, IDatabaseOptions options)
+        public static IServiceCollection AddDatabaseTest(this IServiceCollection services, IDatabaseOptions options)
         {
+            // ここでダミーのデータを生成するクラスを注入する
+            //services.AddSingleton<ITaskEntityListCreater, >
+
             switch (options.Type)
             {
                 case "Sqlite":

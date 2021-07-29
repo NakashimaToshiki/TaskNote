@@ -11,10 +11,10 @@ namespace TaskNote.Models.Repositoris
         private readonly ILogger _logger;
         private readonly IAuthService _service;
 
-        public VerficationRepository(ILogger _logger, IAuthService _service)
+        public VerficationRepository(ILogger logger, IAuthService service)
         {
-            _logger = _logger ?? throw new ArgumentNullException(nameof(_logger));
-            _service = _service ?? throw new ArgumentNullException(nameof(_service));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            _service = service ?? throw new ArgumentNullException(nameof(service));
         }
 
         public async ValueTask<BaseVerificationModel> Verfication()
@@ -28,7 +28,7 @@ namespace TaskNote.Models.Repositoris
             catch (HttpRequestException e)
             {
                 _logger.LogWarning(e, "");
-                if(e.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+                if (e.StatusCode == System.Net.HttpStatusCode.Unauthorized)
                 {
                     return new VerificationErrorModel("認証に失敗しました。入力情報を確認してください。");
                 }
@@ -38,6 +38,10 @@ namespace TaskNote.Models.Repositoris
             {
                 // 認証エラーがサーバかクライアントどちらが原因か分かるようにする。
                 return new VerificationNetworkModel();
+            }
+            catch (Exception e)
+            {
+                return new VerificationErrorModel(e.Message);
             }
         }
     }

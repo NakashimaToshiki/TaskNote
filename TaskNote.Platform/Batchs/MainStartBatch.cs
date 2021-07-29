@@ -7,14 +7,20 @@ using TaskNote.Models.Repositoris;
 
 namespace TaskNote.Platform.Batchs
 {
+    public enum MainStartBatchReturn
+    {
+        Success,
+        Error,
+    }
+
     public class MainStartBatch : IStartBatch
     {
         private readonly ILogger _logger;
         private readonly StartupWindowBatch _window;
         private readonly StorageMigrateBatch _storage;
-        private readonly UserInfoBatch _userInfo;
+        private readonly UserLoginBatch _userInfo;
 
-        public MainStartBatch(ILogger logger, StartupWindowBatch window, StorageMigrateBatch storage, UserInfoBatch userInfo)
+        public MainStartBatch(ILogger logger, StartupWindowBatch window, StorageMigrateBatch storage, UserLoginBatch userInfo)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _window = window ?? throw new ArgumentNullException(nameof(window));
@@ -30,14 +36,14 @@ namespace TaskNote.Platform.Batchs
                 _window.Run();
 
                 _logger.LogInformation("ローカルストレージを更新開始");
-                if (_storage.Run())
+                if (!_storage.Run())
                 {
                     _logger.LogInformation("ローカルストレージの更新に失敗。処理を中断します。");
                     return false;
                 }
 
                 _logger.LogInformation("ログイン処理を開始");
-                if (await _userInfo.Run())
+                if (!await _userInfo.Run())
                 {
                     _logger.LogInformation("ログイン失敗。処理を中断します。");
                     return false;
@@ -49,7 +55,7 @@ namespace TaskNote.Platform.Batchs
             }
             catch (Exception e)
             {
-                _logger.LogWarning(e, "");
+                _logger.LogWarning(e);
                 return false;
             }
         }

@@ -34,14 +34,16 @@ namespace TaskNote.Models.Repositoris
     public class StorageMigrateRepository
     {
         private readonly ILogger _logger;
-        private readonly LocalStorage _localStorage;
+        private readonly ILocalStorage _localStorage;
         private readonly IVersion _version;
+        private readonly IVersionConfiguration _config;
 
-        public StorageMigrateRepository(ILogger logger, LocalStorage localStorage, IVersion version)
+        public StorageMigrateRepository(ILogger logger, ILocalStorage localStorage, IVersion version, IVersionConfiguration config)
         {
             _logger = logger;
             _localStorage = localStorage;
             _version = version ?? throw new ArgumentNullException(nameof(version));
+            _config = config ?? throw new ArgumentNullException(nameof(config));
         }
 
         public StorageMigrateRepositoryReturn Run()
@@ -51,8 +53,10 @@ namespace TaskNote.Models.Repositoris
                 var versionName = _version.GetVersionName();
                 _logger.LogInformation($"現在のアプリバージョン：{versionName ?? "None"}");
 
-                if (!IsMatchVersion(versionName))
+                if (!IsMatchVersion(_config.Load()))
                 {
+                    _localStorage.AllDeleteApplication();
+                    _config.Save(_version.GetVersionName());
                     return StorageMigrateRepositoryReturn.StorageRefresh;
                 }
 

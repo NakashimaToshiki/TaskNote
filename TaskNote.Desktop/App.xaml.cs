@@ -13,6 +13,8 @@ using TaskNote.Platform;
 using TaskNote.Platform.Batchs;
 using TaskNote.Platform.Wpf;
 using TaskNote.WinRT;
+using TaskNote.Models;
+using TaskNote.Storage;
 
 namespace TaskNote.Desktop
 {
@@ -23,6 +25,8 @@ namespace TaskNote.Desktop
     {
 
         private readonly ServiceCollection _services = new ServiceCollection();
+
+        private ServiceProvider _provider;
 
         public App()
         {
@@ -39,25 +43,23 @@ namespace TaskNote.Desktop
         {
             base.OnStartup(e);
 
-            // DIのSystem.InvalidOperationExceptionの修正がしやすいようにTask.Run()の外に記述している
-            var batch = _services
-                .AddSingleton<Dispatcher>(Dispatcher)
-                .AddSingleton<SynchronizationContext>(new DispatcherSynchronizationContext(Dispatcher))
+            _provider = _services
+                .AddStorage<StorageServices>()
                 .AddDatabase<SqliteDatabaseServices>()
-                .AddPlatform<WpfPlatformServices>()
-                .AddPlatformBatch()
-                .AddWpfPlatform(Dispatcher)
                 .AddHttpClient(_ => _.AddProvider<RestHttpClientServices>())
-                .BuildServiceProvider().GetService<ApplicationOnStartup>();
-
+                .AddWpfPlatform(Dispatcher)
+                .BuildServiceProvider();
+            
+            var batch = _provider.GetService<ApplicationOnStartup>();
             batch.Start();
         }
 
         protected override void OnExit(ExitEventArgs e)
         {
-            var provider = _services.BuildServiceProvider();
-            provider.GetService<IExitBatch>().Run();
-            provider.Dispose(); // IDisposeを実装しているクラスをすべて解放
+            var batch = _provider.GetService<IExitBatch>();
+            batch.Run();
+
+            //_provider.Dispose(); // IDisposeを実装しているクラスをすべて解放
             base.OnExit(e);
         }
     }

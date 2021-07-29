@@ -5,8 +5,70 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TaskNote.Platform.Wpf"
         mc:Ignorable="d"
-        Title="UserInfoDialog" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Stretch"
+        Title="ログイン"
+        Height="250" Width="300"
+        ResizeMode="NoResize"
+        WindowStyle="SingleBorderWindow">
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="Margin" Value="0,5,0,10"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+        <Style TargetType="Control" x:Key="baseTextBox">
+            <Setter Property="Margin" Value="0,5,0,10"/>
+        </Style>
+        <Style TargetType="TextBox" BasedOn="{StaticResource baseTextBox}">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Width" Value="75"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Margin" Value="10,10,10,10"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="asterisk">
+            <Setter Property="Text" Value="*"/>
+            <Setter Property="Foreground" Value="Red"/>
+            <Setter Property="Margin" Value="5,0,0,0"/>
+        </Style>
+    </Window.Resources>
+    <StackPanel Margin="10,10,10,10">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="ユーザーID"/>
+            <TextBlock Style="{StaticResource asterisk}"/>
+        </StackPanel>
+        <TextBox
+            Text="{Binding UserId}"
+            PreviewTextInput="TextBlock_PreviewTextInput"
+            CommandManager.PreviewExecuted="TextBlock_PreviewExecuted"/>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="パスワード"/>
+            <TextBlock Style="{StaticResource asterisk}"/>
+        </StackPanel>
+        <PasswordBox
+            Style="{StaticResource baseTextBox}"
+            MaxLength="64"
+            PasswordChar="*"
+            local:PasswordBoxHelper.Password="{Binding Password}"
+        />
+        <StackPanel
+            Orientation="Horizontal"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom">
+            <Button 
+                x:Name="_cancelButton"
+                Margin="0,0,0,0"
+                Content="Cancel"/>
+            <Button
+                x:Name="_okButton"
+                Margin="10,0,0,0"
+                Content="OK"/>
+        </StackPanel>
+    </StackPanel>
 </Window>

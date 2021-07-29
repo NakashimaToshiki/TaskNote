@@ -25,8 +25,6 @@ namespace TaskNote.WebServer
             services.AddControllers();
             services.AddSwaggerGen();
             services.AddRazorPages();
-
-            services.AddTaskNoteController();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

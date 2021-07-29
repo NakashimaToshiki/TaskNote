@@ -10,7 +10,7 @@ using TaskNote.Models.VerificationModels;
 
 namespace TaskNote.Platform.Batchs
 {
-    public class UserInfoBatch
+    public class UserLoginBatch
     {
         private readonly ILogger _logger;
         private readonly SynchronizationContext _synchro;
@@ -18,7 +18,7 @@ namespace TaskNote.Platform.Batchs
         private readonly VerficationRepository _verfication;
         private readonly IUserConfiguration _userConfig;
 
-        public UserInfoBatch(ILogger logger, SynchronizationContext synch, IUserInfoView view, VerficationRepository verfication, IUserConfiguration userConfig)
+        public UserLoginBatch(ILogger logger, SynchronizationContext synch, IUserInfoView view, VerficationRepository verfication, IUserConfiguration userConfig)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _synchro = synch ?? throw new ArgumentNullException(nameof(synch));

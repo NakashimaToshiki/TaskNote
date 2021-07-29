@@ -9,7 +9,7 @@
 
         string SaverDomain { get; }
 
-        string SessionEndPoint { get; }
+        string CredentialEndPoint { get; }
 
         string TaskEndPoint { get; }
 

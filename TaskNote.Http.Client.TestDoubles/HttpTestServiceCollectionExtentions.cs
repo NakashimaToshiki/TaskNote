@@ -1,12 +1,14 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Moq;
 using System.Runtime.CompilerServices;
 using TaskNote.Http.Client.HttpUrls;
+using System.Net;
 
 namespace TaskNote.Http.Client
 {
-    public static class TestServiceCollectionExtentions
+    public static class HttpTestServiceCollectionExtentions
     {
-        public static IServiceCollection UseTest(this IServiceCollection services, [CallerMemberName] string testName = "")
+        public static IServiceCollection UseHttpTest(this IServiceCollection services, [CallerMemberName] string testName = "")
         {
             return services
                 .UseTestOptions(new TestOptions(testName))
@@ -32,12 +34,32 @@ namespace TaskNote.Http.Client
             return services
                 .AddSingleton(_ => new SpyAuthService(provider.GetRequiredService<IAuthService>()))
                 .AddSingleton(_ => new SpyLogConfigDownloadService(provider.GetRequiredService<ILogConfigDownloadService>()))
-                .AddSingleton(_ => new SpyLogFileUploadService(provider.GetRequiredService<ILogFileUploadService>()))
+                .AddSingleton(_ => new SpyLogFileUploadService(provider.GetRequiredService<IUploadTraceLogService>()))
                 .AddSingleton(_ => new SpyTaskService(provider.GetRequiredService<ITaskService>()))
                 .AddSingleton<IAuthService>(_ => _.GetRequiredService<SpyAuthService>())
                 .AddSingleton<ILogConfigDownloadService>(_ => _.GetRequiredService<SpyLogConfigDownloadService>())
-                .AddSingleton<ILogFileUploadService>(_ => _.GetRequiredService<SpyLogFileUploadService>())
+                .AddSingleton<IUploadTraceLogService>(_ => _.GetRequiredService<SpyLogFileUploadService>())
                 .AddSingleton<ITaskService>(_ => _.GetRequiredService<SpyTaskService>())
+                ;
+        }
+
+        public static IServiceCollection AddSpyAuthServiceInHttpClientException(this IServiceCollection services)
+        {
+            var mock = new Mock<IAuthService>();
+            mock.Setup(_ => _.GetAuthentication()).Throws<HttpClientException>();
+            return services
+                .AddSingleton(_ => new SpyAuthService(mock.Object))
+                .AddSingleton<IAuthService>(_ => _.GetRequiredService<SpyAuthService>()) // ここ重複コード
+                ;
+        }
+
+        public static IServiceCollection AddUnauthor(this IServiceCollection services)
+        {
+            var mock = new Mock<IAuthService>();
+            mock.Setup(_ => _.GetAuthentication()).Throws(new HttpRequestException(HttpStatusCode.Unauthorized));
+            return services
+                .AddSingleton(_ => new SpyAuthService(mock.Object))
+                .AddSingleton<IAuthService>(_ => _.GetRequiredService<SpyAuthService>()) // ここ重複コード
                 ;
         }
     }

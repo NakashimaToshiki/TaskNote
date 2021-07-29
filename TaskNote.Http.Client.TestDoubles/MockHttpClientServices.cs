@@ -9,7 +9,7 @@ namespace TaskNote.Http.Client
             services
             .AddSingleton<IAuthService>(_ => new Mock<IAuthService>().Object)
             .AddSingleton<ILogConfigDownloadService>(_ => new Mock<ILogConfigDownloadService>().Object)
-            .AddSingleton<ILogFileUploadService>(_ => new Mock<ILogFileUploadService>().Object)
+            .AddSingleton<IUploadTraceLogService>(_ => new Mock<IUploadTraceLogService>().Object)
             .AddSingleton<ITaskService>(_ => new Mock<ITaskService>().Object)
             ;
     }

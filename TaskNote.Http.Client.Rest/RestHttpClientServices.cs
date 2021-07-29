@@ -9,7 +9,7 @@ namespace TaskNote.Http.Client.Rest
             .AddSingleton<ClientFactory>()
             .AddSingleton<IAuthService, AuthService>()
             .AddSingleton<ILogConfigDownloadService, LogConfigDownloadService>()
-            .AddSingleton<ILogFileUploadService, LogFileUploadService>()
+            .AddSingleton<IUploadTraceLogService, LogFileUploadService>()
             .AddSingleton<ITaskService, TaskService>()
             ;
     }

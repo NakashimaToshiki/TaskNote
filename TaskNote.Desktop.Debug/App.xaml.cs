@@ -23,7 +23,7 @@ namespace TaskNote.Desktop.Debug
             _provider = _services
                 .AddSingleton<SynchronizationContext>(new DispatcherSynchronizationContext(Dispatcher))
                // .AddTestDoubles()
-                .AddPlatform<WpfPlatformServices>()
+              //  .AddPlatform<WpfPlatformServices>()
                 .BuildServiceProvider();
         }
 

@@ -7,5 +7,17 @@
 
 <table border="1">
     <tbody>
+        @foreach (var item in Model.ViewModels)
+        {
+            <tr>
+                <td align="center">@item.Date</td>
+                <td align="center">
+                    <form enctype="multipart/form-data" method="post">
+                        <input type="hidden" name="id" asp-for=@item.Id/>
+                        <input type="submit" value="Download" class="btn btn-default"/>
+                    </form>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

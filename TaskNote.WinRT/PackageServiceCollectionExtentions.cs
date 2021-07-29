@@ -40,8 +40,8 @@ namespace TaskNote.WinRT
                 services
                     .AddSingleton<IFileInfoFacade, PackageFileInfoFacade>()
                     .AddSingleton<IVersion, PackageVersion>()
-                    .AddSingleton<IVersionConfiguration, WpfVersionConfiguration>()
-                    .AddSingleton<IUserConfiguration, WpfManagerUserConfiguration>()
+                    .AddSingleton<IVersionConfiguration, PackageVersionConfiguration>()
+                    .AddSingleton<IUserConfiguration, PackageUserConfiguration>()
                     .AddSingleton<ILoggingBatch, PackageLoggingBatch>()
                     .AddSingleton<IConfigurationBatch, PackageConfigurationBatch>()
                     ;
@@ -51,8 +51,8 @@ namespace TaskNote.WinRT
                 services
                     .AddSingleton<IFileInfoFacade, FileInfoFacade>()
                     .AddSingleton<IVersion, AssemblyVersion>()
-                    .AddSingleton<IVersionConfiguration, PackageVersionConfiguration>()
-                    .AddSingleton<IUserConfiguration, PackageUserConfiguration>()
+                    .AddSingleton<IVersionConfiguration, WpfVersionConfiguration>()
+                    .AddSingleton<IUserConfiguration, WpfManagerUserConfiguration>()
                     .AddSingleton<ILoggingBatch, LoggingBatch>()
                     .AddSingleton<IConfigurationBatch, ConfigurationBatch>()
                     ;

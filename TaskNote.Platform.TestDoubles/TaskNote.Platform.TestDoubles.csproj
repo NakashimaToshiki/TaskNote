@@ -6,9 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TaskNote.Models.TestDoubles\TaskNote.Models.TestDoubles.csproj" />
     <ProjectReference Include="..\TaskNote.Platform\TaskNote.Platform.csproj" />
-    <ProjectReference Include="..\TaskNote.TestDoubles\TaskNote.TestDoubles.csproj" />
-    <ProjectReference Include="..\TaskNote\TaskNote.csproj" />
   </ItemGroup>
 
 </Project>
