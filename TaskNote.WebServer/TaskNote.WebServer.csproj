@@ -16,7 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TaskNote.Server.Models\TaskNote.Server.Models.csproj" />
     <ProjectReference Include="..\TaskNote.Shared\TaskNote.Shared.csproj" />
   </ItemGroup>
 

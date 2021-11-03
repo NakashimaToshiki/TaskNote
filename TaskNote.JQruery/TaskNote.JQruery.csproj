@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TaskNote.ApiClient.Mock\TaskNote.ApiClient.Mock.csproj" />
+    <ProjectReference Include="..\TaskNote.ApiClient.Net5\TaskNote.ApiClient.Net5.csproj" />
+    <ProjectReference Include="..\TaskNote.Shared\TaskNote.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

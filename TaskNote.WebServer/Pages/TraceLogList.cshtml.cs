@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using TaskNote.Server.Models.Repositories;
 using System.ComponentModel.DataAnnotations;
+using TaskNote.Server.Repositories;
 
 namespace TaskNote.WebServer.Pages
 {

@@ -5,10 +5,9 @@ using System.IO;
 using System.Net;
 using System.Net.Mime;
 using System.Threading.Tasks;
-using TaskNote.Server.Models.Repositories;
-using TaskNote.Server.Repositories;
+using TaskNote.BackEnd.Entity.Repositories;
 
-namespace TaskNote.WebServer.Controllers
+namespace TaskNote.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
