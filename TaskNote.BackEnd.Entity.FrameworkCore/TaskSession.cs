@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using TaskNote.BackEnd.Entity.Tasks;
 using TaskNote.BackEnd.Entity.Users;
 using System.Linq;
+using TaskNote.Tasks;
 
 namespace TaskNote.BackEnd.Entity.FrameworkCore
 {
@@ -19,12 +20,12 @@ namespace TaskNote.BackEnd.Entity.FrameworkCore
             _datetime = datetime ?? throw new ArgumentNullException(nameof(datetime));
         }
 
-        public async ValueTask<TaskEntity> GetTaskById(int id)
+        public async Task<TaskEntity> GetByIdAsync(int id)
         {
             try
             {
                 using var db = _dbFactory.CreateDbContext();
-                return await db.Tasks.Include(_ => _.User).FirstOrDefaultAsync(_ => _.Id == id);
+                return await db.Tasks.Include(_ => _.User).SingleOrDefaultAsync(_ => _.Id == id);
             }
             catch (Exception e)
             {
@@ -32,12 +33,12 @@ namespace TaskNote.BackEnd.Entity.FrameworkCore
             }
         }
 
-        public async ValueTask<IEnumerable<TaskEntity>> GetTasksByUserName(string username)
+        public IQueryable<TaskEntity> GetTasksByUserName(string username)
         {
             try
             {
                 using var db = _dbFactory.CreateDbContext();
-                return await db.Tasks.Include(_ => _.User).Where(_ => _.User.Name == username).ToListAsync();
+                return db.Tasks.Include(_ => _.User).Where(_ => _.User.Name == username).AsQueryable();
             }
             catch (Exception e)
             {
@@ -45,14 +46,79 @@ namespace TaskNote.BackEnd.Entity.FrameworkCore
             }
         }
 
-        public async ValueTask<bool> Add(string username, string title, string description)
+        public async Task<bool> PostAsync(TaskModel input)
         {
             try
             {
                 using var db = _dbFactory.CreateDbContext();
-                var user = await db.Users.FirstAsync(_ => _.Name == username);
-                db.Tasks.Add(new TaskEntity(user, _datetime.Now, _datetime.Now, title, description));
+                db.Add(input);
                 return await db.SaveChangesAsync() > 0;
+            }
+            catch (Exception e)
+            {
+                throw new DatabaseException(e);
+            }
+        }
+
+        public async Task<bool> PutAsync(int id, TaskModel input)
+        {
+            try
+            {
+                using var db = _dbFactory.CreateDbContext();
+                var find = await db.Tasks.FindAsync(id);
+                find.Id = input.Id;
+                find.Title = input.Title;
+                find.Description = input.Description;
+                find.IsCompleted = input.IsCompleted;
+                find.UpdateDate = input.UpdateDate;
+                find.CreatedDate = input.CreatedDate;
+
+                return await db.SaveChangesAsync() > 0;
+            }
+            catch (Exception e)
+            {
+                throw new DatabaseException(e);
+            }
+        }
+
+        public async Task<bool> PatchForTitleAsync(int id, string title)
+        {
+            try
+            {
+                using var db = _dbFactory.CreateDbContext();
+                var find = await db.Tasks.FindAsync(id);
+                find.Title = title;
+                return await db.SaveChangesAsync() > 0;
+            }
+            catch (Exception e)
+            {
+                throw new DatabaseException(e);
+            }
+        }
+
+        public async Task<bool> PatchForDescriptionAsync(int id, string description)
+        {
+            try
+            {
+                using var db = _dbFactory.CreateDbContext();
+                var find = await db.Tasks.FindAsync(id);
+                find.Description = description;
+                return await db.SaveChangesAsync() > 0;
+            }
+            catch (Exception e)
+            {
+                throw new DatabaseException(e);
+            }
+        }
+
+        public async Task<bool> DeleteAsync(int id)
+        {
+            try
+            {
+                using var db = _dbFactory.CreateDbContext();
+                db.Remove(await db.Tasks.FindAsync(id));
+                return await db.SaveChangesAsync() > 0;
+
             }
             catch (Exception e)
             {

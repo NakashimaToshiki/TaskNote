@@ -1,14 +1,24 @@
 ﻿using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.Linq;
+using TaskNote.Tasks;
 
 namespace TaskNote.BackEnd.Entity.Tasks
 {
     public interface ITaskSession
     {
-        ValueTask<TaskEntity> GetTaskById(int id);
+        Task<TaskEntity> GetByIdAsync(int id);
 
-        ValueTask<IEnumerable<TaskEntity>> GetTasksByUserName(string username);
+        IQueryable<TaskEntity> GetTasksByUserName(string username);
 
-        ValueTask<bool> Add(string username, string title, string description);
+        Task<bool> PostAsync(TaskModel input);
+
+        Task<bool> PatchForTitleAsync(int id, string title);
+
+        Task<bool> PatchForDescriptionAsync(int id, string description);
+
+        Task<bool> PutAsync(int id, TaskModel input);
+
+        Task<bool> DeleteAsync(int id);
     }
 }

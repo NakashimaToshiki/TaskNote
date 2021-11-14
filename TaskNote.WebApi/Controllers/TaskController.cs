@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TaskNote.BackEnd.Entity.Tasks;
+using TaskNote.Tasks;
 
 namespace TaskNote.WebApi.Controllers
 {
@@ -20,23 +21,56 @@ namespace TaskNote.WebApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<TaskEntity> Get(int id)
+        public async Task<TaskModel> Get(int id)
         {
-            return await _session.GetTaskById(id);
+            return await _session.GetByIdAsync(id);
+        }
+
+        [HttpGet]
+        public IEnumerable<TaskShortModel> GetsByUserName(string userName)
+        {
+            return _session.GetTasksByUserName(userName).Select(_ => new TaskShortModel()
+            {
+                Id = _.Id,
+                Title = _.Title,
+            }).ToList();
+            // Castでもいいかも
+        }
+
+        [HttpPost()]
+        public async Task<IActionResult> Post(TaskModel input)
+        {
+            if(await _session.PostAsync(input)) return NoContent();
+            else return NotFound();
         }
 
         [HttpPost("{id}")]
-        public async Task<IActionResult> Post(TaskEntity model)
+        public async Task<IActionResult> Put(int id, TaskModel input)
         {
-            await _session.Add("a","b","c");
-            return Ok();
+            if(await _session.PutAsync(id, input)) return NoContent();
+            else return NotFound();
         }
 
-        [HttpPost("{id}")]
-        public async Task<IActionResult> Put(TaskEntity model)
+        /*
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> PatchForTitleAsync(int id, string title)
         {
-            await _session.Add("a", "b", "c");
-            return Ok();
+            if (await _session.PatchForTitleAsync(id, title)) return NoContent();
+            else return NotFound();
+        }
+
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> PatchForDescriptionAsync(int id, string description)
+        {
+            if (await _session.PatchForDescriptionAsync(id, description)) return NoContent();
+            else return NotFound();
+        }*/
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            if (await _session.DeleteAsync(id)) return NoContent();
+            else return NotFound();
         }
     }
 }
