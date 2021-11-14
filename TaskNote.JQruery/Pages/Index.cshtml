@@ -1,10 +1,22 @@
 ﻿@page
-@model IndexModel
+@model TaskNote.JQruery.Pages.TaskListModel
 @{
-    ViewData["Title"] = "Home page";
+    var title = "TaskList";
+    ViewData["Title"] = title;
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+
+<ul>
+    @foreach (var task in Model.TaskShorts.Tasks)
+    {
+        <li><a asp-page="TaskEditor" asp-route-id="@task.Id">@task.Title</a></li>
+    }
+</ul>
+
+<input type="radio" name="sample" value="apple">リンゴ
+<input type="radio" name="sample" value="melon">メロン
+<input type="radio" name="sample" value="banana">バナナ
+
+
+<script src="~/js/JavaScript.js"></script>
+

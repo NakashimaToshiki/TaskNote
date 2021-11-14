@@ -8,7 +8,7 @@ namespace TaskNote.BackEnd.Entity.FrameworkCore.SqlServer
     {
         private readonly IConfiguration _configuration;
 
-        public SqlServerContext(DbContextOptions options, IConfiguration configuration) : base(options)
+        public SqlServerContext(DbContextOptions<SqlServerContext> options, IConfiguration configuration) : base(options)
         {
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
         }

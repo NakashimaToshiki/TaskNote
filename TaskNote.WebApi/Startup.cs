@@ -11,7 +11,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TaskNote.BackEnd.Entity.FrameworkCore;
 using TaskNote.BackEnd.Entity.FrameworkCore.SqlServer;
+using TaskNote.BackEnd.Entity.Tasks;
 
 namespace TaskNote.WebApi
 {
@@ -27,7 +29,9 @@ namespace TaskNote.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IDateTimeOptions, DateTimeOptions>();
             services.AddDbContextFactory<SqlServerContext>();
+            services.AddSingleton<ITaskSession, TaskSession<SqlServerContext>>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
