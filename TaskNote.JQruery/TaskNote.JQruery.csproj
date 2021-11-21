@@ -5,9 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TaskNote.ApiClient.Mock\TaskNote.ApiClient.Mock.csproj" />
-    <ProjectReference Include="..\TaskNote.ApiClient.Net5\TaskNote.ApiClient.Net5.csproj" />
-    <ProjectReference Include="..\TaskNote.Shared\TaskNote.Shared.csproj" />
+    <ProjectReference Include="..\TaskNote.Http.Client.Mock\TaskNote.Http.Client.Mock.csproj" />
+    <ProjectReference Include="..\TaskNote\TaskNote.csproj" />
   </ItemGroup>
 
 </Project>

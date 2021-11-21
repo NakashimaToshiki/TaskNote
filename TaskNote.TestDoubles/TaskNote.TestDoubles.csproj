@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TaskNote.Logging\TaskNote.Logging.csproj" />
+    <ProjectReference Include="..\TaskNote.Local.Logging\TaskNote.Local.Logging.csproj" />
   </ItemGroup>
 
   <ItemGroup>

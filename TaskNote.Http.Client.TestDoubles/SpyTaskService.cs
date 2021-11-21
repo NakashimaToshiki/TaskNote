@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using TaskNote.Entity;
 
 namespace TaskNote.Http.Client
 {
@@ -14,22 +15,22 @@ namespace TaskNote.Http.Client
         }
 
         // async書いてないけど動く？
-        public ValueTask<IEnumerable<TaskNoteJsonBody>> AllGet()
+        public Task<ICollection<TaskModel>> AllGet()
         {
             return decrated.AllGet();
         }
 
-        public ValueTask<TaskNoteJsonBody> GetById(int id)
+        public Task<TaskModel> GetById(int id)
         {
             return decrated.GetById(id);
         }
 
-        public ValueTask<bool> PutAll(IEnumerable<TaskNoteJsonBody> body)
+        public Task<bool> PutAll(IEnumerable<TaskModel> body)
         {
             return decrated.PutAll(body);
         }
 
-        public ValueTask<bool> PutById(TaskNoteJsonBody body)
+        public Task<bool> PutById(TaskModel body)
         {
             return decrated.PutById(body);
         }

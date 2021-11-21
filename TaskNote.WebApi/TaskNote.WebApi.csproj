@@ -9,8 +9,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TaskNote.BackEnd.Entity.FrameworkCore.InMemory\TaskNote.BackEnd.Entity.FrameworkCore.InMemory.csproj" />
-    <ProjectReference Include="..\TaskNote.BackEnd.Entity.FrameworkCore.SqlServer\TaskNote.BackEnd.Entity.FrameworkCore.SqlServer.csproj" />
+    <ProjectReference Include="..\TaskNote.Entity.BackEnd.FrameworkCore.InMemory\TaskNote.Entity.BackEnd.FrameworkCore.InMemory.csproj" />
+    <ProjectReference Include="..\TaskNote.Entity.BackEnd.FrameworkCore.SqlServer\TaskNote.Entity.BackEnd.FrameworkCore.SqlServer.csproj" />
   </ItemGroup>
 
 </Project>

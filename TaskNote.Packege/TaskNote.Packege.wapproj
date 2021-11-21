@@ -95,7 +95,7 @@
     <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
     <DefaultLanguage>ja-JP</DefaultLanguage>
     <AppxPackageSigningEnabled>false</AppxPackageSigningEnabled>
-    <EntryPointProjectUniqueName>..\TaskNote.Desktop\TaskNote.Desktop.csproj</EntryPointProjectUniqueName>
+    <EntryPointProjectUniqueName>..\TaskNote.Wpf\TaskNote.Wpf.csproj</EntryPointProjectUniqueName>
   </PropertyGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -103,12 +103,8 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\TaskNote.Desktop\appsettings.json">
+    <Content Include="..\TaskNote.Wpf\appsettings.json">
       <Link>appsettings.json</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\TaskNote.Logging\NLog.config">
-      <Link>NLog.config</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\SplashScreen.scale-200.png" />
@@ -124,7 +120,7 @@
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.20348.19" PrivateAssets="all" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TaskNote.Desktop\TaskNote.Desktop.csproj">
+    <ProjectReference Include="..\TaskNote.Wpf\TaskNote.Wpf.csproj">
       <SkipGetTargetFrameworkProperties>True</SkipGetTargetFrameworkProperties>
     </ProjectReference>
   </ItemGroup>

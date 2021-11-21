@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TaskNote\TaskNote.csproj" />
+    <ProjectReference Include="..\TaskNote.Local\TaskNote.Local.csproj" />
   </ItemGroup>
 
 </Project>

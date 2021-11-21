@@ -1,9 +1,9 @@
 using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;
 using System.Threading.Tasks;
-using TaskNote.Entity.TaskItems;
 using System;
 using Microsoft.Extensions.Logging;
+using TaskNote.Entity.Sessions;
 
 namespace TaskNote.Entity.Tests
 {
@@ -19,7 +19,13 @@ namespace TaskNote.Entity.Tests
             var sut = provider.GetRequiredService<ITaskItemSession>();
             var logger = provider.GetRequiredService<ILogger>();
 
-            await sut.Add(new TaskEntity(1, DateTime.MinValue, "title", "description"));
+            await sut.Add(new TaskEntity()
+            {
+                Id = 1,
+                CreatedDate = DateTime.MinValue,
+                Title = "title",
+                Description = "description"
+            });
             var a = await sut.GetById(1);
             logger.LogInformation("TaskItem = {TaskItem}", a);
 

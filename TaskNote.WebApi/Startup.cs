@@ -11,9 +11,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TaskNote.BackEnd.Entity.FrameworkCore;
-using TaskNote.BackEnd.Entity.FrameworkCore.SqlServer;
-using TaskNote.BackEnd.Entity.Tasks;
+using TaskNote.Entity.FrameworkCore;
+using TaskNote.Entity.FrameworkCore.SqlServer;
+using TaskNote.Entity.Sessions;
 
 namespace TaskNote.WebApi
 {

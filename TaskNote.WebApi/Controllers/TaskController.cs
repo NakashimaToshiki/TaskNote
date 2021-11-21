@@ -4,8 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TaskNote.BackEnd.Entity.Tasks;
-using TaskNote.Tasks;
+using TaskNote.Entity;
+using TaskNote.Entity.Sessions;
 
 namespace TaskNote.WebApi.Controllers
 {

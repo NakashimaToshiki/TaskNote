@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
+using TaskNote.Entity;
 
 namespace TaskNote.Http.Client.Rest
 {
@@ -19,7 +20,7 @@ namespace TaskNote.Http.Client.Rest
             _user = user ?? throw new ArgumentNullException(nameof(user));
         }
 
-        public async ValueTask<IEnumerable<TaskNoteJsonBody>> AllGet()
+        public async Task<ICollection<TaskModel>> AllGet()
         {
             try
             {
@@ -29,7 +30,7 @@ namespace TaskNote.Http.Client.Rest
                     .AddUrlSegment("user_id", _user.UserId);
 
                 // TODO:配列でレスポンス取得できるか要検証
-                var response = await client.ExecuteAsync<TaskNoteJsonBody[]>(request);
+                var response = await client.ExecuteAsync<TaskModel[]>(request);
                 if (response.StatusCode != HttpStatusCode.OK)
                 {
                     throw new HttpRequestException(response.StatusCode);
@@ -43,7 +44,7 @@ namespace TaskNote.Http.Client.Rest
             }
         }
 
-        public async ValueTask<TaskNoteJsonBody> GetById(int id)
+        public async Task<TaskModel> GetById(int id)
         {
             try
             {
@@ -53,7 +54,7 @@ namespace TaskNote.Http.Client.Rest
                     .AddUrlSegment("user_id", _user.UserId)
                     .AddParameter("id", id);
 
-                var response = await client.ExecuteAsync<TaskNoteJsonBody>(request);
+                var response = await client.ExecuteAsync<TaskModel>(request);
                 if (response.StatusCode != HttpStatusCode.OK)
                 {
                     throw new HttpRequestException(response.StatusCode);
@@ -67,7 +68,7 @@ namespace TaskNote.Http.Client.Rest
             }
         }
 
-        public async ValueTask<bool> PutAll(IEnumerable<TaskNoteJsonBody> body)
+        public async Task<bool> PutAll(IEnumerable<TaskModel> body)
         {
             try
             {
@@ -91,7 +92,7 @@ namespace TaskNote.Http.Client.Rest
             }
         }
 
-        public async ValueTask<bool> PutById(TaskNoteJsonBody body)
+        public async Task<bool> PutById(TaskModel body)
         {
             try
             {

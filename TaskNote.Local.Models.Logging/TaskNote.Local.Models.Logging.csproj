@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>TaskNote.Models.Logging</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TaskNote.Local.Logging\TaskNote.Local.Logging.csproj" />
+    <ProjectReference Include="..\TaskNote.Local.Models\TaskNote.Local.Models.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,11 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using TaskNote.Http;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using TaskNote.ApiClient;
+using TaskNote.Entity;
 
 namespace TaskNote.JQruery.Pages
 {
@@ -18,7 +17,7 @@ namespace TaskNote.JQruery.Pages
             _apiClient = apiClient ?? throw new ArgumentNullException(nameof(apiClient));
         }
 
-        public TaskShortsResponse TaskShorts { get; set; }
+        public ICollection<TaskShortModel> TaskShorts { get; set; }
 
         public async Task<IActionResult> OnGetAsync()
         {

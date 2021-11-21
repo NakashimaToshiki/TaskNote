@@ -5,7 +5,7 @@ using System.IO;
 using System.Net;
 using System.Net.Mime;
 using System.Threading.Tasks;
-using TaskNote.BackEnd.Entity.Repositories;
+using TaskNote.Entity.Repositories;
 
 namespace TaskNote.WebApi.Controllers
 {

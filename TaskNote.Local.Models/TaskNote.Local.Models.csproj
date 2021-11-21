@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Configurations>Debug;Release;Staging;Mock</Configurations>
+    <RootNamespace>TaskNote.Models</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TaskNote.Entity.FrontEnd.FrameworkCore\TaskNote.Entity.FrontEnd.FrameworkCore.csproj" />
+    <ProjectReference Include="..\TaskNote.Local.Configuration\TaskNote.Local.Configuration.csproj" />
+    <ProjectReference Include="..\TaskNote.Http.Client\TaskNote.Http.Client.csproj" />
+    <ProjectReference Include="..\TaskNote.Local.Storage\TaskNote.Local.Storage.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,4 +1,5 @@
 ﻿using System;
+using TaskNote.Entity;
 
 namespace TaskNote.Http.Client.Arranges
 {
@@ -10,6 +11,6 @@ namespace TaskNote.Http.Client.Arranges
 
         string Context { get; }
 
-        TaskNoteJsonBody Generate();
+        TaskModel Generate();
     }
 }

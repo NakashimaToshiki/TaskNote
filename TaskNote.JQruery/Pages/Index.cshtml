@@ -7,7 +7,7 @@
 
 
 <ul>
-    @foreach (var task in Model.TaskShorts.Tasks)
+    @foreach (var task in Model.TaskShorts)
     {
         <li><a asp-page="TaskEditor" asp-route-id="@task.Id">@task.Title</a></li>
     }

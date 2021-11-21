@@ -8,9 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TaskNote.Entity.FrameworkCore.DbSqlite\TaskNote.Entity.FrameworkCore.DbSqlite.csproj" />
-    <ProjectReference Include="..\TaskNote.Entity.FrameworkCore.InMemory\TaskNote.Entity.FrameworkCore.InMemory.csproj" />
+    <ProjectReference Include="..\TaskNote.Entity.FrontEnd.FrameworkCore.DbSqlite\TaskNote.Entity.FrontEnd.FrameworkCore.DbSqlite.csproj" />
+    <ProjectReference Include="..\TaskNote.Entity.FrontEnd.FrameworkCore.InMemory\TaskNote.Entity.FrontEnd.FrameworkCore.InMemory.csproj" />
     <ProjectReference Include="..\TaskNote.TestDoubles\TaskNote.TestDoubles.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Arranges\" />
   </ItemGroup>
 
 </Project>
