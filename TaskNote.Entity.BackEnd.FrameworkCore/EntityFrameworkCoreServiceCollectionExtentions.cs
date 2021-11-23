@@ -9,6 +9,7 @@ namespace TaskNote.Entity.FrameworkCore
             services
             .AddDbContextFactory<TDbContext>()
             .AddSingleton<ITaskSession, TaskSession<TDbContext>>()
+            .AddSingleton<IUserSession, UserSession<TDbContext>>()
         ;
     }
 }

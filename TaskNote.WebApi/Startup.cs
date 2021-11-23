@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -12,6 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TaskNote.Entity.FrameworkCore;
+using TaskNote.Entity.FrameworkCore.InMemory;
 using TaskNote.Entity.FrameworkCore.SqlServer;
 using TaskNote.Entity.Sessions;
 
@@ -31,7 +33,10 @@ namespace TaskNote.WebApi
         {
             services.AddSingleton<IDateTimeOptions, DateTimeOptions>();
 
-            services.AddControllers();
+            services
+                .AddTaskNoteDbContext<InMemoryContext>().AddDammyDbContext()
+                .AddControllers();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "TaskNote.WebApi", Version = "v1" });

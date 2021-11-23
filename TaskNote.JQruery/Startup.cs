@@ -1,10 +1,12 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
+using System.Linq;
 using TaskNote.Entity.FrameworkCore;
 using TaskNote.Entity.FrameworkCore.InMemory;
 using TaskNote.JQruery.Services;
@@ -35,7 +37,7 @@ namespace TaskNote.JQruery
             services.AddSingleton<IDateTimeOptions, DateTimeOptions>(); // TODO:‚±‚ê‚ÍˆÚ“®‚·‚é
 
             services
-                .AddTaskNoteDbContext<InMemoryContext>()
+                .AddTaskNoteDbContext<InMemoryContext>().AddDammyDbContext()
                 .AddTaskNoteAspNetServices()
                 .AddTaskNoteServiceControllers()
                 .AddRazorPages()

@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using TaskNote.Entity.Sessions;
+using System.Linq;
 
 namespace TaskNote.Entity.FrameworkCore
 {
@@ -14,7 +16,20 @@ namespace TaskNote.Entity.FrameworkCore
             _dbFactory = dbFactory ?? throw new ArgumentNullException(nameof(dbFactory));
         }
 
-        public async Task<UserEntity> GetById(int id)
+        public async Task<IList<UserModel>> GetAll()
+        {
+            try
+            {
+                using var db = _dbFactory.CreateDbContext();
+                return await db.Users.Cast<UserModel>().ToListAsync();
+            }
+            catch (Exception e)
+            {
+                throw new DatabaseException(e);
+            }
+        }
+
+        public async Task<UserModel> GetById(int id)
         {
             try
             {
@@ -26,5 +41,24 @@ namespace TaskNote.Entity.FrameworkCore
                 throw new DatabaseException(e);
             }
         }
+
+        public async Task<bool> Post(UserModel input)
+        {
+            try
+            {
+                using var db = _dbFactory.CreateDbContext();
+                await db.Users.AddAsync(new UserEntity()
+                {
+                    Id = input.Id,
+                    Name = input.Name
+                });
+                return await db.SaveChangesAsync() > 0;
+            }
+            catch (Exception e)
+            {
+                throw new DatabaseException(e);
+            }
+        }
+
     }
 }

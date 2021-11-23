@@ -28,10 +28,10 @@ namespace TaskNote.WebApi.Controllers
             return await _session.GetByIdAsync(id);
         }
 
-        [HttpGet]
-        public async Task<IEnumerable<TaskShortModel>> GetsByUserName(string userName)
+        [HttpGet("userid/{id}")]
+        public async Task<IEnumerable<TaskShortModel>> GetsByUserId(int id)
         {
-            return await _session.GetTasksByUserName(userName);
+            return await _session.GetTasksByUserId(id);
         }
 
         [HttpPost()]

@@ -31,12 +31,12 @@ namespace TaskNote.Entity.FrameworkCore
             }
         }
 
-        public async Task<IList<TaskShortModel>> GetTasksByUserName(string username)
+        public async Task<IList<TaskShortModel>> GetTasksByUserId(int id)
         {
             try
             {
                 using var db = _dbFactory.CreateDbContext();
-                return await db.Tasks.Where(_ => _.User.Name == username).Select(task => new TaskShortModel()
+                return await db.Tasks.Include(_ => _.User).Where(_ => _.User.Id == id).Select(task => new TaskShortModel()
                 {
                     Id = task.Id,
                     Title = task.Title

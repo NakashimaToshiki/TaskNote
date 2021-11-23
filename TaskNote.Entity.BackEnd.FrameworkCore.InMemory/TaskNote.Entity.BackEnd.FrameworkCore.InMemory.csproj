@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TaskNote.Entity.BackEnd.FrameworkCore\TaskNote.Entity.BackEnd.FrameworkCore.csproj" />
+    <ProjectReference Include="..\TaskNote.TestDoubles\TaskNote.TestDoubles.csproj" />
   </ItemGroup>
 
 </Project>
