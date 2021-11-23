@@ -1,7 +1,5 @@
-﻿using System.Threading.Tasks;
-using System.Collections.Generic;
-using System.Linq;
-using TaskNote.Entity;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace TaskNote.Entity.Sessions
 {
@@ -9,7 +7,7 @@ namespace TaskNote.Entity.Sessions
     {
         Task<TaskEntity> GetByIdAsync(int id);
 
-        IQueryable<TaskEntity> GetTasksByUserName(string username);
+        Task<IList<TaskShortModel>> GetTasksByUserName(string username);
 
         Task<bool> PostAsync(TaskModel input);
 

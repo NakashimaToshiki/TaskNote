@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Threading.Tasks;
-using TaskNote.BackEnd.Entity;
 using TaskNote.Entity.Sessions;
 
 namespace TaskNote.Entity.FrameworkCore

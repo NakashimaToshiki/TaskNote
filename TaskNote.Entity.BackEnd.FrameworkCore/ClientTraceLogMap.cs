@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TaskNote.BackEnd.Entity.ClientTraceLogs;
 
 namespace TaskNote.Entity.FrameworkCore
 {

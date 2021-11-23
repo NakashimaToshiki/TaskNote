@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using TaskNote.BackEnd.Entity.ClientTraceLogs;
 
 namespace TaskNote.Entity.Sessions
 {

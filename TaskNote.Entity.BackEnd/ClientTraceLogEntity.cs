@@ -1,6 +1,4 @@
-﻿using TaskNote.Entity;
-
-namespace TaskNote.BackEnd.Entity.ClientTraceLogs
+﻿namespace TaskNote.Entity
 {
     public class ClientTraceLogEntity : ClientTraceLog, IEntity
     {

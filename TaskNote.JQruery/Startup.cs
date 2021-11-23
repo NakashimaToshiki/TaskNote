@@ -1,15 +1,14 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using TaskNote.ApiClient;
-using TaskNote.ApiClient.Mock;
+using TaskNote.Entity.FrameworkCore;
+using TaskNote.Entity.FrameworkCore.InMemory;
+using TaskNote.JQruery.Services;
+using TaskNote.Services;
 
 namespace TaskNote.JQruery
 {
@@ -25,9 +24,22 @@ namespace TaskNote.JQruery
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddRazorPages();
+            services.AddDistributedMemoryCache();
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromSeconds(10);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
 
-            services.AddScoped<ITaskShortsApiClient, TaskShortsApiClient>();
+            services.AddSingleton<IDateTimeOptions, DateTimeOptions>(); // TODO:‚±‚ê‚ÍˆÚ“®‚·‚é
+
+            services
+                .AddTaskNoteDbContext<InMemoryContext>()
+                .AddTaskNoteAspNetServices()
+                .AddTaskNoteServiceControllers()
+                .AddRazorPages()
+                ;
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,6 +58,8 @@ namespace TaskNote.JQruery
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            app.UseSession();
 
             app.UseRouting();
 

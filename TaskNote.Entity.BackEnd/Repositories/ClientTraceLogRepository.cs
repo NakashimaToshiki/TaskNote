@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using TaskNote.BackEnd.Entity.ClientTraceLogs;
 using TaskNote.Entity.Sessions;
 
 namespace TaskNote.Entity.Repositories

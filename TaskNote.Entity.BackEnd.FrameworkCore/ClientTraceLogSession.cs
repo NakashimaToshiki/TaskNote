@@ -3,8 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TaskNote.BackEnd.Entity;
-using TaskNote.BackEnd.Entity.ClientTraceLogs;
 using TaskNote.Entity.Sessions;
 
 namespace TaskNote.Entity.FrameworkCore

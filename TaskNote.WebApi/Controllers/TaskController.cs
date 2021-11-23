@@ -13,28 +13,25 @@ namespace TaskNote.WebApi.Controllers
     [Route("[controller]")]
     public class TaskController : Controller
     {
+        private readonly ILogger<TaskController> _logger;
         private readonly ITaskSession _session;
 
-        public TaskController(ITaskSession session)
+        public TaskController(ILogger<TaskController> logger, ITaskSession session)
         {
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _session = session ?? throw new ArgumentNullException(nameof(session));
         }
 
         [HttpGet("{id}")]
-        public async Task<TaskModel> Get(int id)
+        public async Task<TaskModel> GetById(int id)
         {
             return await _session.GetByIdAsync(id);
         }
 
         [HttpGet]
-        public IEnumerable<TaskShortModel> GetsByUserName(string userName)
+        public async Task<IEnumerable<TaskShortModel>> GetsByUserName(string userName)
         {
-            return _session.GetTasksByUserName(userName).Select(_ => new TaskShortModel()
-            {
-                Id = _.Id,
-                Title = _.Title,
-            }).ToList();
-            // Castでもいいかも
+            return await _session.GetTasksByUserName(userName);
         }
 
         [HttpPost()]

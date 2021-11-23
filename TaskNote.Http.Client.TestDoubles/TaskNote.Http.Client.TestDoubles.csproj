@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TaskNote.Http.Client.Rest\TaskNote.Http.Client.Rest.csproj" />
-    <ProjectReference Include="..\TaskNote.TestDoubles\TaskNote.TestDoubles.csproj" />
+    <ProjectReference Include="..\TaskNote.Local.TestDoubles\TaskNote.Local.TestDoubles.csproj" />
   </ItemGroup>
 
 </Project>

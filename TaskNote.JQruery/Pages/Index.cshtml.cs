@@ -1,34 +1,42 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using TaskNote.ApiClient;
 using TaskNote.Entity;
+using TaskNote.JQruery.Services;
+using TaskNote.Options;
 
 namespace TaskNote.JQruery.Pages
 {
     public class TaskListModel : PageModel
     {
-        private readonly ITaskShortsApiClient _apiClient;
-        
-        public TaskListModel(ITaskShortsApiClient apiClient)
+        private readonly ILogger<TaskListModel> _logger;
+
+        public TaskListModel(ILogger<TaskListModel> logger)
         {
-            _apiClient = apiClient ?? throw new ArgumentNullException(nameof(apiClient));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public ICollection<TaskShortModel> TaskShorts { get; set; }
-
-        public async Task<IActionResult> OnGetAsync()
+        public ICollection<TaskShortModel> TaskShorts { get; set; } = new List<TaskShortModel>()
         {
-            TaskShorts = await _apiClient.GetTaskShortsResponseAsync(DateTime.MinValue, DateTime.Now);
+            NullTaskShortModel.Instance
+        };
 
-            if (TaskShorts == null)
+        public async Task<IActionResult> OnGetAsync([FromServices] TaskService taskService)
+        {
+            try
             {
-                return RedirectToPage("/Index");
-            }
+                TaskShorts = await taskService.GetShortTasks();
 
-            return Page();
+                return Page();
+            }
+            catch (UserOptionException e)
+            {
+                _logger.LogInformation(e.Message);
+                return RedirectToPage("/Login");
+            }
         }
 
         public IActionResult OnPostAsync()

@@ -30,8 +30,7 @@ namespace TaskNote.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<IDateTimeOptions, DateTimeOptions>();
-            services.AddDbContextFactory<SqlServerContext>();
-            services.AddSingleton<ITaskSession, TaskSession<SqlServerContext>>();
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

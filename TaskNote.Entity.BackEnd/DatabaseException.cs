@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 
-namespace TaskNote.BackEnd.Entity
+namespace TaskNote.Entity
 {
     [Serializable()]
     public class DatabaseException : TaskNoteException

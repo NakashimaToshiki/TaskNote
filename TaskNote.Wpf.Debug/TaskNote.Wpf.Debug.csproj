@@ -9,7 +9,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TaskNote.Wpf\TaskNote.Wpf.csproj" />
-    <ProjectReference Include="..\TaskNote.TestDoubles\TaskNote.TestDoubles.csproj" />
   </ItemGroup>
 
 </Project>

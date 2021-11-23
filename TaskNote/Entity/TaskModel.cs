@@ -16,6 +16,19 @@ namespace TaskNote.Entity
         public override string ToString() => this.ToStringProperties();
     }
 
+    public class NullTaskShortModel : TaskShortModel
+    {
+        public static NullTaskShortModel Instance { get; } = new NullTaskShortModel()
+        {
+            Id = 0,
+            Title = "null"
+        };
+
+        protected NullTaskShortModel()
+        {
+        }
+    }
+
     public class TaskModel : TaskShortModel
     {
         [Display(Name = "内容")]

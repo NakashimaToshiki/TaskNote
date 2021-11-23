@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TaskNote.BackEnd.Entity;
 using TaskNote.Entity.Sessions;
 
 namespace TaskNote.Entity.FrameworkCore
@@ -31,12 +31,16 @@ namespace TaskNote.Entity.FrameworkCore
             }
         }
 
-        public IQueryable<TaskEntity> GetTasksByUserName(string username)
+        public async Task<IList<TaskShortModel>> GetTasksByUserName(string username)
         {
             try
             {
                 using var db = _dbFactory.CreateDbContext();
-                return db.Tasks.Include(_ => _.User).Where(_ => _.User.Name == username).AsQueryable();
+                return await db.Tasks.Where(_ => _.User.Name == username).Select(task => new TaskShortModel()
+                {
+                    Id = task.Id,
+                    Title = task.Title
+                }).ToListAsync();
             }
             catch (Exception e)
             {

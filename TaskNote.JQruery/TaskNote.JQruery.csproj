@@ -5,8 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TaskNote.Http.Client.Mock\TaskNote.Http.Client.Mock.csproj" />
-    <ProjectReference Include="..\TaskNote\TaskNote.csproj" />
+    <ProjectReference Include="..\TaskNote.Entity.BackEnd.FrameworkCore.InMemory\TaskNote.Entity.BackEnd.FrameworkCore.InMemory.csproj" />
+    <ProjectReference Include="..\TaskNote.Entity.BackEnd.FrameworkCore.SqlServer\TaskNote.Entity.BackEnd.FrameworkCore.SqlServer.csproj" />
+    <ProjectReference Include="..\TaskNote.WebAsp\TaskNote.WebAsp.csproj" />
   </ItemGroup>
 
 </Project>
