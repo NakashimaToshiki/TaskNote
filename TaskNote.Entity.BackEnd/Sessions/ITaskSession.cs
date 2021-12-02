@@ -9,13 +9,13 @@ namespace TaskNote.Entity.Sessions
 
         Task<IList<TaskShortModel>> GetTasksByUserId(int id);
 
-        Task<bool> PostAsync(TaskModel input);
+        Task<bool> PostAsync(TaskEntity input);
 
         Task<bool> PatchForTitleAsync(int id, string title);
 
         Task<bool> PatchForDescriptionAsync(int id, string description);
 
-        Task<bool> PutAsync(int id, TaskModel input);
+        Task<bool> PutAsync(int id, TaskEntity input);
 
         Task<bool> DeleteAsync(int id);
     }

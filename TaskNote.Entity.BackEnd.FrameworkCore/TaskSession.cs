@@ -48,12 +48,12 @@ namespace TaskNote.Entity.FrameworkCore
             }
         }
 
-        public async Task<bool> PostAsync(TaskModel input)
+        public async Task<bool> PostAsync(TaskEntity input)
         {
             try
             {
                 using var db = _dbFactory.CreateDbContext();
-                db.Add(input);
+                db.Tasks.Add(input);
                 return await db.SaveChangesAsync() > 0;
             }
             catch (Exception e)
@@ -62,7 +62,7 @@ namespace TaskNote.Entity.FrameworkCore
             }
         }
 
-        public async Task<bool> PutAsync(int id, TaskModel input)
+        public async Task<bool> PutAsync(int id, TaskEntity input)
         {
             try
             {

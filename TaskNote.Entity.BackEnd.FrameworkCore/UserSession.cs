@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using TaskNote.Entity.Sessions;
 using System.Linq;
+using AutoMapper;
 
 namespace TaskNote.Entity.FrameworkCore
 {

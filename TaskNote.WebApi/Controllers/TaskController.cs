@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -14,18 +15,21 @@ namespace TaskNote.WebApi.Controllers
     public class TaskController : Controller
     {
         private readonly ILogger<TaskController> _logger;
+        private readonly IMapper _mapper;
         private readonly ITaskSession _session;
 
-        public TaskController(ILogger<TaskController> logger, ITaskSession session)
+        public TaskController(ILogger<TaskController> logger, IMapper mapper, ITaskSession session)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
             _session = session ?? throw new ArgumentNullException(nameof(session));
         }
 
         [HttpGet("{id}")]
         public async Task<TaskModel> GetById(int id)
         {
-            return await _session.GetByIdAsync(id);
+            var entity = await _session.GetByIdAsync(id);
+            return _mapper.Map<TaskEntity, TaskModel>(entity);
         }
 
         [HttpGet("userid/{id}")]
@@ -37,14 +41,16 @@ namespace TaskNote.WebApi.Controllers
         [HttpPost()]
         public async Task<IActionResult> Post(TaskModel input)
         {
-            if(await _session.PostAsync(input)) return NoContent();
+            var entity = _mapper.Map<TaskModel, TaskEntity>(input);
+            if (await _session.PostAsync(entity)) return NoContent();
             else return NotFound();
         }
 
-        [HttpPost("{id}")]
+        [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, TaskModel input)
         {
-            if(await _session.PutAsync(id, input)) return NoContent();
+            var entity = _mapper.Map<TaskModel, TaskEntity>(input);
+            if (await _session.PutAsync(id, entity)) return NoContent();
             else return NotFound();
         }
 

@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -15,6 +16,7 @@ using System.Threading.Tasks;
 using TaskNote.Entity.FrameworkCore;
 using TaskNote.Entity.FrameworkCore.InMemory;
 using TaskNote.Entity.FrameworkCore.SqlServer;
+using TaskNote.Entity.Mapper;
 using TaskNote.Entity.Sessions;
 
 namespace TaskNote.WebApi
@@ -36,6 +38,10 @@ namespace TaskNote.WebApi
             services
                 .AddTaskNoteDbContext<InMemoryContext>().AddDammyDbContext()
                 .AddControllers();
+
+            services.AddAutoMapper(cfg => {
+                cfg.AddProfile<AutoMapperProfileConfiguration>();
+            }).AddSingleton<IMapper, Mapper>();
 
             services.AddSwaggerGen(c =>
             {
