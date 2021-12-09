@@ -1,15 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using TaskNote.Entity;
 
 namespace TaskNote.Entity.Sessions
 {
     public interface IUserSession
     {
-        Task<UserModel> GetById(int id);
+        Task<UserEntity> GetByIdAsync(int id);
 
-        Task<IList<UserModel>> GetAll();
+        Task<IList<UserEntity>> GetAllAsync();
 
-        Task<bool> Post(UserModel input);
+        Task<bool> DeleteByIdAsync(int id);
+
+        Task<bool> PostAsync(UserEntity input);
     }
 }

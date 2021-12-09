@@ -17,12 +17,12 @@ namespace TaskNote.Entity.FrameworkCore
             _dbFactory = dbFactory ?? throw new ArgumentNullException(nameof(dbFactory));
         }
 
-        public async Task<IList<UserModel>> GetAll()
+        public async Task<IList<UserEntity>> GetAllAsync()
         {
             try
             {
                 using var db = _dbFactory.CreateDbContext();
-                return await db.Users.Cast<UserModel>().ToListAsync();
+                return await db.Users.ToListAsync();
             }
             catch (Exception e)
             {
@@ -30,12 +30,12 @@ namespace TaskNote.Entity.FrameworkCore
             }
         }
 
-        public async Task<UserModel> GetById(int id)
+        public async Task<UserEntity> GetByIdAsync(int id)
         {
             try
             {
                 using var db = _dbFactory.CreateDbContext();
-                return await db.Users.FirstOrDefaultAsync(_ => _.Id == id);
+                return await db.Users.FindAsync(id);
             }
             catch (Exception e)
             {
@@ -43,17 +43,33 @@ namespace TaskNote.Entity.FrameworkCore
             }
         }
 
-        public async Task<bool> Post(UserModel input)
+        public async Task<bool> DeleteByIdAsync(int id)
         {
             try
             {
                 using var db = _dbFactory.CreateDbContext();
-                await db.Users.AddAsync(new UserEntity()
-                {
-                    Id = input.Id,
-                    Name = input.Name
-                });
-                return await db.SaveChangesAsync() > 0;
+                var find = await db.Users.FindAsync(id);
+                if (find == null) return false;
+                db.Users.Remove(find);
+                await db.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception e)
+            {
+                throw new DatabaseException(e);
+            }
+        }
+
+        public async Task<bool> PostAsync(UserEntity input)
+        {
+            try
+            {
+                using var db = _dbFactory.CreateDbContext();
+                var find = await db.Users.FindAsync(input.Id);
+                if (find != null) return false;
+                await db.Users.AddAsync(input);
+                await db.SaveChangesAsync();
+                return true;
             }
             catch (Exception e)
             {

@@ -19,6 +19,12 @@ namespace TaskNote.Entity.FrameworkCore
             builder.Property(p => p.Description).HasColumnName("description");
             builder.Property(p => p.CreatedDate).HasColumnName("createdDate");
             builder.Property(p => p.UpdateDate).HasColumnName("updateData");
+
+            builder
+                .HasOne(task => task.User)
+                .WithMany(user => user.Tasks)
+                .HasForeignKey(user => user.UserId)
+                ;
         }
     }
 }

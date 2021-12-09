@@ -1,4 +1,16 @@
 ﻿@page "{id}"
 @model TaskNote.JQruery.Pages.TaskEditorModel
 @{
+
 }
+
+<script src="~/js/api-client/base.js"></script>
+<script src="~/js/api-client/task-api-client.js"></script>
+<script src="~/js/task-editor.js"></script>
+
+<form method="post">
+    <input id="Id" asp-for="Model.Id" type="hidden" />
+    <input id="Description" asp-for="Model.Description" type="text" />
+    <button type="submit">送信</button>
+    <input type="button" value="非同期送信" onclick="onButtonClick()" />
+</form>

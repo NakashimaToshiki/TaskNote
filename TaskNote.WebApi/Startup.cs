@@ -23,6 +23,8 @@ namespace TaskNote.WebApi
 {
     public class Startup
     {
+        private readonly string _allowSpecificOrigins = "allowSpecificOrigins";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -43,6 +45,18 @@ namespace TaskNote.WebApi
                 cfg.AddProfile<AutoMapperProfileConfiguration>();
             }).AddSingleton<IMapper, Mapper>();
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: _allowSpecificOrigins,
+                    builder =>
+                    {
+                        builder
+                        .AllowAnyOrigin()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                    });
+            });
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "TaskNote.WebApi", Version = "v1" });
@@ -56,12 +70,17 @@ namespace TaskNote.WebApi
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "TaskNote.WebApi v1"));
+                app.UseSwaggerUI(c => {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "TaskNote.WebApi v1");
+                    c.DocExpansion(Swashbuckle.AspNetCore.SwaggerUI.DocExpansion.None);
+                    });
             }
 
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(_allowSpecificOrigins);
 
             app.UseAuthorization();
 

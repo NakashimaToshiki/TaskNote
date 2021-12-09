@@ -26,6 +26,7 @@ namespace TaskNote.JQruery.Pages
 
         public async Task<IActionResult> OnGetAsync([FromServices] TaskService taskService)
         {
+          //  if (!ModelState.IsValid) return View(supplier);
             try
             {
                 TaskShorts = await taskService.GetShortTasks();
@@ -39,7 +40,17 @@ namespace TaskNote.JQruery.Pages
             }
         }
 
+        
         public IActionResult OnPostAsync()
+        {
+            return RedirectToPage();
+        }
+
+        public IActionResult Search()
+        {
+            return RedirectToPage();
+        }
+        public async Task<IActionResult> OnPostSearchAsync()
         {
             return RedirectToPage();
         }

@@ -9,6 +9,7 @@ namespace TaskNote.Entity.Mapper
             CreateMap<TaskEntity, TaskModel>();
             CreateMap<TaskModel, TaskEntity>();
             CreateMap<UserEntity, UserModel>();
+            CreateMap<UserModel, UserEntity>();
         }
     }
 }

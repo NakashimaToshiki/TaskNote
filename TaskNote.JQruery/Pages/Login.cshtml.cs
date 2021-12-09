@@ -25,7 +25,7 @@ namespace TaskNote.JQruery.Pages
 
         public async Task<IActionResult> OnPostAsync([FromServices] IUserSession session, string userName)
         {
-            var id = session.GetById(1);
+            var id = session.GetByIdAsync(1);
             return new OkResult();
         }
     }

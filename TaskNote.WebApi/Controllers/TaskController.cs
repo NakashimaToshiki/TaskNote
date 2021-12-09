@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -11,7 +12,7 @@ using TaskNote.Entity.Sessions;
 namespace TaskNote.WebApi.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class TaskController : Controller
     {
         private readonly ILogger<TaskController> _logger;
@@ -26,54 +27,50 @@ namespace TaskNote.WebApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<TaskModel> GetById(int id)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<TaskModel>> GetById(int id)
         {
-            var entity = await _session.GetByIdAsync(id);
-            return _mapper.Map<TaskEntity, TaskModel>(entity);
+            var record = await _session.GetByIdAsync(id);
+            if (record == null) return NotFound();
+            return record;
+        }
+
+        [HttpPatch]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> Patch(TaskModel input)
+        {
+            if (await _session.PatchAsync(input)) return NoContent();
+            else return NotFound();
+        }
+
+        [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> Delete(int id)
+        {
+            if (!await _session.DeleteAsync(id)) return NotFound();
+            return NoContent();
         }
 
         [HttpGet("userid/{id}")]
-        public async Task<IEnumerable<TaskShortModel>> GetsByUserId(int id)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<IList<TaskShortModel>>> GetsByUserId(int id)
         {
-            return await _session.GetTasksByUserId(id);
+            var records = await _session.GetTasksByUserId(id);
+            if (records.Count == 0) return NotFound();
+            return records.ToList();
         }
 
-        [HttpPost()]
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status409Conflict)]
         public async Task<IActionResult> Post(TaskModel input)
         {
-            var entity = _mapper.Map<TaskModel, TaskEntity>(input);
-            if (await _session.PostAsync(entity)) return NoContent();
-            else return NotFound();
-        }
-
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, TaskModel input)
-        {
-            var entity = _mapper.Map<TaskModel, TaskEntity>(input);
-            if (await _session.PutAsync(id, entity)) return NoContent();
-            else return NotFound();
-        }
-
-        /*
-        [HttpPatch("{id}")]
-        public async Task<IActionResult> PatchForTitleAsync(int id, string title)
-        {
-            if (await _session.PatchForTitleAsync(id, title)) return NoContent();
-            else return NotFound();
-        }
-
-        [HttpPatch("{id}")]
-        public async Task<IActionResult> PatchForDescriptionAsync(int id, string description)
-        {
-            if (await _session.PatchForDescriptionAsync(id, description)) return NoContent();
-            else return NotFound();
-        }*/
-
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
-        {
-            if (await _session.DeleteAsync(id)) return NoContent();
-            else return NotFound();
+            if (!await _session.PostAsync(input)) return Conflict();
+            return CreatedAtAction(nameof(GetById), new { input.Id }, input);
         }
     }
 }

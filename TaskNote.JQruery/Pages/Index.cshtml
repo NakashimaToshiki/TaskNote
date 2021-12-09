@@ -5,18 +5,21 @@
     ViewData["Title"] = title;
 }
 
+<script src="~/js/api-client/base.js"></script>
+<script src="~/js/api-client/task-api-client.js"></script>
 
-<ul>
-    @foreach (var task in Model.TaskShorts)
-    {
-        <li><a asp-page="TaskEditor" asp-route-id="@task.Id">@task.Title</a></li>
-    }
-</ul>
+<form method="post">
+    <button type="submit" asp-page-handler="Search" name="Search">追加</button>
+    <ul>
+        @foreach (var task in Model.TaskShorts)
+        {
+            <li>
+                <a asp-page="TaskEditor" asp-route-id="@task.Id">@task.Title</a>
 
-<input type="radio" name="sample" value="apple">リンゴ
-<input type="radio" name="sample" value="melon">メロン
-<input type="radio" name="sample" value="banana">バナナ
+                <button type="submit">削除</button>
+            </li>
+        }
+    </ul>
+</form>
 
-
-<script src="~/js/JavaScript.js"></script>
 

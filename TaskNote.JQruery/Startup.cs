@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -9,6 +10,7 @@ using System;
 using System.Linq;
 using TaskNote.Entity.FrameworkCore;
 using TaskNote.Entity.FrameworkCore.InMemory;
+using TaskNote.Entity.Mapper;
 using TaskNote.JQruery.Services;
 using TaskNote.Services;
 
@@ -33,6 +35,10 @@ namespace TaskNote.JQruery
                 options.Cookie.HttpOnly = true;
                 options.Cookie.IsEssential = true;
             });
+
+            services.AddAutoMapper(cfg => {
+                cfg.AddProfile<AutoMapperProfileConfiguration>();
+            }).AddSingleton<IMapper, Mapper>();
 
             services.AddSingleton<IDateTimeOptions, DateTimeOptions>(); // TODO:‚±‚ê‚ÍˆÚ“®‚·‚é
 

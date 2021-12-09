@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
 
 namespace TaskNote.Entity
 {
@@ -31,12 +32,10 @@ namespace TaskNote.Entity
 
     public class TaskModel : TaskShortModel
     {
-        [Display(Name = "内容")]
         public string Description { get; set; }
 
         public bool IsCompleted { get; set; } = false;
 
-        [Display(Name = "Upload")]
         [DisplayFormat(DataFormatString = "{0:G}")]
         public DateTime UpdateDate { get; set; }
 

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,21 +10,24 @@ namespace TaskNote.Entity.FrameworkCore
 {
     public class TaskSession<TDbContext> : ITaskSession where TDbContext : DbContext, ITaskDbSet
     {
+        private readonly IMapper _mapper;
         private readonly IDbContextFactory<TDbContext> _dbFactory;
         private readonly IDateTimeOptions _datetime;
 
-        public TaskSession(IDbContextFactory<TDbContext> dbFactory, IDateTimeOptions datetime)
+        public TaskSession(IMapper mapper, IDbContextFactory<TDbContext> dbFactory, IDateTimeOptions datetime)
         {
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
             _dbFactory = dbFactory ?? throw new ArgumentNullException(nameof(dbFactory));
             _datetime = datetime ?? throw new ArgumentNullException(nameof(datetime));
         }
 
-        public async Task<TaskEntity> GetByIdAsync(int id)
+        public async Task<TaskModel> GetByIdAsync(int id)
         {
             try
             {
                 using var db = _dbFactory.CreateDbContext();
-                return await db.Tasks.Include(_ => _.User).SingleOrDefaultAsync(_ => _.Id == id);
+                var recoed = await db.Tasks.FindAsync(id);
+                return _mapper.Map<TaskModel>(recoed);
             }
             catch (Exception e)
             {
@@ -35,6 +39,7 @@ namespace TaskNote.Entity.FrameworkCore
         {
             try
             {
+                // ここを見るとこのクラスでAutoMapperを使った方がいいかもしれない
                 using var db = _dbFactory.CreateDbContext();
                 return await db.Tasks.Include(_ => _.User).Where(_ => _.User.Id == id).Select(task => new TaskShortModel()
                 {
@@ -48,12 +53,15 @@ namespace TaskNote.Entity.FrameworkCore
             }
         }
 
-        public async Task<bool> PostAsync(TaskEntity input)
+        public async Task<bool> PostAsync(TaskModel input)
         {
             try
             {
                 using var db = _dbFactory.CreateDbContext();
-                db.Tasks.Add(input);
+                var find = await db.Tasks.FindAsync(input.Id);
+                if (find != null) return false;
+                var record = _mapper.Map<TaskEntity>(input);
+                db.Tasks.Add(record);
                 return await db.SaveChangesAsync() > 0;
             }
             catch (Exception e)
@@ -62,20 +70,16 @@ namespace TaskNote.Entity.FrameworkCore
             }
         }
 
-        public async Task<bool> PutAsync(int id, TaskEntity input)
+        public async Task<bool> PatchAsync(TaskModel input)
         {
             try
             {
                 using var db = _dbFactory.CreateDbContext();
-                var find = await db.Tasks.FindAsync(id);
-                find.Id = input.Id;
-                find.Title = input.Title;
-                find.Description = input.Description;
-                find.IsCompleted = input.IsCompleted;
-                find.UpdateDate = input.UpdateDate;
-                find.CreatedDate = input.CreatedDate;
-
-                return await db.SaveChangesAsync() > 0;
+                var find = await db.Tasks.FindAsync(input.Id);
+                if (find == null) return false;
+                _mapper.Map(input, find);
+                await db.SaveChangesAsync();
+                return true;
             }
             catch (Exception e)
             {
@@ -89,8 +93,10 @@ namespace TaskNote.Entity.FrameworkCore
             {
                 using var db = _dbFactory.CreateDbContext();
                 var find = await db.Tasks.FindAsync(id);
+                if (find == null) return false;
                 find.Title = title;
-                return await db.SaveChangesAsync() > 0;
+                await db.SaveChangesAsync();
+                return true;
             }
             catch (Exception e)
             {
@@ -104,8 +110,10 @@ namespace TaskNote.Entity.FrameworkCore
             {
                 using var db = _dbFactory.CreateDbContext();
                 var find = await db.Tasks.FindAsync(id);
+                if (find == null) return false;
                 find.Description = description;
-                return await db.SaveChangesAsync() > 0;
+                await db.SaveChangesAsync();
+                return true;
             }
             catch (Exception e)
             {
@@ -118,9 +126,11 @@ namespace TaskNote.Entity.FrameworkCore
             try
             {
                 using var db = _dbFactory.CreateDbContext();
-                db.Remove(await db.Tasks.FindAsync(id));
-                return await db.SaveChangesAsync() > 0;
-
+                var find = await db.Tasks.FindAsync(id);
+                if (find == null) return false;
+                db.Remove(find);
+                await db.SaveChangesAsync();
+                return true;
             }
             catch (Exception e)
             {

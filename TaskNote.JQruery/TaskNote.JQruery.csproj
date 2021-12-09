@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\TaskNote.Entity.BackEnd.FrameworkCore.InMemory\TaskNote.Entity.BackEnd.FrameworkCore.InMemory.csproj" />
     <ProjectReference Include="..\TaskNote.Entity.BackEnd.FrameworkCore.SqlServer\TaskNote.Entity.BackEnd.FrameworkCore.SqlServer.csproj" />
     <ProjectReference Include="..\TaskNote.WebAsp\TaskNote.WebAsp.csproj" />
