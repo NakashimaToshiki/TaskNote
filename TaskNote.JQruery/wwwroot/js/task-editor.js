@@ -1,12 +1,27 @@
 ﻿
+class taskEditorApiTask extends apiTask {
+    constructor(firstName = '') {
+        super(firstName)
+    }
+
+    jsonSubscribe(jsonBody) {
+        super.jsonSubscribe(jsonBody);
+        window.alert('dekita');
+    }
+}
 
 
 function onButtonClick() {
-    var json = {
-        Id : $('#Id').val(),
-        Description: $('#Description').val(),
-        IsCompleted: false,
-    };
-    let status = apiTaskPatch(json);
+
+    let api = new taskEditorApiTask('');
+    api.apiPatch();
+    /*
+    apiTaskPatch();
+
+
+    apiTaskGet(1);*/
 }
+
+
+
 

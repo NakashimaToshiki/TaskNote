@@ -41,8 +41,8 @@ namespace TaskNote.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Patch(TaskModel input)
         {
-            if (await _session.PatchAsync(input)) return NoContent();
-            else return NotFound();
+            if (!await _session.PatchAsync(input)) return NotFound();
+            else return CreatedAtAction(nameof(GetById), new { input.Id }, input);
         }
 
         [HttpDelete("{id}")]
