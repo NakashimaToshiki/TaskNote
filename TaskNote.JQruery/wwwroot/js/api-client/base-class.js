@@ -43,9 +43,9 @@ class apiBase {
      * @param {number} statusCode ステータスコード
      */
     apiGetAlert(statusCode) {
-        if (statusCodeConvertToBoolen(statusCode)) return;
+        if (this.statusCodeConvertToBoolen(statusCode)) return;
         if (statusCode == 404) apiAlert('対象のデータがサーバに見つかりませんでした。');
-        else apiAlert(statusCode + 'エラー\r\n' + 'データの取得に失敗');
+        else this.apiAlert(statusCode + 'エラー\r\n' + 'データの取得に失敗');
     }
 
     /**
@@ -53,9 +53,9 @@ class apiBase {
      * @param {number} statusCode ステータスコード
      */
     apiPostAlert(statusCode) {
-        if (statusCodeConvertToBoolen(statusCode)) return;
-        if (statusCode == 409) apiAlert('既に対象のデータがサーバに存在するため作成に失敗しました。');
-        else apiAlert(statusCode + 'エラー\r\n' + 'データの作成に失敗');
+        if (this.statusCodeConvertToBoolen(statusCode)) return;
+        if (statusCode == 409) this.apiAlert('既に対象のデータがサーバに存在するため作成に失敗しました。');
+        else this.apiAlert(statusCode + 'エラー\r\n' + 'データの作成に失敗');
     }
 
     /**
@@ -63,9 +63,9 @@ class apiBase {
      * @param {number} statusCode ステータスコード
      */
     apiPatchAlert(statusCode) {
-        if (statusCodeConvertToBoolen(statusCode)) return;
-        if (statusCode == 404) apiAlert('対象のデータがサーバに見つからず更新に失敗しました。');
-        else apiAlert(statusCode + 'エラー\r\n' + 'データの更新に失敗');
+        if (this.statusCodeConvertToBoolen(statusCode)) return;
+        if (statusCode == 404) this.apiAlert('対象のデータがサーバに見つからず更新に失敗しました。');
+        else this.apiAlert(statusCode + 'エラー\r\n' + 'データの更新に失敗');
     }
 
     /**
@@ -73,9 +73,9 @@ class apiBase {
      * @param {number} statusCode ステータスコード
      */
     apiDeleteAlert(statusCode) {
-        if (statusCodeConvertToBoolen(statusCode)) return;
-        if (statusCode == 404) apiAlert('対象のデータがサーバに見つからず削除に失敗しました。');
-        else apiAlert(statusCode + 'エラー\r\n' + 'データの削除に失敗');
+        if (this.statusCodeConvertToBoolen(statusCode)) return;
+        if (statusCode == 404) this.apiAlert('対象のデータがサーバに見つからず削除に失敗しました。');
+        else this.apiAlert(statusCode + 'エラー\r\n' + 'データの削除に失敗');
     }
 
     /**

@@ -97,7 +97,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskNote.WebAsp", "TaskNote
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskNote.Local.TestDoubles", "TaskNote.Local.TestDoubles\TaskNote.Local.TestDoubles.csproj", "{AC4FF722-8152-4455-B5BA-01B3C1E3C67E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskNote.TestDoubles", "TaskNote.TestDoubles\TaskNote.TestDoubles.csproj", "{BD609C64-930B-4007-9D4F-35E668B7029E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskNote.TestDoubles", "TaskNote.TestDoubles\TaskNote.TestDoubles.csproj", "{BD609C64-930B-4007-9D4F-35E668B7029E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

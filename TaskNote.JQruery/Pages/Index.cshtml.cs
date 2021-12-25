@@ -7,11 +7,16 @@ using System.Threading.Tasks;
 using TaskNote.Entity;
 using TaskNote.JQruery.Services;
 using TaskNote.Options;
+using System.Linq;
 
 namespace TaskNote.JQruery.Pages
 {
     public class TaskListModel : PageModel
     {
+        public TaskModel model1 { get; set; } = new TaskModel();
+
+        public TaskModel model2 { get; set; } = new TaskModel();
+
         private readonly ILogger<TaskListModel> _logger;
 
         public TaskListModel(ILogger<TaskListModel> logger)
@@ -19,7 +24,7 @@ namespace TaskNote.JQruery.Pages
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public ICollection<TaskShortModel> TaskShorts { get; set; } = new List<TaskShortModel>()
+        public List<TaskShortModel> TaskShorts { get; set; } = new List<TaskShortModel>()
         {
             NullTaskShortModel.Instance
         };
@@ -29,7 +34,7 @@ namespace TaskNote.JQruery.Pages
           //  if (!ModelState.IsValid) return View(supplier);
             try
             {
-                TaskShorts = await taskService.GetShortTasks();
+                TaskShorts = (await taskService.GetShortTasks()).ToList();
 
                 return Page();
             }

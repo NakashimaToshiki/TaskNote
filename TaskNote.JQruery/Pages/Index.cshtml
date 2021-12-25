@@ -12,11 +12,28 @@
 <form method="post">
     <button type="submit" asp-page-handler="Search" name="Search">追加j</button>
     <button type="submit">te</button>
+    <address>
+        <strong>Support:</strong><email mail-to="Support"></email><br />
+        <strong>Marketing:</strong><email mail-to="Marketing"></email>
+        <partial-fix pre="sample" name="Moleceles/TaskItem.cshtml" model='@Model.TaskShorts[0]'></partial-fix>
+        
+    </address>
     <ul>
         @foreach (var task in Model.TaskShorts)
         {
             <li>
+                <partial name="Moleceles/TaskItem.cshtml" model='@task' />
+                <partial name="Moleceles/TaskItem.cshtml" for="@task" />
                 <a asp-page="TaskEditor" asp-route-id="@task.Id">@task.Title</a>
+
+                <button type="submit">削除</button>
+            </li>
+        }
+
+        @for (int i = 0; i < Model.TaskShorts.Count; i++)
+        {
+            <li>
+                <partial name="Moleceles/TaskItem.cshtml" model='@Model.TaskShorts[i]' />
 
                 <button type="submit">削除</button>
             </li>
