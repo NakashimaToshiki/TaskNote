@@ -32,8 +32,6 @@ namespace TaskNote.Entity
 
     public class TaskModel : TaskShortModel
     {
-        [MaxLength(10)]
-        [MinLength(2)]
         public string Description { get; set; }
 
         public bool IsCompleted { get; set; } = false;

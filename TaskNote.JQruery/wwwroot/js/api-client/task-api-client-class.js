@@ -1,52 +1,20 @@
 ﻿
 /**
- * Taskデータを取得するWebApi
+ * タスクモデルのベースクラスを提供します
  * */
-class apiTask extends apiBase {
+class TaskModel extends ModelBase {
 
     /**
      * コンストラクタ
-     * @param {string} firstName 識別文字
+     * @param {string} prefix 接頭辞
+     * @param {string} suffix 接尾辞
      */
-    constructor(firstName) {
-        super("Task");
-        firstName = super.convetFirstName(firstName);
+    constructor(prefix = '', suffix = '') {
+        super(prefix, suffix);
 
-        this.id = $('#' + firstName + 'Id');
-        this.description = $('#' + firstName + 'Description');
-        this.isCompleted = $('#' + firstName + 'IsCompleted');
-    }
-
-    /**
-     * サーバからタスクデータを取得してHTMLに反映する
-     * @param {number} id プライマリキー
-     */
-    apiGet(id) {
-        super.apiGet(id);
-    }
-
-    /**
-     * Jsonデータをサーバに送信して更新
-     * @param {any} jsonBody Jsonデータ
-     */
-    apiPatch(jsonBody = this.getJsonFromHtml()) {
-        super.apiPatch(jsonBody);
-    }
-
-    /**
-     * 対象のタスクデータをサーバから削除
-     * @param {number} id プライマリキー
-     */
-    apiDelete(id) {
-        super.apiDelete(id);
-    }
-
-    /**
-     * レスポンスのストリームをJsonとして解釈した場合に呼び出されるメソッド
-     * @param {any} jsonBody Jsonデータ
-     */
-    jsonSubscribe(jsonBody) {
-        this.setJsonToHtml(jsonBody);
+        this.id = super.getDocument('Id');
+        this.description = super.getDocument('Description');
+        this.isCompleted = super.getDocument('IsCompleted');
     }
 
     /**
@@ -68,6 +36,43 @@ class apiTask extends apiBase {
     setJsonToHtml(jsonBody) {
         this.id.val(jsonBody.id);
         this.description.val(jsonBody.description);
-        this.isCompleted.val(jsonBody.isCompleted);
+        //this.isCompleted.val(jsonBody.isCompleted);
+    }
+}
+
+/**
+ * Taskデータを取得するWebApi
+ * */
+class ApiTask extends ApiBase {
+
+    constructor() {
+        super('Task');
+    }
+
+    /**
+     * サーバにタスクの表現を要求します
+     * @param {number} id プライマリキー
+     * @returns {Promise}
+     */
+    get(id) {
+        return super.get(id);
+    }
+
+    /**
+     * サーバにタスクの修正を要求します
+     * @param {any} jsonBody リソース
+     * @returns {Promise}
+     */
+    patch(jsonBody) {
+        super.patch(jsonBody);
+    }
+
+    /**
+     * サーバにタスクの削除を要求します
+     * @param {number} id プライマリキー
+     * @returns {Promise}
+     */
+    delete(id) {
+        return super.delete(id);
     }
 }

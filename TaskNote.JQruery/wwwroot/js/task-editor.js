@@ -1,25 +1,12 @@
 ﻿
-class taskEditorApiTask extends apiTask {
-    constructor(firstName = '') {
-        super(firstName)
-    }
-
-    jsonSubscribe(jsonBody) {
-        super.jsonSubscribe(jsonBody);
-        window.alert('dekita');
-    }
-}
-
-
 function onButtonClick() {
 
-    let api = new taskEditorApiTask('');
-    api.apiPatch();
-    /*
-    apiTaskPatch();
+    let api = new ApiTask();
+    let model = new TaskModel();
 
+    api.patch(model.getJsonFromHtml());
 
-    apiTaskGet(1);*/
+//    api.get(1).then(data => { model.setJsonToHtml(data); });
 }
 
 
