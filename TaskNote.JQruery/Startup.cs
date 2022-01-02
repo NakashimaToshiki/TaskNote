@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 using System;
 using System.Linq;
 using TaskNote.Entity.FrameworkCore;
@@ -18,6 +19,8 @@ namespace TaskNote.JQruery
 {
     public class Startup
     {
+        private readonly string _allowSpecificOrigins = "allowSpecificOrigins";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -42,12 +45,31 @@ namespace TaskNote.JQruery
 
             services.AddSingleton<IDateTimeOptions, DateTimeOptions>(); // TODO:‚±‚ê‚ÍˆÚ“®‚·‚é
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: _allowSpecificOrigins,
+                    builder =>
+                    {
+                        builder
+                        .AllowAnyOrigin()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                    });
+            });
+
+            services.AddControllers();
+
             services
                 .AddTaskNoteDbContext<InMemoryContext>().AddDammyDbContext()
                 .AddTaskNoteAspNetServices()
                 .AddTaskNoteServiceControllers()
                 .AddRazorPages()
-                ;
+            ;
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "TaskNote.WebApi", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,6 +78,11 @@ namespace TaskNote.JQruery
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(c => {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "TaskNote.WebApi v1");
+                    c.DocExpansion(Swashbuckle.AspNetCore.SwaggerUI.DocExpansion.None);
+                });
             }
             else
             {
@@ -70,12 +97,14 @@ namespace TaskNote.JQruery
             app.UseSession();
 
             app.UseRouting();
+            app.UseCors(_allowSpecificOrigins);
 
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+                endpoints.MapControllers();
             });
         }
     }
