@@ -5,4 +5,5 @@
 @{
 }
 
-<input asp-for="@Model.Title"/>
+<input asp-for="@Model.Title" />
+<a asp-page="TaskEditor" asp-route-id="@Model.Id">@Model.Title</a>

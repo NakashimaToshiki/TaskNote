@@ -75,4 +75,8 @@ class ApiTask extends ApiBase {
     delete(id) {
         return super.delete(id);
     }
+
+    post() {
+        return super.post();
+    }
 }
