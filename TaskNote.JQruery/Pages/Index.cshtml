@@ -5,11 +5,13 @@
     ViewData["Title"] = title;
 }
 
+<script src="~/js//task-list.js"></script>
 <script src="~/js/api-client/base.js"></script>
 <script src="~/js/api-client/task-api-client.js"></script>
 
-<input type="button" value="Name" onclick=""/>
-<ul>
+<input type="button" value="追加" onclick="onAddTask();"/>
+
+<ul id="ul">
     @foreach (var task in Model.TaskShorts)
     {
         <li>
