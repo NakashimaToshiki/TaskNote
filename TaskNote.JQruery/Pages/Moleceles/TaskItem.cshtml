@@ -5,8 +5,9 @@
 @{
 }
 
-<div class="breadcrumb">
-    <input id="task-@Model.Id"  asp-for="@Model.Title" />
-    <input asp-for="@Model.Id" readonly />
+<div class="form-inline">
+    <input class="form-control" id="task-@Model.Id" asp-for="@Model.Title" />
+    <input class="form-control" asp-for="@Model.Id" />
     <a asp-page="TaskEditor" asp-route-id="@Model.Id">@Model.Title</a>
 </div>
+
