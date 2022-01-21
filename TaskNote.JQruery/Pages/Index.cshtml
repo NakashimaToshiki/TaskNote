@@ -14,9 +14,9 @@
 <ul id="ul">
     @foreach (var task in Model.TaskShorts)
     {
-        <li>
-            <partial name="Moleceles/TaskItem.cshtml" model='@task' />
-        </li>
+    <li>
+        <partial name="Moleceles/TaskItem.cshtml" suffix="@task.Id" model='@task'/>
+    </li>
     }
 </ul>
 

@@ -5,5 +5,8 @@
 @{
 }
 
-<input asp-for="@Model.Title" />
-<a asp-page="TaskEditor" asp-route-id="@Model.Id">@Model.Title</a>
+<div class="breadcrumb">
+    <input id="task-@Model.Id"  asp-for="@Model.Title" />
+    <input asp-for="@Model.Id" readonly />
+    <a asp-page="TaskEditor" asp-route-id="@Model.Id">@Model.Title</a>
+</div>

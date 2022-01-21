@@ -24,5 +24,11 @@ namespace TaskNote.JQruery.Pages
             // 引数名がプロパティ名と同じであれば同一のものとみなされるらしい「Model」==「model」
             await session.PatchAsync(model);
         }
+
+        public async Task<IActionResult> OnPostMethod([FromServices] ITaskSession session, [FromBody] TaskModel input)
+        {
+            var output = await session.PostAsync(input);
+            return new OkResult();
+        }
     }
 }

@@ -28,5 +28,10 @@ namespace TaskNote.JQruery.TagHelpers
 
             await base.ProcessAsync(context, output);
         }
+
+        public override void Init(TagHelperContext context)
+        {
+            base.Init(context);
+        }
     }
 }
