@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Pages\Sample.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
     <PackageReference Include="jQuery.Validation" Version="1.19.3" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
@@ -14,6 +18,10 @@
     <ProjectReference Include="..\TaskNote.Entity.BackEnd.FrameworkCore.InMemory\TaskNote.Entity.BackEnd.FrameworkCore.InMemory.csproj" />
     <ProjectReference Include="..\TaskNote.Entity.BackEnd.FrameworkCore.SqlServer\TaskNote.Entity.BackEnd.FrameworkCore.SqlServer.csproj" />
     <ProjectReference Include="..\TaskNote.WebAsp\TaskNote.WebAsp.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Pages\Shared\Components\" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties properties_4launchsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>

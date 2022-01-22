@@ -9,15 +9,21 @@
 <script src="~/js/api-client/base.js"></script>
 <script src="~/js/api-client/task-api-client.js"></script>
 
-<input type="button" value="追加" onclick="onAddTask();"/>
+<input type="button" value="追加" onclick="onAddTask();" />
 
 <ul id="ul">
     @foreach (var task in Model.TaskShorts)
     {
-    <li>
-        <partial name="Moleceles/TaskItem.cshtml" suffix="@task.Id" model='@task'/>
-    </li>
+        <li>
+            <partial name="Moleceles/TaskItem.cshtml" suffix="@task.Id" model='@task' />
+        </li>
     }
+
 </ul>
 
+<form method="post" asp-page="Sample" >
+    <input type="text" name="userid" value="1" />
+    <input type="text" name="email" value="2"/>
+    <button type="submit" >ボタン</button>
+</form>
 
