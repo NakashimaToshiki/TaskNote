@@ -13,7 +13,7 @@ namespace TaskNote.Entity
                 CreatedDate = DateTime.MinValue,
                 UpdateDate = DateTime.MinValue,
                 IsCompleted = false,
-                UserId = 1,
+                UserId = "1",
             },
             new TaskModel(){
                 Id = 2,
@@ -22,7 +22,7 @@ namespace TaskNote.Entity
                 CreatedDate = DateTime.MinValue,
                 UpdateDate = DateTime.MinValue,
                 IsCompleted = false,
-                UserId = 1,
+                UserId = "1",
             },
             new TaskModel(){
                 Id = 3,
@@ -31,7 +31,7 @@ namespace TaskNote.Entity
                 CreatedDate = DateTime.MinValue,
                 UpdateDate = DateTime.MinValue,
                 IsCompleted = false,
-                UserId = 1,
+                UserId = "1",
             }
         };
     }

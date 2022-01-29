@@ -57,7 +57,7 @@ namespace TaskNote.JQruery.Controllers
         [HttpGet("userid/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<IList<TaskShortModel>>> GetsByUserId(int id)
+        public async Task<ActionResult<IList<TaskShortModel>>> GetsByUserId(string id)
         {
             var records = await _session.GetTasksByUserId(id);
             if (records.Count == 0) return NotFound();

@@ -23,7 +23,7 @@ namespace TaskNote.JQruery.Services
 
         public async Task<IList<TaskShortModel>> GetShortTasks()
         {
-            return await _dbSession.GetTasksByUserId(1);
+            return await _dbSession.GetTasksByUserId("1");
             //_userOption.UserName = "user1";
             //_userOption.UserId = 1;
             //return await _dbSession.GetTasksByUserId(_userOption.UserId);

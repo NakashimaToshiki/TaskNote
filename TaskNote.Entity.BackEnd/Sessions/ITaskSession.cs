@@ -7,7 +7,7 @@ namespace TaskNote.Entity.Sessions
     {
         Task<TaskModel> GetByIdAsync(int id);
 
-        Task<IList<TaskShortModel>> GetTasksByUserId(int id);
+        Task<IList<TaskShortModel>> GetTasksByUserId(string id);
 
         Task<bool> PostAsync(TaskModel input);
 

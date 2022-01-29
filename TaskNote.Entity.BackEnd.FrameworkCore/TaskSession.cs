@@ -35,7 +35,7 @@ namespace TaskNote.Entity.FrameworkCore
             }
         }
 
-        public async Task<IList<TaskShortModel>> GetTasksByUserId(int id)
+        public async Task<IList<TaskShortModel>> GetTasksByUserId(string id)
         {
             try
             {

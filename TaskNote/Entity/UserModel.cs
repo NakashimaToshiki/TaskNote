@@ -5,7 +5,7 @@ namespace TaskNote.Entity
 {
     public class UserModel : IDataClass
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         [Display(Name = "ユーザー名")]
         public string Name { get; set; }
