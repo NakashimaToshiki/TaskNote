@@ -14,6 +14,7 @@ using TaskNote.Entity.FrameworkCore.InMemory;
 using TaskNote.Entity.Mapper;
 using TaskNote.JQruery.Services;
 using TaskNote.Services;
+using TaskNote.JQruery.EnumSelectedList;
 
 namespace TaskNote.JQruery
 {
@@ -44,6 +45,7 @@ namespace TaskNote.JQruery
             }).AddSingleton<IMapper, Mapper>();
 
             services.AddSingleton<IDateTimeOptions, DateTimeOptions>(); // TODO:‚±‚ê‚ÍˆÚ“®‚·‚é
+            services.AddSingleton<SexSelectedList>();
 
             services.AddCors(options =>
             {

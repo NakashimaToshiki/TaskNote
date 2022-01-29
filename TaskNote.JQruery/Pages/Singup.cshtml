@@ -1,0 +1,48 @@
+﻿@page
+@inject TaskNote.JQruery.EnumSelectedList.SexSelectedList SexSelectedList
+@model TaskNote.JQruery.Pages.SingupModel
+@{
+}
+
+<form asp-page="SingupResult" id="form-id" method="post">
+    <label asp-for="UserInfo.Id"></label>
+    <input asp-for="UserInfo.Id" class="form-control" oninput="onIdCheck('@Model.UserInfo.Id')" />
+    <span asp-validation-for="UserInfo" />
+    <label asp-for="UserInfo.Name"></label>
+    <input asp-for="UserInfo.Name" class="form-control" />
+    <span asp-validation-for="UserInfo.Name" />
+    <label asp-for="UserInfo.Password"></label>
+    <input asp-for="UserInfo.Password" class="form-control" />
+    <span asp-validation-for="UserInfo.Password" />
+    <label asp-for="UserInfo.SexId"></label>
+    <select asp-for="UserInfo.SexId" asp-items="SexSelectedList.Values" class="form-control" ></select>
+
+    <button type="submit" class="btn btn-primary" formmethod="post">作成</button>
+</form>
+
+<body onload='init();'>
+    <script type="text/javascript">
+        function init() {
+            //const keyList = Object.keys(userInfo);
+            let form = document.getElementById('form-id');
+            let inputs = form.querySelectorAll('input');
+
+            inputs.forEach(input => console.trace(input.value));
+            inputs.forEach(input => console.trace(input.id));
+            
+            let userInfo = @Json.Serialize(Model.UserInfo);
+            const keyList = Object.keys(userInfo);
+
+            keyList.forEach(input => console.trace(input));
+
+
+
+
+            //console.warn(inputs[keyList.pop()].value);
+        }
+
+        function onIdCheck(name) {
+
+        }
+    </script>
+</body>

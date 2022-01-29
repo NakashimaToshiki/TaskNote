@@ -6,6 +6,8 @@ namespace TaskNote.Entity
     {
         public virtual List<TaskEntity> Tasks { get; set; }
 
+        public SexEntity SexEntity { get; set; } 
+
         public override string ToString() => this.ToStringProperties();
     }
 }

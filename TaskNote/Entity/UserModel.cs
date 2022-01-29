@@ -5,10 +5,20 @@ namespace TaskNote.Entity
 {
     public class UserModel : IDataClass
     {
-        public string Id { get; set; }
+        [Display(Name = "ユーザーID")]
+        [Required(ErrorMessage = "入力必須です。")]
+        public string Id { get; set; } = string.Empty;
 
         [Display(Name = "ユーザー名")]
-        public string Name { get; set; }
+        [Required(ErrorMessage = "入力必須です。")]
+        public string Name { get; set; } = string.Empty;
+
+        [Display(Name = "パスワード")]
+        [Required(ErrorMessage = "入力必須です。")]
+        public string Password { get; set; } = string.Empty;
+
+        [Display(Name = "性別")]
+        public Sex SexId { get; set; }
 
         public override string ToString() => this.ToStringProperties();
     }
