@@ -9,21 +9,47 @@
 <script src="~/js/api-client/base.js"></script>
 <script src="~/js/api-client/task-api-client.js"></script>
 
-<input type="button" value="追加" onclick="onAddTask();" />
+<form method="post">
+    <ul>
+        @for (int i = 0; i < Model.Users.Count; i++)
+        {
+            <li>
+                <input asp-for="@Model.Users[i].UserId" />
+                <input asp-for="@Model.Users[i].Email" />
+            </li>
+        }
+    </ul>
+    <button type="submit">送信</button>
+</form>
 
-<ul id="ul">
-    @foreach (var task in Model.TaskShorts)
-    {
+<form method="post">
+    <ul>
         <li>
-            <partial name="Moleceles/TaskItem.cshtml" suffix="@task.Id" model='@task' />
+            <partial name="User.cshtml" model="@Model.UserA" />
         </li>
-    }
+        <li>
+            <partial name="User.cshtml" model="@Model.UserB" />
+        </li>
+    </ul>
+    <button type="submit">送信</button>
+</form>
 
-</ul>
 
-<form method="post" asp-page="Sample" >
+<form method="post">
+    <ul>
+        <li>
+            <vc:user prefix="UserA" type="Default" />
+        </li>
+        <li>
+            <vc:user prefix="UserB" type="Default" />
+        </li>
+    </ul>
+    <button type="submit">送信</button>
+</form>
+
+<form method="post" asp-page="Sample">
     <input type="text" name="userid" value="1" />
-    <input type="text" name="email" value="2"/>
-    <button type="submit" >ボタン</button>
+    <input type="text" name="email" value="2" />
+    <button type="submit">ボタン</button>
 </form>
 

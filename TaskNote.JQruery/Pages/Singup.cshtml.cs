@@ -10,7 +10,7 @@ namespace TaskNote.JQruery.Pages
 {
     public class SingupModel : PageModel
     {
-        public UserModel UserInfo { get; set; } = new UserModel()
+        public Entity.UserModel UserInfo { get; set; } = new Entity.UserModel()
         {
             Id = "abc",
             Name = "‚È‚È‚µ",

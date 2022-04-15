@@ -14,7 +14,7 @@ namespace TaskNote.JQruery.Pages
         {
         }
 
-        public IActionResult OnPost(UserModel userInfo)
+        public IActionResult OnPost(Entity.UserModel userInfo)
         {
             return Page();
         }

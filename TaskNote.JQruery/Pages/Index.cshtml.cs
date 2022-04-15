@@ -11,31 +11,51 @@ using System.Linq;
 
 namespace TaskNote.JQruery.Pages
 {
+    public class UserModel
+    {
+        public string UserId { get; set; }
+
+        public string Email { get; set; }
+    }
+
+    public class UserViewModel : UserModel
+    {
+        public string Prefix { get; set; }
+    }
+
     public class TaskListModel : PageModel
     {
-        public TaskModel model1 { get; set; } = new TaskModel();
-
-        public TaskModel model2 { get; set; } = new TaskModel();
-
         private readonly ILogger<TaskListModel> _logger;
+
+        public IList<UserModel> Users = new List<UserModel>()
+        {
+            new UserModel(){UserId = "susuki", Email="susuki@mail" },
+            new UserModel(){UserId = "tanaka", Email="tanaka@mail" },
+        };
+
+        public UserViewModel UserA { get; set; } = new UserViewModel()
+        {
+            Prefix = nameof(UserA),
+            UserId = "hirosi",
+            Email = "hirosi@mail",
+        };
+        public UserViewModel UserB { get; set; } = new UserViewModel()
+        {
+            Prefix= nameof(UserB),
+            UserId = "tadasi",
+            Email = "tadasi@mail",
+        };
+
 
         public TaskListModel(ILogger<TaskListModel> logger)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public List<TaskShortModel> TaskShorts { get; set; } = new List<TaskShortModel>()
+        public async Task<IActionResult> OnGetAsync(UserModel model)
         {
-            NullTaskShortModel.Instance
-        };
-
-        public async Task<IActionResult> OnGetAsync([FromServices] TaskService taskService)
-        {
-          //  if (!ModelState.IsValid) return View(supplier);
             try
             {
-                TaskShorts = (await taskService.GetShortTasks()).ToList();
-
                 return Page();
             }
             catch (UserOptionException e)
@@ -45,19 +65,20 @@ namespace TaskNote.JQruery.Pages
             }
         }
 
-        
-        public IActionResult OnPostAsync()
+        public IActionResult OnPostAsync(Response response)
         {
             return RedirectToPage();
         }
 
-        public IActionResult Search()
+        /*
+        public IActionResult OnPostAsync(IList<UserModel> users)
         {
             return RedirectToPage();
-        }
-        public async Task<IActionResult> OnPostSearchAsync()
-        {
-            return RedirectToPage();
-        }
+        }*/
+    }
+
+    public class Response {
+        public UserModel UserA { get; set; }
+        public UserModel UserB {get;set;}
     }
 }

@@ -28,11 +28,11 @@ namespace TaskNote.WebApi.Controllers
 
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<ActionResult<TaskModel>> GetById(int id)
         {
             var record = await _session.GetByIdAsync(id);
-            if (record == null) return NotFound();
+            if (record == null) return NoContent();
             return record;
         }
 
@@ -47,20 +47,20 @@ namespace TaskNote.WebApi.Controllers
 
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> Delete(int id)
         {
-            if (!await _session.DeleteAsync(id)) return NotFound();
+            if (!await _session.DeleteAsync(id)) return NoContent();
             return NoContent();
         }
 
         [HttpGet("userid/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<IList<TaskShortModel>>> GetsByUserId(int id)
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<ActionResult<IList<TaskShortModel>>> GetsByUserId(string id)
         {
             var records = await _session.GetTasksByUserId(id);
-            if (records.Count == 0) return NotFound();
+            if (records.Count == 0) return NoContent();
             return records.ToList();
         }
 

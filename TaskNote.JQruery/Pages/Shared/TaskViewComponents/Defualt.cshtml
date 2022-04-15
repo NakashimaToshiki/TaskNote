@@ -1,0 +1,9 @@
+﻿
+@model TaskNote.JQruery.Pages.UserViewModel
+@{
+    var userid = $"{Model.Prefix}.{nameof(Model.UserId)}";
+    var email = $"{Model.Prefix}.{nameof(Model.Email)}";
+}
+
+<input id="@userid" name="@userid" asp-for="@Model.UserId" />
+<input id="@email" name="@email" asp-for="@Model.Email" />
